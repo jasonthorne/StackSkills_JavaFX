@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -16,6 +17,7 @@ import javafx.geometry.Pos;
 public class Main extends Application {
 	
 	private Label myLabel;
+	private TextField txtField;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -35,14 +37,19 @@ public class Main extends Application {
 			myLabel = new Label("I be label text");
 			//myLabel.setText("I be label text");
 			
+			txtField = new TextField();
+			txtField.setPromptText("I'm prompt text!");
+			
 			btn.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					//System.out.println("btn pressed");
-					myLabel.setText("btn pressed");
+					System.out.println("btn pressed");
+					
+					//myLabel.setText("btn pressed");
+					String txt = txtField.getText().trim();
+					myLabel.setText(txt);
 				}
 			});
-			
 			
 			/**STACKPANE stacks all elements ONTOP of each other. - not good for this example */
 			//StackPane root = new StackPane(); //create root
@@ -53,6 +60,7 @@ public class Main extends Application {
 			
 			root.getChildren().addAll(btn); //add btn to root
 			root.getChildren().add(myLabel); //add label to root
+			root.getChildren().add(txtField); //add text field to root
 			Scene scene = new Scene(root,400,400); //w, h //add root to scene
 			primaryStage.setScene(scene); //add scene to stage
 			primaryStage.show(); //show stage
