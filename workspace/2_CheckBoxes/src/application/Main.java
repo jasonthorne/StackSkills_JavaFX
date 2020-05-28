@@ -1,6 +1,8 @@
 package application;
 	
 import javafx.application.Application;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
@@ -11,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 
 
-public class Main extends Application {
+public class Main extends Application  implements EventHandler { //++++++++++++++++++++++++EVENTHANDLER for handling which checkbox was clicked
 	
 	//labels:
 	private Label title;
@@ -55,14 +57,22 @@ public class Main extends Application {
 			grapefruitCB = new CheckBox("grapefruit");
 			
 			root.getChildren().add(title);
-			root.getChildren().addAll( //ORDER MATTERS HERE ++++++++++++
-					bananaCB,mangoCB,papayaCB,grapefruitCB,response,selected);
+			root.getChildren().addAll(bananaCB, mangoCB, papayaCB, grapefruitCB, response, selected); //ORDER MATTERS HERE ++++++++++++
+			
+			//Attach event listeners to our checkboxes:
+			/** THIDS WAS MISSED FROM TUT +++++++++++++++++++++++++++++++++ :
+			 *https://stackoverflow.com/questions/47411834/checkbox-eventhandler-not-changing-text-in-label-javafx/47412025
+			*/
+			bananaCB.setOnAction(this);
+			mangoCB.setOnAction(this);
+			papayaCB.setOnAction(this);
+			grapefruitCB.setOnAction(this);
 			
 			Scene scene = new Scene(root,400,250); //h, w
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
-			showAll();
+			showAll(); //initially shows "fruits selected: " 
 			
 			
 			
@@ -77,6 +87,50 @@ public class Main extends Application {
 	
 	void showAll() {
 		fruits = "";
+		
+		if(bananaCB.isSelected()) { fruits += " banana"; }
+		if(mangoCB.isSelected()) { fruits += " mango"; }
+		if(papayaCB.isSelected()) { fruits += " papaya"; }
+		if(grapefruitCB.isSelected()) { fruits += " grapefruit"; }
+		
+		selected.setText("fruits selected: " + fruits); //append selected text with fruits string
 	}
+	
+	
+	//from eventHandler:
+	@Override
+	public void handle(Event event) {
+		
+		Object fruitChecked = event.getSource(); //get the object that's been clicked
+		
+		if(bananaCB.equals(fruitChecked)) {
+			if(bananaCB.isSelected()) {
+				response.setText("banana selected");
+			}else {response.setText("banana cleared");}
+			showAll();
+		}
+		
+		if(mangoCB.equals(fruitChecked)) {
+			if(mangoCB.isSelected()) {
+				response.setText("mango selected");
+			}else {response.setText("mango cleared");}
+			showAll();
+		}
+		
+		if(papayaCB.equals(fruitChecked)) {
+			if(papayaCB.isSelected()) {
+				response.setText("papaya selected");
+			}else {response.setText("papaya cleared");}
+			showAll();
+		}
+		
+		if(grapefruitCB.equals(fruitChecked)) {
+			if(grapefruitCB.isSelected()) {
+				response.setText("grapefruit selected");
+			}else {response.setText("grapefruit cleared");}
+			showAll();
+		}
+	}
+	
 	
 }
