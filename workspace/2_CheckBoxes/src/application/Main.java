@@ -28,7 +28,6 @@ public class Main extends Application  implements EventHandler { //+++++++++++++
 	
 	private String fruits;
 	
-	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -60,7 +59,7 @@ public class Main extends Application  implements EventHandler { //+++++++++++++
 			root.getChildren().addAll(bananaCB, mangoCB, papayaCB, grapefruitCB, response, selected); //ORDER MATTERS HERE ++++++++++++
 			
 			//Attach event listeners to our checkboxes:
-			/** THIDS WAS MISSED FROM TUT +++++++++++++++++++++++++++++++++ :
+			/** THIS WAS MISSED FROM TUT +++++++++++++++++++++++++++++++++ :
 			 *https://stackoverflow.com/questions/47411834/checkbox-eventhandler-not-changing-text-in-label-javafx/47412025
 			*/
 			bananaCB.setOnAction(this);
@@ -73,8 +72,6 @@ public class Main extends Application  implements EventHandler { //+++++++++++++
 			primaryStage.show();
 			
 			showAll(); //initially shows "fruits selected: " 
-			
-			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -103,10 +100,10 @@ public class Main extends Application  implements EventHandler { //+++++++++++++
 		
 		Object fruitChecked = event.getSource(); //get the object that's been clicked
 		
-		if(bananaCB.equals(fruitChecked)) {
-			if(bananaCB.isSelected()) {
+		if(bananaCB.equals(fruitChecked)) { //if banana checkbox was clicked:
+			if(bananaCB.isSelected()) { //if box was selected
 				response.setText("banana selected");
-			}else {response.setText("banana cleared");}
+			}else {response.setText("banana cleared");} //else, box was de-selected
 			showAll();
 		}
 		
