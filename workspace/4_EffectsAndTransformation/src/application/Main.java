@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Scale;
 
 
 public class Main extends Application implements EventHandler {
@@ -26,6 +27,9 @@ public class Main extends Application implements EventHandler {
 	private BoxBlur boxBlur;
 	private double blurVal; 
 	
+	private double scaleFactor;
+	private Scale scale;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -33,6 +37,7 @@ public class Main extends Application implements EventHandler {
 			
 			angle = 0.0; //angle for rotating rotate button
 			blurVal = 1.0; //value of blur effect
+			scaleFactor = 1.0; //scale factor
 			
 			rotateButton = new Button("Rotate");
 			blurButton = new Button("Blur off");
@@ -61,7 +66,9 @@ public class Main extends Application implements EventHandler {
 			rotateButton.getTransforms().add(rotate); //add rotate obj to button
 			//blur:
 			boxBlur = new BoxBlur(1.0, 1.0, 1);//w,h,iteration //boxBlur obj
-			
+			//scale:
+			scale = new Scale(scaleFactor, scaleFactor);
+			scaleButton.getTransforms().add(scale); //add scale obj to button
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -96,12 +103,20 @@ public class Main extends Application implements EventHandler {
 				blurButton.setText("Blur On");
 			}
 			
-			//set w & h of blur box
+			//set w & h of blur box:
 			boxBlur.setWidth(blurVal);
 			boxBlur.setHeight(blurVal);
 		}
 		if(event.getSource().equals(scaleButton)) {
 			System.out.println("scale");
+			scaleFactor+=0.1; //increase scale factor by 0.1
+			if(scaleFactor > 2.0) { //if scale factor hits 2.0, reset it to 1.0:
+				scaleFactor = 1.0;
+			}
+			
+			//increment x and y scales by scaleFactor val:
+			scale.setX(scaleFactor); 
+			scale.setY(scaleFactor);
 		}
 	}
 }
