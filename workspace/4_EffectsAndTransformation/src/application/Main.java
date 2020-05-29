@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.effect.Reflection;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
@@ -29,6 +30,8 @@ public class Main extends Application implements EventHandler {
 	
 	private double scaleFactor;
 	private Scale scale;
+	
+	private Reflection reflection;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -69,6 +72,14 @@ public class Main extends Application implements EventHandler {
 			//scale:
 			scale = new Scale(scaleFactor, scaleFactor);
 			scaleButton.getTransforms().add(scale); //add scale obj to button
+			
+			//reflection:
+			reflection = new Reflection();
+			reflection.setTopOpacity(0.7);
+			reflection.setBottomOpacity(0.3);
+			
+			//apply reflection effect to label:
+			reflect.setEffect(reflection);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
