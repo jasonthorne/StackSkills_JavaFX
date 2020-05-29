@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.transform.Rotate;
 
@@ -18,8 +19,12 @@ public class Main extends Application implements EventHandler {
 	private Button rotateButton;
 	private Button blurButton;
 	private Button scaleButton;
+	
 	private Rotate rotate; //javafx rotate obj
 	private double angle;
+	
+	private BoxBlur boxBlur;
+	private double blurVal; 
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -27,6 +32,7 @@ public class Main extends Application implements EventHandler {
 			primaryStage.setTitle("Effects & Transformation");
 			
 			angle = 0.0; //angle for rotating rotate button
+			blurVal = 1.0; //value of blur effect
 			
 			rotateButton = new Button("Rotate");
 			blurButton = new Button("Blur off");
@@ -53,8 +59,8 @@ public class Main extends Application implements EventHandler {
 			//rotate:
 			rotate = new Rotate();
 			rotateButton.getTransforms().add(rotate); //add rotate obj to button
-			
-			
+			//blur:
+			boxBlur = new BoxBlur(1.0, 1.0, 1);//w,h,iteration //boxBlur obj
 			
 			
 		} catch(Exception e) {
@@ -79,6 +85,20 @@ public class Main extends Application implements EventHandler {
 		
 		if(event.getSource().equals(blurButton)) {
 			System.out.println("blur");
+			//each time button is pressed, it's blur is changed:
+			if(blurVal == 10.0) { //if blur val is at 10
+				blurVal=1.0; //reduce to 1
+				blurButton.setEffect(null); //remove effect
+				blurButton.setText("Blur Off");
+			}else {
+				blurVal++; //increment blur val
+				blurButton.setEffect(boxBlur); //set effect with our BoxBlur obj
+				blurButton.setText("Blur On");
+			}
+			
+			//set w & h of blur box
+			boxBlur.setWidth(blurVal);
+			boxBlur.setHeight(blurVal);
 		}
 		if(event.getSource().equals(scaleButton)) {
 			System.out.println("scale");
