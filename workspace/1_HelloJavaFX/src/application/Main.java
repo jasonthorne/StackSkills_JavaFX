@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -22,13 +23,17 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			
 			/*
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
+			  
+			//GLUON SCENEBUILDER TEST: 
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			*/
+			
 			
 			primaryStage.setTitle("Sup, dawg!");
 			Button btn = new Button();
@@ -51,7 +56,7 @@ public class Main extends Application {
 				}
 			});
 			
-			/**STACKPANE stacks all elements ONTOP of each other. - not good for this example */
+			//STACKPANE stacks all elements ONTOP of each other. - not good for this example 
 			//StackPane root = new StackPane(); //create root
 			
 			FlowPane root = new FlowPane(10, 10); //horizontal gap, vertical gap
@@ -64,6 +69,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root,400,400); //w, h //add root to scene
 			primaryStage.setScene(scene); //add scene to stage
 			primaryStage.show(); //show stage
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
