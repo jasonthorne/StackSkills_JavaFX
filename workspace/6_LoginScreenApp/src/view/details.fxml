@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="detailsWelcomeLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #e0e0e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailsController">
+   <children>
+      <Label alignment="CENTER" layoutX="196.0" layoutY="14.0" prefHeight="65.0" prefWidth="309.0" text="Sup, dawg!" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="26.0" layoutY="90.0" prefHeight="134.0" prefWidth="650.0" style="-fx-background-color: #aeaeae;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <ImageView fitHeight="119.0" fitWidth="121.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-name-100.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="detailsName" layoutX="133.0" layoutY="27.0" prefHeight="21.0" prefWidth="226.0" text="Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="detailsAge" layoutX="133.0" layoutY="57.0" prefHeight="21.0" prefWidth="226.0" text="Age">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="detailsProfession" layoutX="133.0" layoutY="85.0" prefHeight="21.0" prefWidth="226.0" text="Profession">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="367.0" layoutY="254.0" prefHeight="110.0" prefWidth="309.0" style="-fx-background-color: #aeaeae;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Label alignment="CENTER" layoutX="60.0" layoutY="7.0" prefHeight="21.0" prefWidth="189.0" text="How to find me">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="detailsName1" layoutX="8.0" layoutY="45.0" prefHeight="21.0" prefWidth="226.0" text="github.com/jasonthorne" underline="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="detailsName11" layoutX="8.0" layoutY="75.0" prefHeight="21.0" prefWidth="226.0" text="\@madeUpTwitter" underline="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
