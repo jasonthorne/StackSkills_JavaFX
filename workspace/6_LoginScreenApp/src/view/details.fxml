@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="detailsWelcomeLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #e0e0e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #e0e0e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailsController">
    <children>
-      <Label alignment="CENTER" layoutX="196.0" layoutY="14.0" prefHeight="65.0" prefWidth="309.0" text="Sup, dawg!" textFill="WHITE">
+      <Label fx:id="detailsWelcomeLabel" alignment="CENTER" layoutX="196.0" layoutY="14.0" prefHeight="65.0" prefWidth="309.0" text="Sup, dawg!" textFill="WHITE">
          <font>
             <Font name="System Bold" size="35.0" />
          </font>
@@ -51,12 +51,12 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="45.0" prefHeight="21.0" prefWidth="226.0" text="github.com/jasonthorne" underline="true">
+            <Label fx:id="detailsGithub" layoutX="14.0" layoutY="45.0" prefHeight="21.0" prefWidth="226.0" text="github.com/jasonthorne" underline="true">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="75.0" prefHeight="21.0" prefWidth="226.0" text="\@madeUpTwitter" underline="true">
+            <Label fx:id="detailsTwitter" layoutX="14.0" layoutY="75.0" prefHeight="21.0" prefWidth="226.0" text="\@madeUpTwitter" underline="true">
                <font>
                   <Font size="14.0" />
                </font>
