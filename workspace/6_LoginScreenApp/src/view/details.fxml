@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -51,16 +52,16 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="detailsGithub" layoutX="14.0" layoutY="45.0" prefHeight="21.0" prefWidth="226.0" text="github.com/jasonthorne" underline="true">
+            <Hyperlink fx:id="detailsGithub" style="-fx-border-color: transparent;" layoutX="14.0" layoutY="44.0" prefWidth="177.0" text="github.com/jasonthorne">
                <font>
                   <Font size="14.0" />
                </font>
-            </Label>
-            <Label fx:id="detailsTwitter" layoutX="14.0" layoutY="75.0" prefHeight="21.0" prefWidth="226.0" text="\@madeUpTwitter" underline="true">
+            </Hyperlink>
+            <Hyperlink fx:id="detailsTwitter" style="-fx-border-color: transparent;" layoutX="10.0" layoutY="72.0" text="\@madeUpTwitter">
                <font>
                   <Font size="14.0" />
                </font>
-            </Label>
+            </Hyperlink>
          </children>
       </AnchorPane>
    </children>

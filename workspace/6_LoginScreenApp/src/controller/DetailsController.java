@@ -1,9 +1,16 @@
 package controller;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 
 public class DetailsController {
@@ -21,24 +28,37 @@ public class DetailsController {
     @FXML
     private Label detailsProfession;
     @FXML
-    private Label detailsGithub;
+    private Hyperlink detailsGithub; //removed hyperlink box: https://stackoverflow.com/questions/40591913/how-to-remove-hyperlink-border-in-javafx
     @FXML
-    private Label detailsTwitter;
-
+    private Hyperlink detailsTwitter;
+    
     @FXML
-    void initialize(String name) {
+    void initialize() { //THis CANT be passed params as that stops it being overriden, which prevents setOnActions (eg used with link below)
     	
-    	//not sure if better setting here, or using seperate setter, like below! ??????????
-    	/*
-    	detailsWelcomeLabel.setText("Welcome " + name);
-    	detailsName.setText(name);
-    	*/
+    	/** add click action to links: */
+    	detailsGithub.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				//if desktop application is supported:
+				if (Desktop.isDesktopSupported()) {
+					try {
+						//open default desktop browser, and navigate to URI:
+						Desktop.getDesktop().browse(new URI("https://www.github.com/jasonthorne"));
+					} catch (IOException | URISyntaxException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+    	});
+    	
     }
     
-    //set name //++++++++++++++++This should prob be in the initialize method!! 
-    void setName(String name) {
+    //set user: 
+    void setUser(String name, int age, String profession) {
     	detailsWelcomeLabel.setText("Welcome " + name);
     	detailsName.setText(name);
+    	detailsAge.setText(String.valueOf(age));
+    	detailsProfession.setText(profession);
     }
 
 }

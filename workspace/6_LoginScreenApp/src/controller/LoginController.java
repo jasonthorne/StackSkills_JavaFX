@@ -86,7 +86,7 @@ public class LoginController {
 				/**create instance of controller using loader (which knows everything about our details.fxml)*/
 				DetailsController detailsController = loader.getController();
 				//////////detailsController.initialize(loginUserName.getText().toString().trim()); /**call detailsController's package level initialize()*/
-				detailsController.setName(loginUserName.getText().toString().trim()); //call setName, passing in entered user name 
+				detailsController.setUser(loginUserName.getText().toString().trim(), 36, "student"); //set user vals 
 				
 				detailsStage.show(); /** show the stage */
 				detailsStage.setResizable(false); /** prevent user from resizing the window +++++++++++nort really needed, but nice to know! :D*/
