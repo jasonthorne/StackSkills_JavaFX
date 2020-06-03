@@ -54,23 +54,42 @@ public class LoginController {
    
     private void loginUser() {
     	
-    	/**hide the primary stage login window by targeting it through it's scene, 
-    	 * which is itself gotten by targeting one of it's elements,
-    	 * which we have access to here (the button in this case):
-    	 */
-    	loginButton.getScene().getWindow().hide(); //HIDES THE LOGIN WINDOW ++++++++++++
     	
-    	//if trimmed username & password ARENT empty:
+    	//if trimmed username & password ARENT empty: 
     	if(!loginUserName.getText().toString().trim().equals("") && !loginPassword.getText().toString().trim().equals("")) {
     		
-    		Stage detailsStage = new Stage(); /**make a new stage for showing details window */
+    		//+++++++++++ Have password & name recognition here! ++++++++++++
+    		
+    		/**hide the primary stage login window by targeting it through it's scene, 
+        	 * which is itself gotten by targeting one of it's elements,
+        	 * which we have access to here (the button in this case):
+        	 */
+        	loginButton.getScene().getWindow().hide(); //HIDES THE LOGIN WINDOW ++++++++++++
+    		
+    		
     		
     		try {
-				Parent root = FXMLLoader.load(getClass().getResource("/view/details.fxml")); /**make a new root, loading in details.fxml */
-				Scene scene = new Scene(root); /**make a new scene, passing it the root */
-				detailsStage.setScene(scene); /** add the scene to the stage */
+    			
+    			FXMLLoader loader = new FXMLLoader(); //create loader
+    			loader.setLocation(getClass().getResource("/view/details.fxml")); //set the fxml location
+    			loader.load(); //load the fxml hierarchy
+    			Parent root = loader.getRoot(); //create root from the loader's root (an anchorPane in this case)
+    			
+    			Stage detailsStage = new Stage(); /**make a new stage for showing details window */
+    			
+				//add the root to a new scene. Add that scene to the stage:
+				detailsStage.setScene(new Scene(root));
+				//loginButton.getScene().getWindow().hide(); //HIDES THE LOGIN WINDOW ++++++++++++PROB BETTER PLACED HERE for optimization
+				
+				//-------pass info from login to details:
+				
+				/**create instance of controller using loader (which knows everything about our details.fxml)*/
+				DetailsController detailsController = loader.getController();
+				//////////detailsController.initialize(loginUserName.getText().toString().trim()); /**call detailsController's package level initialize()*/
+				detailsController.setName(loginUserName.getText().toString().trim()); //call setName, passing in entered user name 
+				
 				detailsStage.show(); /** show the stage */
-				detailsStage.setResizable(false); /** prevent user from resizing the window +++++++++++*/
+				detailsStage.setResizable(false); /** prevent user from resizing the window +++++++++++nort really needed, but nice to know! :D*/
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
