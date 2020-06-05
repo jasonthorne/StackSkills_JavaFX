@@ -1,2 +1,5 @@
 http://www.java2s.com/Tutorials/Java/JavaFX/0440__JavaFX_Checkbox.htm
 
+scene slide transition:
+https://www.youtube.com/watch?v=cqskg3DYH8g
+
