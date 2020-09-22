@@ -1,0 +1,6 @@
+primary:  #e0e0e0
+light: #ffbcaf
+dark: #c85a54
+text: #000000
+
+secondary: #ff8a80
