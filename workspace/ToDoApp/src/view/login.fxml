@@ -12,16 +12,21 @@
    <children>
       <AnchorPane layoutY="66.0" prefHeight="336.0" prefWidth="700.0" style="-fx-background-color: #e0e0e0;">
          <children>
-            <JFXTextField focusColor="#c85a54" layoutX="133.0" layoutY="61.0" prefHeight="39.0" prefWidth="434.0" promptText="Username">
+            <JFXTextField focusColor="#c85a54" layoutX="133.0" layoutY="64.0" prefHeight="39.0" prefWidth="434.0" promptText="Username">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField focusColor="#c85a54" layoutX="133.0" layoutY="143.0" prefHeight="25.0" prefWidth="434.0" promptText="Password">
+            <JFXPasswordField focusColor="#c85a54" layoutX="133.0" layoutY="140.0" prefHeight="25.0" prefWidth="434.0" promptText="Password">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXPasswordField>
+            <JFXButton layoutX="291.0" layoutY="229.0" prefHeight="33.0" prefWidth="119.0" style="-fx-background-color: #aeaeae;" text="Login">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
       <Label alignment="CENTER" layoutX="267.0" prefHeight="58.0" prefWidth="166.0" text="ToDo" textAlignment="CENTER">
