@@ -4,3 +4,6 @@ dark: #c85a54
 text: #000000
 
 secondary: #ff8a80
+
+
+https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=FF8A80&primary.text.color=000000&secondary.color=E0E0E0
