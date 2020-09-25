@@ -7,22 +7,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #ff8a80;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #ff8a80;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
       <AnchorPane layoutY="66.0" prefHeight="336.0" prefWidth="700.0" style="-fx-background-color: #e0e0e0;">
          <children>
-            <JFXTextField focusColor="#c85a54" layoutX="133.0" layoutY="64.0" prefHeight="39.0" prefWidth="434.0" promptText="Username">
+            <JFXTextField fx:id="loginUsername" focusColor="#c85a54" layoutX="133.0" layoutY="64.0" prefHeight="39.0" prefWidth="434.0" promptText="Username">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField focusColor="#c85a54" layoutX="133.0" layoutY="140.0" prefHeight="25.0" prefWidth="434.0" promptText="Password">
+            <JFXPasswordField fx:id="loginPassword" focusColor="#c85a54" layoutX="133.0" layoutY="140.0" prefHeight="25.0" prefWidth="434.0" promptText="Password">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton layoutX="291.0" layoutY="229.0" prefHeight="33.0" prefWidth="119.0" style="-fx-background-color: #aeaeae;" text="Login">
+            <JFXButton fx:id="loginLoginBtn" layoutX="291.0" layoutY="229.0" prefHeight="33.0" prefWidth="119.0" style="-fx-background-color: #aeaeae;" text="Login">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
@@ -34,7 +33,7 @@
             <Font name="System Bold" size="45.0" />
          </font>
       </Label>
-      <JFXButton layoutX="586.0" layoutY="12.0" prefHeight="24.0" prefWidth="100.0" style="-fx-background-color: #c85a54;" text="Sign Up" textFill="WHITE">
+      <JFXButton fx:id="loginSignUpBtn" layoutX="586.0" layoutY="12.0" prefHeight="24.0" prefWidth="100.0" style="-fx-background-color: #c85a54;" text="Sign Up" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
