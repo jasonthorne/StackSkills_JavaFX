@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,6 +9,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 
 public class LoginController {
 	
@@ -32,13 +34,54 @@ public class LoginController {
     @FXML
     void initialize() {
     	
+    	//String name = loginUsername.getText().trim();
+    	//String password = loginPassword.getText().trim();
+    	
+    	//-------------------user login button:-------------------------------------------------
     	//add event to eventHandler of loginLoginBtn's setOnAction(EventHandler):
     	loginLoginBtn.setOnAction(event -> {
     		System.out.println("'loginLoginBtn' clicked");
+    		
+    		String name = loginUsername.getText().trim();
+        	String password = loginPassword.getText().trim();
+    		
+    		//if login name and password arent empty:
+    		if (!name.equals("") && !password.equals("")) {  
+    			loginUser(name, password); //log in user! 
+    		}else { System.out.println("error: loging in user");}
     	});
     	
+    	//-------------------user signup button:-------------------------------------------------
+    	loginSignUpBtn.setOnAction(event -> {
+    		System.out.println("'loginSignUpBtn' clicked");
+    		
+    		//take users to sign up screen:
+
+    		/**hide the primary stage login window by targeting it through it's scene, 
+        	 * which is itself gotten by targeting one of it's elements,
+        	 * which we have access to here (the loginSignUpBtn in this case):
+        	 */
+    		loginSignUpBtn.getScene().getWindow().hide(); //HIDES THE LOGIN WINDOW ++++++++++++
+    		
+    		FXMLLoader loader = new FXMLLoader(); //create an fxml loader (for loading fxml - duh!)
+    		loader.setLocation(getClass().getResource("/view/signup.fxml")); //set the fxml location
+    		try {
+				loader.load(); //load the fxml hierarchy
+			} catch (IOException e) {e.printStackTrace();} 
+    		
+    		
+ 
+    	});
     	
+    }
     
+
+    private void loginUser(String userName, String password) {
+    	
+    	//check in the database if the user exists.
+    	//if true: take them to addItem screen
+    	
+    	
     }
 
 }

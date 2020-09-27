@@ -3,7 +3,7 @@ package database;
 public enum DatabaseConstant {
 	
 	//tables:
-	USERS_TABLE("users"),
+	USERS_TABLE("users"), //or TABLE_USERS ????
 	TASKS_TABLE("tasks"),
 	
 	//users columns:
