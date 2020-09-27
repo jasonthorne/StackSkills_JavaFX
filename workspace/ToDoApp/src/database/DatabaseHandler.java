@@ -3,10 +3,13 @@ package database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-public class DatabaseHandler {
+import model.User;
+
+public abstract class DatabaseHandler {
 	
 	//write
-	public void signUpUser(String fName, String lName, String usrName, String pwd, String loc, String gender) {
+	//protected static void signUpUser(String fName, String lName, String usrName, String pwd, String loc, String gender) {
+	protected static void signUpUser(User user) {
 	
 		try (Connection connection = DatabaseConnection.getConnection(); ){	//get a connection to the db
 			
@@ -22,12 +25,12 @@ public class DatabaseHandler {
 					") VALUES (?,?,?,?,?,?)" );
 			
 			//set the parameters for the statement (at the position required):
-			preparedStatement.setString(1, fName);
-			preparedStatement.setString(2, lName);
-			preparedStatement.setString(3, usrName);
-			preparedStatement.setString(4, pwd);
-			preparedStatement.setString(5, loc);
-			preparedStatement.setString(6, gender);
+			preparedStatement.setString(1, user.getFirstName());
+			preparedStatement.setString(2, user.getLastName());
+			preparedStatement.setString(3, user.getUsertName());
+			preparedStatement.setString(4, user.getPassword());
+			preparedStatement.setString(5, user.getLocation());
+			preparedStatement.setString(6, user.getGender());
 			
 			preparedStatement.executeUpdate(); //execute update
 			

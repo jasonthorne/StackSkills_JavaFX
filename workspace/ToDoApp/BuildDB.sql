@@ -16,6 +16,7 @@ CREATE TABLE users(
 CREATE TABLE tasks( 
   taskID int NOT NULL AUTO_INCREMENT,
   userID int NOT NULL,
+  task varchar(64) NOT NULL,
   date_created datetime NOT NULL,
   description varchar(64) NOT NULL,
   PRIMARY KEY (taskID),
