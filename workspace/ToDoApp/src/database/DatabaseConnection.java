@@ -29,7 +29,7 @@ public class DatabaseConnection{
 	}
 	
 	//return a newly established connection:
-	public static Connection getConnection() { /** maybe should be protected?? ++++++++++++++++++*/
+	protected static Connection getConnection() {
 		return new DatabaseConnection().connection; 
 	} 
 	

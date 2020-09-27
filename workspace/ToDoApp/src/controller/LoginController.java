@@ -41,6 +41,7 @@ public class LoginController {
     	//String password = loginPassword.getText().trim();
     	
     	//-------------------user login button:-------------------------------------------------
+    	
     	//add event to eventHandler of loginLoginBtn's setOnAction(EventHandler):
     	loginLoginBtn.setOnAction(event -> {
     		System.out.println("'loginLoginBtn' clicked");
@@ -55,6 +56,7 @@ public class LoginController {
     	});
     	
     	//-------------------user signup button:-------------------------------------------------
+    	
     	loginSignUpBtn.setOnAction(event -> {
     		System.out.println("'loginSignUpBtn' clicked");
     		
