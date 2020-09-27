@@ -1,9 +1,9 @@
 package database;
 
-public enum DatabaseConstant {
+public enum DatabaseConst {
 	
 	//tables:
-	USERS_TABLE("users"), //or TABLE_USERS ????
+	USERS_TABLE("users"),
 	TASKS_TABLE("tasks"),
 	
 	//users columns:
@@ -21,7 +21,7 @@ public enum DatabaseConstant {
 	TASKS_DESCRIPTION("description");
 	
 	private final String constant; //name of constant
-	private DatabaseConstant(String constant) { this.constant = constant; } //constructor sets name of constant
+	private DatabaseConst(String constant) { this.constant = constant; } //set name of constant
 	@Override 
 	public String toString() { return constant; }  //return constant
 }
