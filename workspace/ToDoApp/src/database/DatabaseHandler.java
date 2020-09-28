@@ -11,6 +11,7 @@ public abstract class DatabaseHandler {
 	
 	protected static void signUpUser(User user) {
 	
+		/** USE PROPER TRY WITH RESOURCES HERE and elsewhere in page (statment in () as well). And use statement instead of prep statement!! */
 		try (Connection connection = DatabaseConnection.getConnection();){	//get a connection to the db
 			
 			//prepare statement:
@@ -39,16 +40,12 @@ public abstract class DatabaseHandler {
 	}
 	
 	
-	//protected static ResultSet getUser(User user) {
-	protected static void getUser(User user) {
-		/////////////ResultSet resultSet = null;
-		///////////////Connection connection = null;
+	//protected static void getUser(User user) { //+++++++++++++++++++++++++++return boolean here!! 
+	protected static boolean findUser(User user) {	
 		//if user has a name & password: 
 		if(!user.getUserName().equals("") && !user.getPassword().equals("")) {
 			//get a connection to the db:
 			try (Connection connection = DatabaseConnection.getConnection();){
-			/////////////try {
-			/////////////	connection = DatabaseConnection.getConnection();
 				//prepare statement:
 				PreparedStatement preparedStatement = connection.prepareStatement(
 						" SELECT * FROM " + DatabaseConst.USERS_TABLE + 
@@ -61,15 +58,19 @@ public abstract class DatabaseHandler {
 				//execute query:
 				ResultSet resultSet = preparedStatement.executeQuery(); 
 			
-				if(resultSet.next()) {
+				if(resultSet.next()) { //if entry was found //++++++++++++++++return true
 					System.out.println(resultSet.getString("username") + " " + resultSet.getString("password"));
-				}else { System.out.println("username or password not found"); }
+					return true;
+				}else { 
+					System.out.println("invalid username or password"); 
+					return false;
+				} //++++++++++++++++return false
 				
 			}catch(Exception e) { e.printStackTrace(); }
 			
-		}else { System.out.println("please enter your credentials"); }  //+++++++++++SLOPPY!! DONT USE THIS :P 
+		}else { System.out.println("please enter username and password"); }  //++++++++++++++++return false
 			
-		///////////return resultSet;
+		return false;
 	}
 		
 	

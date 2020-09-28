@@ -66,7 +66,11 @@ public class LoginController extends DatabaseHandler {
     		User user = new User();
     		user.setUserName(loginUsername.getText().trim());
     		user.setPassword(loginPassword.getText().trim());
-    		DatabaseHandler.getUser(user);
+    		if(DatabaseHandler.findUser(user)) {
+    			
+    		}else {
+    			
+    		}
     		
     	});
     	
