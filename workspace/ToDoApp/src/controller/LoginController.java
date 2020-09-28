@@ -8,13 +8,18 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import database.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.User;
 
-public class LoginController {
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class LoginController extends DatabaseHandler {
 	
 	@FXML
     private ResourceBundle resources;
@@ -46,6 +51,7 @@ public class LoginController {
     	loginLoginBtn.setOnAction(event -> {
     		System.out.println("'loginLoginBtn' clicked");
     		
+    		/*
     		String name = loginUsername.getText().trim();
         	String password = loginPassword.getText().trim();
     		
@@ -53,6 +59,15 @@ public class LoginController {
     		if (!name.equals("") && !password.equals("")) {  
     			loginUser(name, password); //log in user! 
     		}else { System.out.println("error: loging in user");}
+    		*/
+    		
+    		//++++++++++++++USE BUILDER PATTERN FOR THIS INSTEAD OF EMPTY OBJ then setters.
+    		//create a user to hold usrName & pwd, and send to getUser to check for in db 
+    		User user = new User();
+    		user.setUserName(loginUsername.getText().trim());
+    		user.setPassword(loginPassword.getText().trim());
+    		DatabaseHandler.getUser(user);
+    		
     	});
     	
     	//-------------------user signup button:-------------------------------------------------

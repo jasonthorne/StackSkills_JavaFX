@@ -3,6 +3,7 @@ package database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import model.User;
 
@@ -26,7 +27,7 @@ public abstract class DatabaseHandler {
 			//set the parameters for the statement (at the position required):
 			preparedStatement.setString(1, user.getFirstName());
 			preparedStatement.setString(2, user.getLastName());
-			preparedStatement.setString(3, user.getUsertName());
+			preparedStatement.setString(3, user.getUserName());
 			preparedStatement.setString(4, user.getPassword());
 			preparedStatement.setString(5, user.getLocation());
 			preparedStatement.setString(6, user.getGender());
@@ -38,31 +39,37 @@ public abstract class DatabaseHandler {
 	}
 	
 	
-	protected static ResultSet getUser(User user) {
-		ResultSet resultSet = null;
-		
+	//protected static ResultSet getUser(User user) {
+	protected static void getUser(User user) {
+		/////////////ResultSet resultSet = null;
+		///////////////Connection connection = null;
 		//if user has a name & password: 
-		if(!user.getUsertName().equals("") && !user.getPassword().equals("")) {
-			
+		if(!user.getUserName().equals("") && !user.getPassword().equals("")) {
 			//get a connection to the db:
 			try (Connection connection = DatabaseConnection.getConnection();){
+			/////////////try {
+			/////////////	connection = DatabaseConnection.getConnection();
 				//prepare statement:
 				PreparedStatement preparedStatement = connection.prepareStatement(
-						"SELECT * FROM " + DatabaseConst.USERS_TABLE + 
-						"WHERE" + DatabaseConst.USERS_USERNAME + "=?" + 
-						"AND" + DatabaseConst.USERS_PASSWORD + "=?");
+						" SELECT * FROM " + DatabaseConst.USERS_TABLE + 
+						" WHERE " + DatabaseConst.USERS_USERNAME + "=?" + 
+						" AND " + DatabaseConst.USERS_PASSWORD + "=?");
 				
 				//set the parameters for the statement (at the position required):
-				preparedStatement.setString(1, user.getUsertName());
+				preparedStatement.setString(1, user.getUserName());
 				preparedStatement.setString(2, user.getPassword());
 				//execute query:
-				resultSet = preparedStatement.executeQuery(); 
+				ResultSet resultSet = preparedStatement.executeQuery(); 
+			
+				if(resultSet.next()) {
+					System.out.println(resultSet.getString("username") + " " + resultSet.getString("password"));
+				}else { System.out.println("username or password not found"); }
 				
 			}catch(Exception e) { e.printStackTrace(); }
 			
 		}else { System.out.println("please enter your credentials"); }  //+++++++++++SLOPPY!! DONT USE THIS :P 
 			
-		return resultSet;
+		///////////return resultSet;
 	}
 		
 	
