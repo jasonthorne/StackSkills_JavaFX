@@ -72,7 +72,7 @@ public class SignupController extends DatabaseHandler{
     	if(signupCheckBoxFemale.isSelected()) {gender="female";} ///+++++++++++++++++++AWFUL error handling!!!!++++dont use this :P
     	else {gender="male";}
     	
-    	//make a user with given data, and add to db:
+    	//make a user with given data, and add to db: //++++++++++++++++++++++stick fields directly in here! 
     	DatabaseHandler.signUpUser(new User(firstName, lastName, usertName, password, location, gender));
     	
     }
