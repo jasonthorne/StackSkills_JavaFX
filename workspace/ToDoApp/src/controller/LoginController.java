@@ -2,12 +2,15 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import animation.Shaker;
 import database.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,11 +69,10 @@ public class LoginController extends DatabaseHandler {
     		User user = new User();
     		user.setUserName(loginUsername.getText().trim());
     		user.setPassword(loginPassword.getText().trim());
-    		if(DatabaseHandler.findUser(user)) {
-    			
-    		}else {
-    			
-    		}
+    		if(!DatabaseHandler.findUser(user)) { //if user isn't found:
+    			//shake input fields
+    			Arrays.asList(loginUsername, loginPassword).forEach(s -> Shaker.shake(s));
+    		} 
     		
     	});
     	
