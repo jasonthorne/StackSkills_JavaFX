@@ -18,7 +18,8 @@ public enum DatabaseConst {
 	//tasks columns:
 	TASKS_TASK_ID("taskID"),
 	TASKS_DATE_CREATED("date_created"),
-	TASKS_DESCRIPTION("description");
+	TASKS_DESCRIPTION("description"),
+	TASKS_TASK("task");
 	
 	private final String constant; //name of constant
 	private DatabaseConst(String constant) { this.constant = constant; } //set name of constant

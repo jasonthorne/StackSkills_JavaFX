@@ -6,14 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import model.Task;
 import model.User;
 
 public abstract class DatabaseHandler {
 	
 	protected static void signUpUser(User user) {
 	
-		/** USE PROPER TRY WITH RESOURCES HERE and elsewhere in page (statment in () as well). And use statement instead of prep statement!! */
-		try (Connection connection = DatabaseConnection.getConnection();){	//get a connection to the db
+		try (Connection connection = DatabaseConnection.getConnection();	//get a connection to the db
 			
 			//prepare statement:
 			PreparedStatement preparedStatement = connection.prepareStatement(
@@ -24,7 +24,7 @@ public abstract class DatabaseHandler {
 						DatabaseConst.USERS_PASSWORD + ","  +
 						DatabaseConst.USERS_LOCATION + ","  +
 						DatabaseConst.USERS_GENDER +
-					") VALUES (?,?,?,?,?,?)");
+					") VALUES (?,?,?,?,?,?)");){
 			
 			//set the parameters for the statement (at the position required):
 			preparedStatement.setString(1, user.getFirstName());
@@ -40,17 +40,19 @@ public abstract class DatabaseHandler {
 		
 	}
 	
+	//-----------------------------------------------------------------------------------
+	
 	protected static boolean findUser(User user) {	
 		//if user has a name & password: 
 		if(!user.getUserName().equals("") && !user.getPassword().equals("")) {
 			
 			//get a connection to the db:
-			try (Connection connection = DatabaseConnection.getConnection();){
+			try (Connection connection = DatabaseConnection.getConnection();
 				//prepare statement:
 				PreparedStatement preparedStatement = connection.prepareStatement(
 						" SELECT * FROM " + DatabaseConst.USERS_TABLE + 
 						" WHERE " + DatabaseConst.USERS_USERNAME + "=?" + 
-						" AND " + DatabaseConst.USERS_PASSWORD + "=?");
+						" AND " + DatabaseConst.USERS_PASSWORD + "=?");){
 				
 				//set the parameters for the statement (at the position required):
 				preparedStatement.setString(1, user.getUserName());
@@ -73,7 +75,32 @@ public abstract class DatabaseHandler {
 		return false;
 	}
 		
+	//-----------------------------------------------------------------------------------
 	
-
+	protected static void insertTask(Task task) {
+		try (Connection connection = DatabaseConnection.getConnection();	//get a connection to the db
+				
+				//prepare statement:
+				PreparedStatement preparedStatement = connection.prepareStatement(
+						"INSERT INTO " + DatabaseConst.TASKS_TABLE + "(" +
+							DatabaseConst.USERS_USER_ID + ","  +
+							DatabaseConst.TASKS_TASK + ","  +
+							DatabaseConst.TASKS_DATE_CREATED + "," +		
+							DatabaseConst.TASKS_DESCRIPTION + 
+						") VALUES (?,?,?,?)");){
+				
+				//set the parameters for the statement (at the position required):
+				preparedStatement.setInt(1, 1); /** +++++++++++++++++++++++++++++++*/
+				preparedStatement.setString(2, task.getTask());
+				preparedStatement.setTimestamp(3, task.getDateCreated());
+				preparedStatement.setString(4, task.getDescription());
+				
+				
+				preparedStatement.executeUpdate(); //execute update
+				
+		}catch(Exception e) { e.printStackTrace(); }
+		
+	}//insert
+		
 }
 
