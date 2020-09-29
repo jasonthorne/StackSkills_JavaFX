@@ -6,7 +6,7 @@ import javafx.util.Duration;
 
 public abstract class Shaker {
 
-	//+++++++++this sohuld prob all be an interface!! :P
+	//+++++++++this sohuld prob all be an interface!! :P 
 	
 	//private static TranslateTransition translateTransition; //obj that moves from one pos to the next
 	
