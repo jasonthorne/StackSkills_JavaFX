@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #ff8a80;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddItemController">
    <children>
-      <AnchorPane layoutY="64.0" prefHeight="336.0" prefWidth="700.0" style="-fx-background-color: #e0e0e0;">
+      <AnchorPane fx:id="rootAnchorPane" layoutY="64.0" prefHeight="336.0" prefWidth="700.0" style="-fx-background-color: #e0e0e0;">
          <children>
             <Label fx:id="noTasksLbl" alignment="CENTER" layoutX="180.0" layoutY="148.0" prefHeight="41.0" prefWidth="341.0" text="No tasks for today!" textAlignment="CENTER">
                <font>

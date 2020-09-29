@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -7,15 +8,20 @@ import animation.Shaker;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 public class AddItemController {
 
     @FXML
     private ResourceBundle resources;
+    
+    @FXML
+    private AnchorPane rootAnchorPane; 
 
     @FXML
     private URL location;
@@ -57,6 +63,28 @@ public class AddItemController {
     	
 			addBtn.relocate(0,-1000); //(x pos, y pos)
     		noTasksLbl.relocate(0,-10000); //(x pos, y pos)
+    		
+    		
+    		/** =================ADDING NEW ANCHOR PANE ============================================ */
+    		
+    		//create new achorPane loaded from addItemForm.fxml 
+    		try {
+				AnchorPane formPane = FXMLLoader.load(getClass().getResource("/view/addItemForm.fxml"));
+			
+				//fade-in effect for new anchorPane: ++++++++++++++++++++++have the other fade out,then fade this in when it hits 0 opacity
+	    		FadeTransition fadeAnchorPane = new FadeTransition(Duration.millis(2000),formPane);
+	    		fadeAnchorPane.setFromValue(0.0);
+	    		fadeAnchorPane.setToValue(1.0);
+	    		fadeAnchorPane.setCycleCount(1); //how many times the animation should happen (cycle)
+	    		fadeAnchorPane.setAutoReverse(false); //whether animation reverses on alternating cycles
+	    		fadeAnchorPane.play();
+				
+				//get and CLEAR the children of rootAnchorPane and add formPane:
+				/** .setAll() clears the children and replaces them with formPane and it's subsequent children. */
+				rootAnchorPane.getChildren().setAll(formPane); 
+			} catch (IOException e) { e.printStackTrace(); }
+    		
+    		
     		
     	}); 
     }
