@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import model.User;
 
@@ -39,11 +40,10 @@ public abstract class DatabaseHandler {
 		
 	}
 	
-	
-	//protected static void getUser(User user) { //+++++++++++++++++++++++++++return boolean here!! 
 	protected static boolean findUser(User user) {	
 		//if user has a name & password: 
 		if(!user.getUserName().equals("") && !user.getPassword().equals("")) {
+			
 			//get a connection to the db:
 			try (Connection connection = DatabaseConnection.getConnection();){
 				//prepare statement:
@@ -58,17 +58,17 @@ public abstract class DatabaseHandler {
 				//execute query:
 				ResultSet resultSet = preparedStatement.executeQuery(); 
 			
-				if(resultSet.next()) { //if entry was found //++++++++++++++++return true
+				if(resultSet.next()) { //if entry was found:
 					System.out.println(resultSet.getString("username") + " " + resultSet.getString("password"));
 					return true;
 				}else { 
 					System.out.println("invalid username or password"); 
 					return false;
-				} //++++++++++++++++return false
+				}
 				
 			}catch(Exception e) { e.printStackTrace(); }
 			
-		}else { System.out.println("please enter username and password"); }  //++++++++++++++++return false
+		}else { System.out.println("please enter username and password"); }
 			
 		return false;
 	}
