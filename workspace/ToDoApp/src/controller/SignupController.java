@@ -49,31 +49,25 @@ public class SignupController extends DatabaseHandler{
     @FXML
     void initialize() {  //+++++++++++++++++++++ should be private????
     	 
-    	/////////DatabaseHandler databaseHandler = new DatabaseHandler();  //instance of db handler
-    	
     	//------------------sign up button:-------------------------------------------------
     	
     	signupSignUpBtn.setOnAction(event -> {
     		System.out.println("'signupSignUpBtn' clicked"); 
-    		createUser();
+    		
+    		//grab field values:
+        	String firstName = signupFirstName.getText().trim(); //+++ALL OF THESE need to be checked that they're NOT empty!! 
+        	String lastName = signupLastName.getText().trim(); 
+        	String usertName = signupUsername.getText().trim(); 
+        	String password = signupPassword.getText().trim(); 
+        	String location = signupLocation.getText().trim(); 
+        	String gender = "";
+        	if(signupCheckBoxFemale.isSelected()) {gender="female";} ///+++++++++++++++++++AWFUL error handling!!!!++++dont use this :P
+        	else {gender="male";}
+        	
+        	//make a user with given data, and add to db: //++++++++++++++++++++++stick fields directly in here! 
+        	DatabaseHandler.signUpUser(new User(firstName, lastName, usertName, password, location, gender));
     		
     	});
     }
     
-    private void createUser() { //++++++++++++++this should all be in above!!??? 
-    	
-    	//grab field values:
-    	String firstName = signupFirstName.getText().trim(); //+++ALL OF THESE need to be checked that they're NOT empty!! 
-    	String lastName = signupLastName.getText().trim(); 
-    	String usertName = signupUsername.getText().trim(); 
-    	String password = signupPassword.getText().trim(); 
-    	String location = signupLocation.getText().trim(); 
-    	String gender = "";
-    	if(signupCheckBoxFemale.isSelected()) {gender="female";} ///+++++++++++++++++++AWFUL error handling!!!!++++dont use this :P
-    	else {gender="male";}
-    	
-    	//make a user with given data, and add to db: //++++++++++++++++++++++stick fields directly in here! 
-    	DatabaseHandler.signUpUser(new User(firstName, lastName, usertName, password, location, gender));
-    	
-    }
 }

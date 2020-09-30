@@ -118,7 +118,6 @@ public abstract class DatabaseHandler {
 						") VALUES (?,?,?,?)");){
 				
 				//set the parameters for the statement (at the position required):
-			System.out.println("task.getUserId() ===============" + task.getUserId());
 				preparedStatement.setInt(1, task.getUserId()); /** +++++++++++++++++++++++++++++++*/
 				preparedStatement.setString(2, task.getTask());
 				preparedStatement.setTimestamp(3, task.getDateCreated());
