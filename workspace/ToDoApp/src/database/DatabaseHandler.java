@@ -111,14 +111,15 @@ public abstract class DatabaseHandler {
 				//prepare statement:
 				PreparedStatement preparedStatement = connection.prepareStatement(
 						"INSERT INTO " + DatabaseConst.TASKS_TABLE + "(" +
-							DatabaseConst.USERS_USER_ID + ","  +
+							DatabaseConst.TASKS_USER_ID + ","  +
 							DatabaseConst.TASKS_TASK + ","  +
 							DatabaseConst.TASKS_DATE_CREATED + "," +		
 							DatabaseConst.TASKS_DESCRIPTION + 
 						") VALUES (?,?,?,?)");){
 				
 				//set the parameters for the statement (at the position required):
-				preparedStatement.setInt(1, 1); /** +++++++++++++++++++++++++++++++*/
+			System.out.println("task.getUserId() ===============" + task.getUserId());
+				preparedStatement.setInt(1, task.getUserId()); /** +++++++++++++++++++++++++++++++*/
 				preparedStatement.setString(2, task.getTask());
 				preparedStatement.setTimestamp(3, task.getDateCreated());
 				preparedStatement.setString(4, task.getDescription());
