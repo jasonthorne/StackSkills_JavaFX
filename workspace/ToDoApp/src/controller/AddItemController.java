@@ -16,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 public class AddItemController {
+	
+	private int userId; //+++++++++++++++++++++++++++++++++++++added to grab  id from correct user
 
     @FXML
     private ResourceBundle resources;
@@ -84,8 +86,21 @@ public class AddItemController {
 				rootAnchorPane.getChildren().setAll(formPane); 
 			} catch (IOException e) { e.printStackTrace(); }
     		
-    		
-    		
     	}); 
+    	
+    }//initialize()
+    
+    
+    /** +++++++++++++for getting userId from LoginController++++++++ */
+    
+    protected void setUserId(int userId) {
+    	this.userId = userId;
+    	System.out.println("userId: " + this.userId);
     }
+    
+  //get userId of logged in user
+    protected int getUserId() { return this.userId; } 
+    	
+   
+    
 }

@@ -41,7 +41,7 @@ public abstract class DatabaseHandler {
 	}
 	
 	//-----------------------------------------------------------------------------------
-	
+	/*
 	protected static boolean findUser(User user) {	
 		//if user has a name & password: 
 		if(!user.getUserName().equals("") && !user.getPassword().equals("")) {
@@ -74,6 +74,34 @@ public abstract class DatabaseHandler {
 			
 		return false;
 	}
+	*/
+	
+	/** ++++++++++this is AWFUL as connection isnt closed due to resultSet being returned DONT DO THIS!! */
+	protected static ResultSet findUser(User user) {	
+
+		ResultSet resultSet = null;	
+	
+		//get a connection to the db:
+		try {
+			Connection connection = DatabaseConnection.getConnection();
+			//prepare statement:
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					" SELECT * FROM " + DatabaseConst.USERS_TABLE + 
+					" WHERE " + DatabaseConst.USERS_USERNAME + "=?" + 
+					" AND " + DatabaseConst.USERS_PASSWORD + "=?");
+			
+			//set the parameters for the statement (at the position required):
+			preparedStatement.setString(1, user.getUserName());
+			preparedStatement.setString(2, user.getPassword());
+			//execute query:
+			resultSet = preparedStatement.executeQuery(); 
+		
+		}catch(Exception e) { e.printStackTrace(); }
+
+		return resultSet;
+		
+	}
+	
 		
 	//-----------------------------------------------------------------------------------
 	
@@ -94,7 +122,6 @@ public abstract class DatabaseHandler {
 				preparedStatement.setString(2, task.getTask());
 				preparedStatement.setTimestamp(3, task.getDateCreated());
 				preparedStatement.setString(4, task.getDescription());
-				
 				
 				preparedStatement.executeUpdate(); //execute update
 				
