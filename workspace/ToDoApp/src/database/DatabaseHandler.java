@@ -108,26 +108,67 @@ public abstract class DatabaseHandler {
 	protected static void insertTask(Task task) {
 		try (Connection connection = DatabaseConnection.getConnection();	//get a connection to the db
 				
-				//prepare statement:
-				PreparedStatement preparedStatement = connection.prepareStatement(
-						"INSERT INTO " + DatabaseConst.TASKS_TABLE + "(" +
-							DatabaseConst.TASKS_USER_ID + ","  +
-							DatabaseConst.TASKS_TASK + ","  +
-							DatabaseConst.TASKS_DATE_CREATED + "," +		
-							DatabaseConst.TASKS_DESCRIPTION + 
-						") VALUES (?,?,?,?)");){
-				
-				//set the parameters for the statement (at the position required):
-				preparedStatement.setInt(1, task.getUserId()); /** +++++++++++++++++++++++++++++++*/
-				preparedStatement.setString(2, task.getTask());
-				preparedStatement.setTimestamp(3, task.getDateCreated());
-				preparedStatement.setString(4, task.getDescription());
-				
-				preparedStatement.executeUpdate(); //execute update
+			//prepare statement:
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"INSERT INTO " + DatabaseConst.TASKS_TABLE + "(" +
+						DatabaseConst.TASKS_USER_ID + ","  +
+						DatabaseConst.TASKS_TASK + ","  +
+						DatabaseConst.TASKS_DATE_CREATED + "," +		
+						DatabaseConst.TASKS_DESCRIPTION + 
+					") VALUES (?,?,?,?)");){
+			
+			//set the parameters for the statement (at the position required):
+			preparedStatement.setInt(1, task.getUserId()); /** +++++++++++++++++++++++++++++++*/
+			preparedStatement.setString(2, task.getTask());
+			preparedStatement.setTimestamp(3, task.getDateCreated());
+			preparedStatement.setString(4, task.getDescription());
+			
+			preparedStatement.executeUpdate(); //execute update
 				
 		}catch(Exception e) { e.printStackTrace(); }
 		
 	}//insert
+	
+	
+	//-----------------------------------------------------------------------------------
+	
+	protected static int getAllTasks(int userId) {
+		int taskNum = 0;
+		try (Connection connection = DatabaseConnection.getConnection();	//get a connection to the db
+				
+			//prepare statement:
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					" SELECT COUNT(*) FROM " + DatabaseConst.TASKS_TABLE + 
+					" WHERE " + DatabaseConst.TASKS_USER_ID + "=?");){
+			
+			//set the parameters for the statement (at the position required):
+			preparedStatement.setInt(1, userId); 
+			
+			ResultSet resultSet =  preparedStatement.executeQuery();  //execute query
+			while(resultSet.next()) {
+				taskNum = resultSet.getInt(1);
+			}
 		
+		}catch(Exception e) { e.printStackTrace(); }
+		
+		return taskNum;
+	}
+	
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 

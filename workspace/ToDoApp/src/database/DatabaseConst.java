@@ -16,7 +16,7 @@ public enum DatabaseConst {
 	USERS_GENDER("gender"),
 	
 	//tasks columns:
-	//TASKS_TASK_ID("taskID"),
+	TASKS_TASK_ID("taskID"),
 	TASKS_USER_ID("userID"),
 	TASKS_DATE_CREATED("date_created"),
 	TASKS_DESCRIPTION("description"),

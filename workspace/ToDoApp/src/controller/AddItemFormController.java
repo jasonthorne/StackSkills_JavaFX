@@ -32,12 +32,12 @@ public class AddItemFormController extends DatabaseHandler{
     @FXML
     private JFXButton tasksBtn;
     
-    int taskNum=0;
+    private int taskNum = 0;
     
     @FXML
     void initialize() {
     	
-    	tasksBtn.setText("Tasks (" + taskNum + ")");
+    	getTaskNum(); //get tasknum and set tasksBtn accordingly:
  
     	//-------------------save task button:-------------------------------------------------
     	
@@ -59,16 +59,14 @@ public class AddItemFormController extends DatabaseHandler{
         		DatabaseHandler.insertTask(task); //insert task to db
         		System.out.println("task added");
         		successLbl.setVisible(true); //inform user of insert
-        		taskNum++;
         		
         		//clear fields:
         		taskField.clear();
         		descriptionField.clear();
         		
+        		//get tasknum and set tasksBtn accordingly:
+        		getTaskNum();
         		
-        		
-        		//tasksBtn.setText("Tasks (" + taskNum + ")");
-        		//tasksBtn.setVisible(true); //show tasks button
         		
         		//send users to the list of tasks screen
         		
@@ -88,7 +86,11 @@ public class AddItemFormController extends DatabaseHandler{
     }//initialize()
     
     
-    
+    private void getTaskNum() {
+    	//get number of tasks already saved, and display on button 
+    	taskNum = getAllTasks(AddItemController.userId);
+    	tasksBtn.setText("Tasks (" + taskNum + ")");
+    }
     
     
     
