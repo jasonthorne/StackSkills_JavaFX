@@ -70,10 +70,10 @@ public class LoginController extends DatabaseHandler { /** +++++++++++++++++++++
     					Arrays.asList(loginUsername, loginPassword).forEach(s -> Shaker.shake(s));
     				}else { 
     					System.out.println(resultSet.getString("username") + " " + resultSet.getString("password"));
-    					AddItemController.userId = resultSet.getInt("userID"); //send userId to AddItemController
+    					AddItemController.userId = resultSet.getInt("userID"); //send userId to AddItemController ++++++++++++++++
     		
     					//change stage to AddItem.fxml root:
-    					changeStage("/view/addItem.fxml"); //should be an enum??? +++++++++++++
+    					changeStage("/view/addItem.fxml"); //should be in properites file! +++++++++++++
     				}
     			} catch (SQLException e) { e.printStackTrace(); }
         		
@@ -89,7 +89,7 @@ public class LoginController extends DatabaseHandler { /** +++++++++++++++++++++
     	loginSignUpBtn.setOnAction(event -> {
     		System.out.println("'loginSignUpBtn' clicked");
     		/* change stage to signup.fxml root: */
-    		changeStage("/view/signup.fxml"); //should be an enum??? +++++++++++++
+    		changeStage("/view/signup.fxml"); ////should be in properites file! +++++++++++++
     	});
     	
     }//initialize()

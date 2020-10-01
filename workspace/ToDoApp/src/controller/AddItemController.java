@@ -17,7 +17,7 @@ import javafx.util.Duration;
 
 public class AddItemController {
 	
-	protected static int userId; //+++++++++++++++++++++++++++++++++++++added to grab  id from correct user
+	static int userId; //+++++++++++++++++++++++++++++++++++++added to grab  id from correct user
 
     @FXML
     private ResourceBundle resources;
