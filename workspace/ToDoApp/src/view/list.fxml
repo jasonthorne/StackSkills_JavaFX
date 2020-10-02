@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #ff8a80;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListController">
    <children>
       <AnchorPane layoutY="66.0" prefHeight="336.0" prefWidth="700.0" style="-fx-background-color: #e0e0e0;">
@@ -20,7 +19,7 @@
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXButton fx:id="listSaveTaskBtn" layoutX="141.0" layoutY="225.0" prefHeight="33.0" prefWidth="119.0" style="-fx-background-color: #aeaeae;" text="Save">
+                  <JFXButton fx:id="listSaveTaskBtn" layoutX="141.0" layoutY="225.0" prefHeight="33.0" prefWidth="119.0" style="-fx-background-color: #c85a54;" text="Save" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
