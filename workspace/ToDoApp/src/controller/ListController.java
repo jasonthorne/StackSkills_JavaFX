@@ -5,6 +5,9 @@ import com.jfoenix.controls.JFXListCell;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
@@ -42,18 +45,27 @@ public class ListController {
     private JFXTextField descriptionTaskField;
     
     /** observable list of type TASK+++++++++++++++++++++  */
-    private ObservableList<Task>observableList = FXCollections.observableArrayList();
+    private ObservableList<Task>observableList; //= FXCollections.observableArrayList();
     			
    
 
     @FXML
     void initialize() {
     	
+    	//create a task:
     	Task task = new Task();
     	task.setTask("do the thing!");
     	task.setDescription("thing");
-    	task.setDateCreated(dateCreated);
+    	task.setDateCreated(Timestamp.valueOf(LocalDateTime.now()));
     	
+    	//instantiate obsList and add task:
+    	observableList = FXCollections.observableArrayList();
+    	observableList.add(task); //or addAll()
+    	
+    	//add observable list of tasks to JFXListView:
+    	taskList.setItems(observableList);
+    	//set cellFactory to create CellController cells:
+    	taskList.setCellFactory(CellController -> new CellController());
 
     }
     
