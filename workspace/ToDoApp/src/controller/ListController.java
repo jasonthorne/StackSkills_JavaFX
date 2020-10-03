@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -68,12 +69,16 @@ public class ListController {
     /** the "cell" in a list view is a row (entry) */
     private static class JFXCell extends JFXListCell<String> {
     	
+    	
+    	
+    	
+    	
     	HBox hBox = new HBox(); //horizontal box
     	Button btn = new Button("I'm a button!");
     	Label taskNamelbl = new Label();
     	
     	Pane pane = new Pane();
-    	Image icon = new Image("/assets/addIcon.png"); /** get this path from a properties file */
+    	Image icon = new Image("/assets/test.png"); /** get this path from a properties file */
     	ImageView imnageIcon = new ImageView(icon);
     	
     	//constructor:
@@ -85,6 +90,22 @@ public class ListController {
 			HBox.setHgrow(pane, Priority.ALWAYS);
 		}
     	
+	
+		//override 'updateItem' from super (JFXListCell)
+		@Override
+		protected void updateItem(String taskName, boolean isEmpty) {
+			
+			//if name or cell are null:
+			if (isEmpty || taskName == null) {
+		         setText(null);
+		         setGraphic(null);
+		     } else {
+		    	 taskNamelbl.setText(taskName); //add taskName to label
+				 setGraphic(hBox); // set the graphic as our Hbox ++++++++++++++++
+		     }
+		 }
+		
+		
 		
 		/*
 		public void updateItem(String taskName, boolean isEmpty) {
@@ -100,19 +121,6 @@ public class ListController {
 			}
 		}*/
 		
-		//override 'updateItem' from super (JFXListCell)
-		@Override
-		protected void updateItem(String taskName, boolean isEmpty) {
-			
-			//if name or cell are null:
-			if (isEmpty || taskName == null) {
-		         setText(null);
-		         setGraphic(null);
-		     } else {
-		    	 taskNamelbl.setText(taskName); //add taskName to label
-				 setGraphic(hBox); // set the graphic as our Hbox ++++++++++++++++
-		     }
-		 }
     }
     
 }
