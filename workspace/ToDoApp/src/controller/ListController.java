@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import model.Task;
 
 public class ListController {
 
@@ -29,7 +30,7 @@ public class ListController {
     private URL location;
 
     @FXML
-    private JFXListView<String> taskList; /** listView of type String */
+    private JFXListView<Task> taskList; /** listView of of type TASK */
 
     @FXML
     private JFXTextField listTaskField;
@@ -40,88 +41,23 @@ public class ListController {
     @FXML
     private JFXTextField descriptionTaskField;
     
-    /** observable list +++++++++++++++++++++  */
-   private ObservableList<String>observableList = FXCollections.observableArrayList("jay","dan","jo","laura"
-    		,"jay","dan","jo","laura"
-    		,"jay","dan","jo","laura"
-    		,"jay","dan","jo","laura"
-    		,"jay","dan","jo","laura"
-    		,"jay","dan","jo","laura"
-    		,"jay","dan","jo","laura"
-    		,"jay","dan","jo","laura"
-    		,"jay","dan","jo","laura"
-    		,"jay","dan","jo","laura"
-    		);
+    /** observable list of type TASK+++++++++++++++++++++  */
+    private ObservableList<Task>observableList = FXCollections.observableArrayList();
     			
    
 
     @FXML
     void initialize() {
     	
-    	taskList.setItems(observableList); //add observable list to JFXListView
+    	Task task = new Task();
+    	task.setTask("do the thing!");
+    	task.setDescription("thing");
+    	task.setDateCreated(dateCreated);
     	
-    	/** set taskList's cell factory to create new JFXCells (instead of default cell styles) */
-    	taskList.setCellFactory(param -> new JFXCell());
 
     }
     
-    
-    /** the "cell" in a list view is a row (entry) */
-    private static class JFXCell extends JFXListCell<String> {
-    	
-    	
-    	
-    	
-    	
-    	HBox hBox = new HBox(); //horizontal box
-    	Button btn = new Button("I'm a button!");
-    	Label taskNamelbl = new Label();
-    	
-    	Pane pane = new Pane();
-    	Image icon = new Image("/assets/test.png"); /** get this path from a properties file */
-    	ImageView imnageIcon = new ImageView(icon);
-    	
-    	//constructor:
-		public JFXCell() {
-			super(); //why is this needed???????????????????
-			
-			/** add elements to hBox (Order matters!)*/
-			hBox.getChildren().addAll(imnageIcon, taskNamelbl, btn);
-			HBox.setHgrow(pane, Priority.ALWAYS);
-		}
-    	
-	
-		//override 'updateItem' from super (JFXListCell)
-		@Override
-		protected void updateItem(String taskName, boolean isEmpty) {
-			
-			//if name or cell are null:
-			if (isEmpty || taskName == null) {
-		         setText(null);
-		         setGraphic(null);
-		     } else {
-		    	 taskNamelbl.setText(taskName); //add taskName to label
-				 setGraphic(hBox); // set the graphic as our Hbox ++++++++++++++++
-		     }
-		 }
-		
-		
-		
-		/*
-		public void updateItem(String taskName, boolean isEmpty) {
-			super.updateItem(taskName, isEmpty); //call updateItem from super (JFXListCell)
-			setText(null);
-			setGraphic(null);
-			
-			//if name isn't null and cell isnt empty
-			if(taskName != null && !isEmpty) {
-				taskNamelbl.setText(taskName); //add taskName to label
-				setGraphic(hBox); // set the graphic as our Hbox ++++++++++++++++
-				
-			}
-		}*/
-		
-    }
+  
     
 }
 
