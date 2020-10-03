@@ -33,10 +33,11 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (not t
     @FXML
     private ImageView cellDeleteImgView;
     
-    private FXMLLoader fxmlLoader;
+    //private FXMLLoader fxmlLoader; ==================????????????
 
     @FXML
     void initialize() {
+    	System.out.println("userId: " + AddItemController.userId);
     	
     	cellDeleteImgView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
     		System.out.println("delete btn clicked");
@@ -54,28 +55,26 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (not t
 	         setText(null);
 	         setGraphic(null);
 	     } else {
-	    	// taskNamelbl.setText(taskName); //add taskName to label
-			// setGraphic(hBox); // set the graphic as our Hbox ++++++++++++++++
-	    	 
+	    
 	    	 //if no instantiated loader:
-	    	 if(fxmlLoader == null) {
+	    	/////////// if(fxmlLoader == null) { ??????????????===================================
 	    		 
-	    		 //=============IS ANY OF THIS NEEDED!! ==================
-	    		 fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); //in initialize???
-	    		 fxmlLoader.setController(this); //??????????
-	    		 try {
-					fxmlLoader.load();
-				} catch (IOException e) {e.printStackTrace();}
-	    		 //========================================================
+    		//load fxml tree, and set it's controller as this:
+    	 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
+    		 fxmlLoader.setController(this); //??????????
+    		 try {
+				fxmlLoader.load(); //load fxml tree
+			} catch (IOException e) {e.printStackTrace();}
 	    		 
-	    		 //populate cell fields with data from task:
-	    		 cellTaskNameLbl.setText(task.getTask());
-	    		 cellDescriptionLbl.setText(task.getDescription());
-	    		 cellDateLbl.setText(task.getDateCreated().toString());
 	    		 
-	    		 setText(null); //??????????????
-		         setGraphic(cellRoot); //set this achorpane to be the graphic
-	    	 }
+    		 //populate cell fields with data from task:
+    		 cellTaskNameLbl.setText(task.getTask());
+    		 cellDescriptionLbl.setText(task.getDescription());
+    		 cellDateLbl.setText(task.getDateCreated().toString());
+    		 
+    		 setText(null); //??????????????=======================
+	         setGraphic(cellRoot); //set this achorpane to be the graphic
+	    	 ////} ??????????????====================
 	     }
 	 }
   		

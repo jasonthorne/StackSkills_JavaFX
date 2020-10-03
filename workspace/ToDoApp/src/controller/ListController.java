@@ -53,14 +53,20 @@ public class ListController {
     void initialize() {
     	
     	//create a task:
-    	Task task = new Task();
-    	task.setTask("do the thing!");
-    	task.setDescription("thing");
-    	task.setDateCreated(Timestamp.valueOf(LocalDateTime.now()));
+    	Task task1 = new Task();
+    	task1.setTask("do the thing!");
+    	task1.setDescription("thing");
+    	task1.setDateCreated(Timestamp.valueOf(LocalDateTime.now()));
+    	
+    	Task task2 = new Task();
+    	task2.setTask("do the thing!");
+    	task2.setDescription("thing");
+    	task2.setDateCreated(Timestamp.valueOf(LocalDateTime.now()));
     	
     	//instantiate obsList and add task:
     	observableList = FXCollections.observableArrayList();
-    	observableList.add(task); //or addAll()
+    	//observableList.add(task1); //or addAll()
+    	observableList.addAll(task1, task2); //or addAll()
     	
     	//add observable list of tasks to JFXListView:
     	taskList.setItems(observableList);

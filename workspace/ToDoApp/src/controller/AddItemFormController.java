@@ -6,13 +6,18 @@ import com.jfoenix.controls.JFXTextField;
 import animation.Shaker;
 import database.DatabaseHandler;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import model.Task;
 
 public class AddItemFormController extends DatabaseHandler{
@@ -79,13 +84,33 @@ public class AddItemFormController extends DatabaseHandler{
     	
     	tasksBtn.setOnAction(event ->{
 			
-			System.out.println("uh oh!!");
+			System.out.println("'tasksBtn' clicked");
+			
+			/**hide the primary stage login window by targeting it through it's scene, 
+	    	 * which is itself gotten by targeting one of it's elements,
+	    	 * which we have access to here (the tasksBtn in this case):
+	    	 */
+			/////////////tasksBtn.getScene().getWindow().hide(); //HIDES THE CURRENT WINDOW ++++++++++++
+			
+			/** send user to list.fxml window: */
+			FXMLLoader fxmlLoader = new FXMLLoader(); //create loader to load fxml tree
+			fxmlLoader.setLocation(getClass().getResource("/view/list.fxml")); //set location to load from
+			try {
+				fxmlLoader.load(); //load fxml tree
+			} catch (IOException e) { e.printStackTrace(); }
+			
+			Parent root = fxmlLoader.getRoot(); //get root element from list.fxml
+			Stage stage = new Stage(); //create new stage
+			stage.setScene(new Scene(root)); //add new scene to stage, holding root
+			///////////////stage.show(); //show stage
+			stage.showAndWait(); //show stage
 			
 		});
         
     }//initialize()
     
     
+    /** ++++++++++++++++ instead of this look into making taskNum observable */
     private void getTaskNum() {
     	//get number of tasks already saved, and display on button 
     	taskNum = getAllTasks(AddItemController.userId);
