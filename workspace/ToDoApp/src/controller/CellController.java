@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Task;
 
-public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (not type of 'Task')+++++++++++++++++++ */
+public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type of 'Task')+++++++++++++++++++ */
 
     @FXML
     private ResourceBundle resources;
@@ -33,11 +33,14 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (not t
     @FXML
     private ImageView cellDeleteImgView;
     
-    //private FXMLLoader fxmlLoader; ==================????????????
-
+    private FXMLLoader fxmlLoader; //==================????????????
+    int count = 0;
+    
     @FXML
     void initialize() {
+    	
     	System.out.println("userId: " + AddItemController.userId);
+    	////System.out.println(++count);
     	
     	cellDeleteImgView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
     		System.out.println("delete btn clicked");
@@ -55,26 +58,27 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (not t
 	         setText(null);
 	         setGraphic(null);
 	     } else {
-	    
+	    	 
 	    	 //if no instantiated loader:
-	    	/////////// if(fxmlLoader == null) { ??????????????===================================
+	    	 if(fxmlLoader == null) { 
+	   
+	    		//load fxml tree, and set it's controller as this:
+	    	 	/////FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
+	    	 	 fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
+	    		 fxmlLoader.setController(this); //??????????
+	    		 try {
+					fxmlLoader.load(); //load fxml tree
+				 } catch (IOException e) {e.printStackTrace();}
+		    		 
+		    		 
+	    		 //populate cell fields with data from task:
+	    		 cellTaskNameLbl.setText(task.getTask());
+	    		 cellDescriptionLbl.setText(task.getDescription());
+	    		 cellDateLbl.setText(task.getDateCreated().toString());
 	    		 
-    		//load fxml tree, and set it's controller as this:
-    	 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
-    		 fxmlLoader.setController(this); //??????????
-    		 try {
-				fxmlLoader.load(); //load fxml tree
-			} catch (IOException e) {e.printStackTrace();}
-	    		 
-	    		 
-    		 //populate cell fields with data from task:
-    		 cellTaskNameLbl.setText(task.getTask());
-    		 cellDescriptionLbl.setText(task.getDescription());
-    		 cellDateLbl.setText(task.getDateCreated().toString());
-    		 
-    		 setText(null); //??????????????=======================
-	         setGraphic(cellRoot); //set this achorpane to be the graphic
-	    	 ////} ??????????????====================
+	    		 setText(null); //??????????????=======================
+		         setGraphic(cellRoot); //set this achorpane to be the graphic
+	    	 } 
 	     }
 	 }
   		

@@ -163,7 +163,7 @@ public abstract class DatabaseHandler {
 	
 	/** Again, DONT return resukltSet!! (So proper 'try with resources' can be implemented) ++++++++++++++++++++++++++ */
 	
-	public static ResultSet getTasks(int userId) {
+	protected static ResultSet getTasks(int userId) {
 		ResultSet resultSet = null;
 		//get a connection to the db:
 		try {

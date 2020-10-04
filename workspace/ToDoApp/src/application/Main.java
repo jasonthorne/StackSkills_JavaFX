@@ -37,21 +37,6 @@ public class Main extends Application{
 	    float percent = (100 * downloaded) / total;
 	    System.out.println(String.format("%.0f%%",percent));
 		
-	    ResultSet resultSet = DatabaseHandler.getTasks(1);
-	  
-			try {
-				
-			  while(resultSet.next()) {
-				  System.out.println(resultSet.getString("userID")  + "|"
-						  + resultSet.getString("description")  + "|"
-						  + resultSet.getString("task"));  
-			  }
-			  
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
 		
 		/*
 		 * open any given File using the system's default application.

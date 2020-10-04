@@ -4,7 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListCell;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
+
+import database.DatabaseHandler;
+
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,52 +29,51 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import model.Task;
 
-public class ListController {
+public class ListController extends DatabaseHandler {
 
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private JFXListView<Task> taskList; /** listView of of type TASK */
-
     @FXML
     private JFXTextField listTaskField;
-
     @FXML
     private JFXButton listSaveTaskBtn;
-
     @FXML
     private JFXTextField descriptionTaskField;
     
     /** observable list of type TASK+++++++++++++++++++++  */
-    private ObservableList<Task>observableList; //= FXCollections.observableArrayList();
+    private ObservableList<Task>observableTaskList; //= FXCollections.observableArrayList();
     			
    
 
     @FXML
     void initialize() {
     	
-    	//create a task:
-    	Task task1 = new Task();
-    	task1.setTask("do the thing!");
-    	task1.setDescription("thing");
-    	task1.setDateCreated(Timestamp.valueOf(LocalDateTime.now()));
-    	
-    	Task task2 = new Task();
-    	task2.setTask("do the thing!");
-    	task2.setDescription("thing");
-    	task2.setDateCreated(Timestamp.valueOf(LocalDateTime.now()));
-    	
     	//instantiate obsList and add task:
-    	observableList = FXCollections.observableArrayList();
-    	//observableList.add(task1); //or addAll()
-    	observableList.addAll(task1, task2); //or addAll()
+    	observableTaskList = FXCollections.observableArrayList();
     	
+    	//get tasks relating to userId:
+    	 ResultSet resultSet = DatabaseHandler.getTasks(AddItemController.userId);
+   	  
+    	 try {
+    		 while(resultSet.next()) {
+    			 
+    			 //create new task & add values from db resultSet (+++++++BUILDER PATTERN HERE!!!)
+    			 Task task = new Task();
+    			 task.setTask(resultSet.getString("task"));
+    			 task.setDateCreated(resultSet.getTimestamp("date_created"));
+    			 task.setDescription(resultSet.getString("description"));
+    			 
+    			 observableTaskList.add(task); //add task to observable list of tasks
+    		 }
+		} catch (SQLException e) {e.printStackTrace();}
+		
+  
     	//add observable list of tasks to JFXListView:
-    	taskList.setItems(observableList);
+    	taskList.setItems(observableTaskList);
     	//set cellFactory to create CellController cells:
     	taskList.setCellFactory(CellController -> new CellController());
 

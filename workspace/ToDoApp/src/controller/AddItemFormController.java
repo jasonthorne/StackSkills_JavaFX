@@ -113,7 +113,7 @@ public class AddItemFormController extends DatabaseHandler{
     /** ++++++++++++++++ instead of this look into making taskNum observable */
     private void setTaskNum() {
     	//get number of tasks already saved, and display on button 
-    	taskNum = getTaskNum(AddItemController.userId);
+    	taskNum = DatabaseHandler.getTaskNum(AddItemController.userId);
     	tasksBtn.setText("Tasks (" + taskNum + ")");
     }
     
