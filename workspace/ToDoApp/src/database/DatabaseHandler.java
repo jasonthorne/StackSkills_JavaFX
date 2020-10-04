@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import controller.AddItemController;
 import model.Task;
 import model.User;
 
@@ -77,6 +80,7 @@ public abstract class DatabaseHandler {
 	*/
 	
 	/** ++++++++++this is AWFUL as connection isnt closed due to resultSet being returned DONT DO THIS!! */
+	/** +++++++++++++++ RETURN A USER HERE (make user a builder class) WITH NAME, PWRD and ID INSTEAD OF RESULTSET +++++++++++++++++ */
 	protected static ResultSet findUser(User user) {	
 
 		ResultSet resultSet = null;	
@@ -132,7 +136,7 @@ public abstract class DatabaseHandler {
 	
 	//-----------------------------------------------------------------------------------
 	
-	protected static int getAllTasks(int userId) {
+	protected static int getTaskNum(int userId) {
 		int taskNum = 0;
 		try (Connection connection = DatabaseConnection.getConnection();	//get a connection to the db
 				
@@ -154,21 +158,49 @@ public abstract class DatabaseHandler {
 		return taskNum;
 	}
 	
+	
+	//-----------------------------------------------------------------------------------
+	
+	/** Again, DONT return resukltSet!! (So proper 'try with resources' can be implemented) ++++++++++++++++++++++++++ */
+	
+	public static ResultSet getTasks(int userId) {
+		ResultSet resultSet = null;
+		//get a connection to the db:
+		try {
+			Connection connection = DatabaseConnection.getConnection();
+			//prepare statement:
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					" SELECT * FROM " + DatabaseConst.TASKS_TABLE + 
+					" WHERE " + DatabaseConst.USERS_USER_ID + "=?");
 			
+			//set the parameters for the statement (at the position required):
+			preparedStatement.setInt(1, userId);
+			
+			//execute query:
+			resultSet = preparedStatement.executeQuery(); 
+		
+		}catch(Exception e) { e.printStackTrace(); }
+		
+		return resultSet;
+	}
 	
 	
+	/*-------------------
+	mysql:
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	ThingsTable
+	pk_thingId,
+	something,
+	somethingElse
+
+	class Thing{
+		int thingId = 1;
+		String saomething;
+		String somethingElse;
+	}
+
+	List<Thing>things = new ArrayList<Thing>();
+	-------------------*/
 	
 }
 

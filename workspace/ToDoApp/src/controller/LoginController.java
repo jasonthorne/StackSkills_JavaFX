@@ -61,6 +61,7 @@ public class LoginController extends DatabaseHandler { /** +++++++++++++++++++++
         		user.setUserName(loginUsername.getText());
         		user.setPassword(loginPassword.getText());
     			
+        		/** +++++++++++++++ RETURN A USER HERE (make user a builder class) WITH NAME, PWRD and ID INSTEAD OF RESULTSET +++++++++++++++++ */
         		ResultSet resultSet = DatabaseHandler.findUser(user);
         		
         		try {
@@ -70,6 +71,7 @@ public class LoginController extends DatabaseHandler { /** +++++++++++++++++++++
     					Arrays.asList(loginUsername, loginPassword).forEach(s -> Shaker.shake(s));
     				}else { 
     					System.out.println(resultSet.getString("username") + " " + resultSet.getString("password"));
+    					/** ++++++++++++++++++++++++++0000000000000000000000000000+++++++++++++++++++ this userId should prob be stored HERE not in 'AddItemController' */
     					AddItemController.userId = resultSet.getInt("userID"); //send userId to AddItemController ++++++++++++++++
     		
     					//change stage to AddItem.fxml root:

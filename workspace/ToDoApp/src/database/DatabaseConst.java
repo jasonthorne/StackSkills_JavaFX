@@ -1,6 +1,6 @@
 package database;
 
-public enum DatabaseConst {
+public enum DatabaseConst { //Table
 	
 	//tables:
 	USERS_TABLE("users"),

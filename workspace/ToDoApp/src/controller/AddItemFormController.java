@@ -42,7 +42,7 @@ public class AddItemFormController extends DatabaseHandler{
     @FXML
     void initialize() {
     	
-    	getTaskNum(); //get tasknum and set tasksBtn accordingly:
+    	setTaskNum(); //set tasknum and add to tasksBtn
  
     	//-------------------save task button:-------------------------------------------------
     	
@@ -70,7 +70,7 @@ public class AddItemFormController extends DatabaseHandler{
         		descriptionField.clear();
         		
         		//get tasknum and set tasksBtn accordingly:
-        		getTaskNum();
+        		setTaskNum();
         		
         		
         		//send users to the list of tasks screen
@@ -111,9 +111,9 @@ public class AddItemFormController extends DatabaseHandler{
     
     
     /** ++++++++++++++++ instead of this look into making taskNum observable */
-    private void getTaskNum() {
+    private void setTaskNum() {
     	//get number of tasks already saved, and display on button 
-    	taskNum = getAllTasks(AddItemController.userId);
+    	taskNum = getTaskNum(AddItemController.userId);
     	tasksBtn.setText("Tasks (" + taskNum + ")");
     }
     
