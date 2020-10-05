@@ -11,6 +11,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -18,6 +20,14 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			
+			/*
+			ProgressIndicator pi = new ProgressIndicator(0.5);
+	            final HBox hb = new HBox();
+	            hb.getChildren().add(pi);
+	            Scene scene = new Scene(hb,700,400);
+			*/
+		
 			Parent root = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
 			//Parent root = FXMLLoader.load(getClass().getResource("/view/addItem.fxml"));
 			//Parent root = FXMLLoader.load(getClass().getResource("/view/list.fxml"));

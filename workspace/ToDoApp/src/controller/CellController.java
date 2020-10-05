@@ -42,17 +42,24 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
     	System.out.println("userId: " + AddItemController.userId);
     	////System.out.println(++count);
     	
+    	/*
     	cellDeleteImgView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
     		System.out.println("delete btn clicked");
-    	});
+    	});*/
 
     }
     
     
     //override 'updateItem' from super (JFXListCell)
+    /*
 	@Override
 	protected void updateItem(Task task, boolean isEmpty) {
-		
+	*/
+    @Override
+    protected void updateItem(Task task, boolean isEmpty) {
+       //super.updateItem(task, isEmpty);
+       
+     
 		//if task or cell are null:
 		if (isEmpty || task == null) {
 	         setText(null);
@@ -60,11 +67,11 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 	     } else {
 	    	 
 	    	 //if no instantiated loader:
-	    	 if(fxmlLoader == null) { 
+	    	///////////if(fxmlLoader == null) { 
 	   
 	    		//load fxml tree, and set it's controller as this:
-	    	 	/////FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
-	    	 	 fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
+	    	 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
+	    	 	//fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
 	    		 fxmlLoader.setController(this); //??????????
 	    		 try {
 					fxmlLoader.load(); //load fxml tree
@@ -78,7 +85,7 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 	    		 
 	    		 setText(null); //??????????????=======================
 		         setGraphic(cellRoot); //set this achorpane to be the graphic
-	    	 } 
+	    	 ////} 
 	     }
 	 }
   		

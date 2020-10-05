@@ -67,16 +67,17 @@ public class ListController extends DatabaseHandler {
     			 task.setDateCreated(resultSet.getTimestamp("date_created"));
     			 task.setDescription(resultSet.getString("description"));
     			 
-    			 observableTaskList.add(task); //add task to observable list of tasks
+    			// observableTaskList.add(task); //add task to observable list of tasks
+    			 observableTaskList.addAll(task);
     		 }
 		} catch (SQLException e) {e.printStackTrace();}
 		
-  
+    	
     	//add observable list of tasks to JFXListView:
-    	taskList.setItems(observableTaskList);
-    	//set cellFactory to create CellController cells:
-    	taskList.setCellFactory(CellController -> new CellController());
-
+     	taskList.setItems(observableTaskList);
+     	//set cellFactory to create CellController cells:
+     	taskList.setCellFactory(CellController -> new CellController());
+    	
     }
     
   
