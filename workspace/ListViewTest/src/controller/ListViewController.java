@@ -28,6 +28,8 @@ public class ListViewController {
     @FXML
     void initialize() {
     	
+    	System.out.println("initialize");
+    	
     	//load fxml doc tree: 
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/listView.fxml"));
     	//set controller:
@@ -63,6 +65,8 @@ public class ListViewController {
     
     
     public void setListView() {
+    	
+    	System.out.println("setListView");
     	
     	//add some values to set:
         stringSet.add("String 1");
