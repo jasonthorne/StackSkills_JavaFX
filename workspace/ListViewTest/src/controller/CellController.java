@@ -43,10 +43,52 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
     
     
     //override 'updateItem' from super (JFXListCell)
+    
     /*
 	@Override
 	protected void updateItem(Task task, boolean isEmpty) {
 	*/
+    
+   
+    @Override
+    public void updateItem(Task task, boolean isEmpty) {
+        super.updateItem(task,isEmpty);
+    
+        
+        	/*
+      		if (isEmpty || task == null) {
+      	         setText(null);
+      	         setGraphic(null);
+      	     } else {*/
+        if(task != null){
+     
+           /*
+        	Data data = new Data();
+            data.setInfo(string);
+            setGraphic(data.getBox());
+            */
+        	//load fxml tree, and set it's controller as this:
+    	 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
+    	 	//fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
+    		 fxmlLoader.setController(this); //??????????
+    		 try {
+				fxmlLoader.load(); //load fxml tree
+			 } catch (IOException e) {e.printStackTrace();}
+	    		 
+	    		 
+    		 //populate cell fields with data from task:
+    		 cellTaskNameLbl.setText(task.getTask());
+    		 cellDescriptionLbl.setText(task.getDescription());
+    		 //cellDateLbl.setText(task.getDateCreated().toString());
+    		 
+    		 setText(null); //??????????????=======================
+	         setGraphic(cellRoot); //set this achorpane to be the graphic
+        	
+        	
+        }
+    }
+    
+    /*
     @Override
     protected void updateItem(Task task, boolean isEmpty) {
        //super.updateItem(task, isEmpty);
@@ -73,13 +115,13 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 	    		 //populate cell fields with data from task:
 	    		 cellTaskNameLbl.setText(task.getTask());
 	    		 cellDescriptionLbl.setText(task.getDescription());
-	    		 cellDateLbl.setText(task.getDateCreated().toString());
+	    		 //cellDateLbl.setText(task.getDateCreated().toString());
 	    		 
 	    		 setText(null); //??????????????=======================
 		         setGraphic(cellRoot); //set this achorpane to be the graphic
 	    	 ////} 
 	     }
-	 }
+	 }*/
   		
     
 }

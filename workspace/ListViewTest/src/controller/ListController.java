@@ -75,6 +75,18 @@ public class ListController /*extends DatabaseHandler*/ {
 		} catch (SQLException e) {e.printStackTrace();}
 		*/
     	
+    	 Task task1 = new Task();
+		 task1.setTask("task1");
+		 task1.setDescription("description");
+		 
+		 Task task2 = new Task();
+		 task2.setTask("task2");
+		 task2.setDescription("description");
+		 
+		// observableTaskList.add(task); //add task to observable list of tasks
+		 observableTaskList.addAll(task1, task2);
+    	
+    	
     	//add observable list of tasks to JFXListView:
      	taskList.setItems(observableTaskList);
      	//set cellFactory to create CellController cells:

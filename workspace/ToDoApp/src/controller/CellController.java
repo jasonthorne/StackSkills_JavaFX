@@ -33,7 +33,7 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
     @FXML
     private ImageView cellDeleteImgView;
     
-    private FXMLLoader fxmlLoader; //==================????????????
+    //private FXMLLoader fxmlLoader; //==================????????????
     int count = 0;
     
     @FXML
@@ -57,26 +57,25 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 	*/
     @Override
     protected void updateItem(Task task, boolean isEmpty) {
-       //super.updateItem(task, isEmpty);
+       super.updateItem(task, isEmpty);
        
-     
 		//if task or cell are null:
 		if (isEmpty || task == null) {
 	         setText(null);
 	         setGraphic(null);
-	     } else {
-	    	 
+	     } else { 
+	    
+      // if(task != null){
 	    	 //if no instantiated loader:
-	    	///////////if(fxmlLoader == null) { 
+	    	//if(fxmlLoader == null) { 
 	   
 	    		//load fxml tree, and set it's controller as this:
-	    	 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
+    	   		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
 	    	 	//fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
 	    		 fxmlLoader.setController(this); //??????????
 	    		 try {
 					fxmlLoader.load(); //load fxml tree
 				 } catch (IOException e) {e.printStackTrace();}
-		    		 
 		    		 
 	    		 //populate cell fields with data from task:
 	    		 cellTaskNameLbl.setText(task.getTask());
@@ -85,7 +84,7 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 	    		 
 	    		 setText(null); //??????????????=======================
 		         setGraphic(cellRoot); //set this achorpane to be the graphic
-	    	 ////} 
+	    	//} 
 	     }
 	 }
   		
