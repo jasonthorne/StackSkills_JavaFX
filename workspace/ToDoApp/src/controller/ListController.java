@@ -21,12 +21,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.util.Callback;
 import model.Task;
 
 public class ListController extends DatabaseHandler {
@@ -55,6 +58,7 @@ public class ListController extends DatabaseHandler {
     	//instantiate obsList and add task:
     	observableTaskList = FXCollections.observableArrayList();
     	
+    	/** OBV DONT USE RESULTSET HERE!! +++++++++++++++++++*/
     	//get tasks relating to userId:
     	 ResultSet resultSet = DatabaseHandler.getTasks(AddItemController.userId);
    	  
@@ -77,7 +81,18 @@ public class ListController extends DatabaseHandler {
      	taskList.setItems(observableTaskList);
      	//set cellFactory to create CellController cells:
      	taskList.setCellFactory(CellController -> new CellController());
-    	
+     	
+     	
+     	/*
+     	//longform cellfactory:
+     	taskList.setCellFactory(new Callback<ListView<Task>, javafx.scene.control.ListCell<Task>>(){
+			@Override
+			public ListCell<Task> call(ListView<Task> jFXListView) {
+				return new CellController();
+			}
+        });
+     	*/
+    
     }
     
   
