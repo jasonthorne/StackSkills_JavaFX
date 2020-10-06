@@ -1,10 +1,39 @@
-<!--<?import model.Data?>-->
- <?import javafx.scene.layout.HBox?>
- <?import javafx.scene.control.Label?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<HBox xmlns:fx="http://javafx.com/fxml" fx:id="hBox">
-<children>
-    <Label  fx:id="label1"/>
-    <Label  fx:id="label2"/>
-</children>
-</HBox>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!-- ++++++++++++++++++++ NOTE - NO CONTROLLER IS ADDED TO ANCHORPANE HERE -->
+
+<AnchorPane fx:id="cellRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="cellIconImgView" fitHeight="44.0" fitWidth="47.0" layoutX="7.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/task.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="cellTaskNameLbl" layoutX="54.0" layoutY="8.0" prefHeight="30.0" prefWidth="233.0" text="Task Name">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="cellDescriptionLbl" layoutX="54.0" layoutY="30.0" prefHeight="30.0" prefWidth="223.0" text="Task Description">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="cellDateLbl" layoutX="54.0" layoutY="52.0" prefHeight="30.0" prefWidth="233.0" text="Date Created">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="cellDeleteImgView" fitHeight="44.0" fitWidth="36.0" layoutX="277.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/delete.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
