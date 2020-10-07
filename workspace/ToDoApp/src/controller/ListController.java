@@ -67,9 +67,12 @@ public class ListController extends DatabaseHandler {
     			 
     			 //create new task & add values from db resultSet (+++++++BUILDER PATTERN HERE!!!)
     			 Task task = new Task();
+    			 task.setTaskId(resultSet.getInt("taskID"));
+    			 task.setUserId(AddItemController.userId);
     			 task.setTask(resultSet.getString("task"));
     			 task.setDateCreated(resultSet.getTimestamp("date_created"));
     			 task.setDescription(resultSet.getString("description"));
+    			 
     			 
     			observableTaskList.add(task); //add task to observable list of tasks
     			// observableTaskList.addAll(task);

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXListCell;
 
+import database.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -73,16 +74,21 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 	    		 cellDescriptionLbl.setText(task.getDescription());
 	    		 cellDateLbl.setText(task.getDateCreated().toString());
 	    		 
+	    		 //------------------cellDeleteImgView:-------------------------------------------------------
 	    		 //give handler to delete btn (is an image view, so needs .setOnMouseClicked ):
 	    		 cellDeleteImgView.setOnMouseClicked(event -> {
-	    	    		System.out.println("delete btn clicked");
-	    	    		
-	    	    		
-	    	    		/** BEFORE REMOVAL - show pop up confirming removal, on yes, THEN remove ++++++++++++++++*/
-	    	    		//'getListView' is from 'ListCell' which we're extending from, by extending from 'JFXListCell'
-	    	    		//'getItem' is from Cell, parent of 'ListCell'
-	    	    		getListView().getItems().remove(getItem());  //get items from listView and remove this current item. +++++++++
-	    	    });
+    	    		System.out.println("delete btn clicked");
+    	    		
+    	    		/** BEFORE REMOVAL - show pop up confirming removal, on yes, THEN remove ++++++++++++++++*/
+    	    		//'getListView' is from 'ListCell' which we're extending from, by extending from 'JFXListCell'
+    	    		//'getItem' is from Cell, parent of 'ListCell'
+    	    		getListView().getItems().remove(getItem());  //get items from listView and remove this current item. +++++++++
+	    	    
+    	    		//remove item from db:
+    	    		
+    	    		DatabaseHandler.deleteTask(task);
+    	    		
+	    		 });
 	    		 
 	    		 setText(null); //set text as null
 		         setGraphic(cellRoot); //set this anchorpane to be the graphic

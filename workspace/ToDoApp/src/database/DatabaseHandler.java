@@ -185,6 +185,30 @@ public abstract class DatabaseHandler {
 	}
 	
 	
+	//-----------------------------------------------------------------------------------
+	
+	/** shouldn't be public (but then this whole thing should be multiple interfaces!! :P) */
+	public static void deleteTask(Task task) {
+		
+		try (Connection connection = DatabaseConnection.getConnection(); //get a connection to the db
+				
+				//prepare statement:
+				PreparedStatement preparedStatement = connection.prepareStatement(
+						" DELETE FROM " + DatabaseConst.TASKS_TABLE + 
+						" WHERE " + DatabaseConst.TASKS_USER_ID + "=?" +
+						" AND " + DatabaseConst.TASKS_TASK_ID + "=?");){
+				
+				//set the parameters for the statement (at the position required):
+				preparedStatement.setInt(1, task.getUserId()); 
+				preparedStatement.setInt(2, task.getTaskId()); 
+				
+				//execute update:
+				preparedStatement.executeUpdate();
+			
+		}catch(Exception e) { e.printStackTrace(); }
+		
+	}
+	
 	/*-------------------
 	mysql:
 	
