@@ -42,7 +42,8 @@ public class AddItemController {
     	
     	/**addBtn is an image view (not a btn), so has no 'setOnAction' to take eventHandler */
     	//adding thing to use eventHandler, and eventHandler itself:
-    	addBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { 
+    	//addBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+    	addBtn.setOnMouseClicked(event -> { //better way of doing above +++++++
     		System.out.println("'addBtn' clicked");
     		////////Shaker.shake(addBtn); //shake button //+++++++++++++++this looks awful  :D 
     		

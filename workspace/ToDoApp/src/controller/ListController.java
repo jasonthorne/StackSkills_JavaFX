@@ -48,7 +48,7 @@ public class ListController extends DatabaseHandler {
     private JFXTextField descriptionTaskField;
     
     /** observable list of type TASK+++++++++++++++++++++  */
-    private ObservableList<Task>observableTaskList; //= FXCollections.observableArrayList();
+    private ObservableList<Task>observableTaskList = FXCollections.observableArrayList();
     			
    
 
@@ -56,7 +56,7 @@ public class ListController extends DatabaseHandler {
     void initialize() {
     	
     	//instantiate obsList and add task:
-    	observableTaskList = FXCollections.observableArrayList();
+    	//observableTaskList = FXCollections.observableArrayList();
     	
     	/** OBV DONT USE RESULTSET HERE!! +++++++++++++++++++*/
     	//get tasks relating to userId:
@@ -71,8 +71,8 @@ public class ListController extends DatabaseHandler {
     			 task.setDateCreated(resultSet.getTimestamp("date_created"));
     			 task.setDescription(resultSet.getString("description"));
     			 
-    			// observableTaskList.add(task); //add task to observable list of tasks
-    			 observableTaskList.addAll(task);
+    			observableTaskList.add(task); //add task to observable list of tasks
+    			// observableTaskList.addAll(task);
     		 }
 		} catch (SQLException e) {e.printStackTrace();}
 		
