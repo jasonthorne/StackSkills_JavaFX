@@ -51,8 +51,6 @@ public class ListController extends DatabaseHandler {
     /** observable list of type TASK+++++++++++++++++++++  */
     private ObservableList<Task>observableTaskList = FXCollections.observableArrayList();
     			
-   
-
     @FXML
     void initialize() {
     	
@@ -116,6 +114,12 @@ public class ListController extends DatabaseHandler {
         		//clear fields:
         		listTaskField.clear();
         		descriptionTaskField.clear();
+        		
+        		/////////CHECK WHY THIS DOESNT WORK :P observableTaskList.add(task); //add task to observable list of tasks
+        		
+        		/** +++++++++++++ IMPORTANT ++++++++++++ */
+        		initialize(); //recall initialize() as everything needs refetched from db
+            
     		}
     		
     	});
