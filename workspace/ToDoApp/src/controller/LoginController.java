@@ -53,6 +53,7 @@ public class LoginController extends DatabaseHandler { /** +++++++++++++++++++++
     	loginLoginBtn.setOnAction(event -> {
     		System.out.println("'loginLoginBtn' clicked");
     		//if username & password fields aren't empty: 
+    		/** +++++++++++++++000000000000+++some sort of predicate interface that all of these input fields can use should be used here instead +++++++++*/
     		if(!loginUsername.getText().trim().equals("") && !loginPassword.getText().trim().equals("")) {
     	
     			//++++++++++++++USE BUILDER PATTERN FOR THIS INSTEAD OF EMPTY OBJ then setters.

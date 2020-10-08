@@ -53,6 +53,7 @@ public class AddItemFormController extends DatabaseHandler{
     		//get timestamp:
     		Timestamp timeStamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
     		
+    		/** +++++++++++++++000000000000+++some sort of predicate interface that all of these input fields can use should be used here instead +++++++++*/
     		//if username & password fields aren't empty: 
     		if(!taskField.getText().trim().equals("") && !descriptionField.getText().trim().equals("")) {
     		

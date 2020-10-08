@@ -85,7 +85,6 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
     	    		getListView().getItems().remove(getItem());  //get items from listView and remove this current item. +++++++++
 	    	    
     	    		//remove item from db:
-    	    		
     	    		DatabaseHandler.deleteTask(task);
     	    		
 	    		 });

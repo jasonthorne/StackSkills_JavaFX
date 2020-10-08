@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
@@ -95,10 +96,33 @@ public class ListController extends DatabaseHandler {
 			}
         });
      	*/
+     	
+     	
+     	//give eventListener to saveBtn:
+    	listSaveTaskBtn.setOnAction(event ->{
+    		
+    		/** +++++++++++++++000000000000+++some sort of predicate interface that all of these input fields can use should be used here instead +++++++++*/
+    		if(!listTaskField.getText().trim().equals("")  && !descriptionTaskField.getText().trim().equals("")) {
+    			
+    			Task task = new Task();
+    			task.setUserId(AddItemController.userId);
+        		task.setTask(listTaskField.getText().trim());
+        		task.setDateCreated(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+        		task.setDescription(descriptionTaskField.getText().trim());
+
+        		DatabaseHandler.insertTask(task); //insert task to db
+        		System.out.println("task added");
+        		
+        		//clear fields:
+        		listTaskField.clear();
+        		descriptionTaskField.clear();
+    		}
+    		
+    	});
     
     }
     
-  
+    
     
 }
 
