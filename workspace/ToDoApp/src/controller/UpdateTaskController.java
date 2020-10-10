@@ -27,4 +27,20 @@ public class UpdateTaskController {
     void initialize() {
 
     }
+    
+    //-------------------------------------------------
+    //setters for updateTaskFrom:
+    
+    void setTaskField(String task) {
+    	this.taskField.setText(task); //set taskField
+    }
+    
+    void setDescriptionField(String desc) {
+    	this.descriptionField.setText(desc); //set descriptionField
+    }
+    
+    
+    
+    
+    
 }

@@ -102,12 +102,22 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 					loader.load(); //load fxml tree
 				} catch (IOException e) { e.printStackTrace(); }
 			   	
-			   	Parent root = loader.getRoot(); //create root from the loader's root (an anchorPane in this case)
+			   	//---------------
+				//create instance of UpdateTaskController from loader:
+				/** remember you only have package level access to what it contains here */
+				UpdateTaskController updateTaskController = loader.getController();
+				
+				//send taskNameLbl & cellDescriptionLbl values to updateTaskForm: //++++++++++
+				updateTaskController.setTaskField(task.getTask());
+				updateTaskController.setDescriptionField(task.getDescription());
+				//-----------------
+				
+				Parent root = loader.getRoot(); //create root from the loader's root (an anchorPane in this case)
 				Stage signUpStage = new Stage(); /**make a new stage for showing updateTask window */
 				
 				//add the root to a new scene. Add that scene to the stage:
 				signUpStage.setScene(new Scene(root));
-				signUpStage.showAndWait(); /** show the new stage */
+				signUpStage.showAndWait(); /** show the new stage MUST BE LAST THING */
 			   	
 			 });
 			 
