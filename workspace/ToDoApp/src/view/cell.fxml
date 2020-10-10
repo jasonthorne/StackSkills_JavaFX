@@ -30,9 +30,14 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <ImageView fx:id="cellDeleteImgView" fitHeight="44.0" fitWidth="36.0" layoutX="277.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cellDeleteImgView" fitHeight="44.0" fitWidth="36.0" layoutX="277.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cellRefreshImgView" fitHeight="44.0" fitWidth="36.0" layoutX="277.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/refresh.png" />
          </image>
       </ImageView>
    </children>
