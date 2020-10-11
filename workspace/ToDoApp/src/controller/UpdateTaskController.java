@@ -25,11 +25,13 @@ public class UpdateTaskController {
 
     @FXML
     void initialize() {
+    	
+    	
 
     }
     
     //-------------------------------------------------
-    //setters for updateTaskFrom:
+    //setters for cell controller
     
     void setTaskField(String task) {
     	this.taskField.setText(task); //set taskField
@@ -39,8 +41,20 @@ public class UpdateTaskController {
     	this.descriptionField.setText(desc); //set descriptionField
     }
     
+    //getters for cell controller
+    String getTaskField() {
+    	return this.taskField.getText(); //get taskField
+    }
     
+    String getDescriptionField() {
+    	return this.descriptionField.getText(); //get descriptionField
+    }
     
+    //------------------------------------------------
+    //getter for update btn (for cell controller) +++++++++++++++++++++
+    JFXButton getSaveTaskBtn() {
+    	return this.saveTaskBtn;
+    }
     
     
 }

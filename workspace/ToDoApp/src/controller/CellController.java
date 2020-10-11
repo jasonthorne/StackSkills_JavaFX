@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXListCell;
@@ -102,7 +104,7 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 					loader.load(); //load fxml tree
 				} catch (IOException e) { e.printStackTrace(); }
 			   	
-			   	//---------------
+			   	//---------------show original content in fields:
 				//create instance of UpdateTaskController from loader:
 				/** remember you only have package level access to what it contains here */
 				UpdateTaskController updateTaskController = loader.getController();
@@ -111,6 +113,24 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 				updateTaskController.setTaskField(task.getTask());
 				updateTaskController.setDescriptionField(task.getDescription());
 				//-----------------
+				
+				//-------------update task in db:
+				//get save btn from updateTaskController, and set its action event to update task in db
+				updateTaskController.getSaveTaskBtn().setOnAction(event2 ->{
+					
+					try {
+						
+						//create new task holding new vals to pass to db:
+						Task newTask = new Task();
+						newTask.setTask(updateTaskController.getTaskField()); //get value of field  from controller
+						newTask.setDateCreated(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+						newTask.setDescription(updateTaskController.getDescriptionField()); //get value of field  from controller
+						
+						DatabaseHandler.updateTask(task, newTask);
+					}catch(Exception e){ e.printStackTrace(); }
+					
+				});
+				//-------------
 				
 				Parent root = loader.getRoot(); //create root from the loader's root (an anchorPane in this case)
 				Stage signUpStage = new Stage(); /**make a new stage for showing updateTask window */
