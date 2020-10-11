@@ -128,6 +128,26 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 					
 					DatabaseHandler.updateTask(task); //update task in db
 					
+					/** ++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+					
+					/////////////updateTaskController.test();
+					/*
+					//load fxml tree from updateTaskForm.fxml
+				   	FXMLLoader listLoader = new FXMLLoader(getClass().getResource("/view/list.fxml")); 
+				   	try {
+				   		listLoader.load(); //load fxml tree
+					} catch (IOException e) { e.printStackTrace(); }
+				   	
+				   	//---------------show original content in fields:
+					//create instance of UpdateTaskController from loader:
+					ListController listController = listLoader.getController();
+					
+					//listController.refreshList();
+					
+					//new ListController().refreshList();
+					*/
+					/** ++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+					
 				});
 				//-------------
 				
@@ -136,7 +156,8 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 				
 				//add the root to a new scene. Add that scene to the stage:
 				signUpStage.setScene(new Scene(root));
-				signUpStage.showAndWait(); /** show the new stage MUST BE LAST THING */
+				///////////signUpStage.showAndWait(); /** show the new stage MUST BE LAST THING */
+				signUpStage.show(); /** show the new stage MUST BE LAST THING */
 			   	
 			 });
 			 

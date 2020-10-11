@@ -9,9 +9,14 @@ import com.jfoenix.controls.JFXTextField;
 
 import database.DatabaseHandler;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.User;
 
 public class SignupController extends DatabaseHandler{
@@ -66,7 +71,23 @@ public class SignupController extends DatabaseHandler{
         	
         	//make a user with given data, and add to db: //++++++++++++++++++++++stick fields directly in here! 
         	DatabaseHandler.signUpUser(new User(firstName, lastName, usertName, password, location, gender));
-    		
+        	
+        	signupSignUpBtn.getScene().getWindow().hide(); //HIDES THE SIGN UP WINDOW ++++++++++++
+        	
+        	//----------navigate to login page:
+        	FXMLLoader loader = new FXMLLoader();
+        	loader.setLocation(getClass().getResource("/view/login.fxml")); 
+        	try {
+				loader.load();
+			} catch (IOException e) { e.printStackTrace(); }
+			
+        	Parent root = loader.getRoot();
+        	Stage stage = new Stage(); /**make a new stage for showing updateTask window */
+			
+			//add the root to a new scene. Add that scene to the stage:
+        	stage.setScene(new Scene(root));
+			///////////signUpStage.showAndWait(); /** show the new stage MUST BE LAST THING */
+        	stage.show(); /** show the new stage MUST BE LAST THING */
     	});
     }
     

@@ -2,9 +2,12 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 
 public class UpdateTaskController {
 
@@ -56,5 +59,21 @@ public class UpdateTaskController {
     	return this.saveTaskBtn;
     }
     
+    /*
+    void test() {
+    	
+    	System.out.println("updateTaskController TEST");
+    	//load fxml tree from updateTaskForm.fxml
+	   	FXMLLoader listLoader = new FXMLLoader(getClass().getResource("/view/list.fxml")); 
+	   	try {
+	   		listLoader.load(); //load fxml tree
+		} catch (IOException e) { e.printStackTrace(); }
+	   	
+	   	//---------------show original content in fields:
+		//create instance of UpdateTaskController from loader:
+		ListController listController = listLoader.getController();
+		
+		listController.refreshList();
+    }*/
     
 }

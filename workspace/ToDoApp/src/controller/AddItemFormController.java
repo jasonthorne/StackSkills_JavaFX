@@ -103,8 +103,8 @@ public class AddItemFormController extends DatabaseHandler{
 			Parent root = fxmlLoader.getRoot(); //get root element from list.fxml
 			Stage stage = new Stage(); //create new stage
 			stage.setScene(new Scene(root)); //add new scene to stage, holding root
-			///////////////stage.show(); //show stage
-			stage.showAndWait(); //show stage
+			stage.show(); //show stage
+			///////////////stage.showAndWait(); //show stage
 			
 		});
         
