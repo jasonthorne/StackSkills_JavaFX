@@ -50,7 +50,7 @@ public class SignupController extends DatabaseHandler{
     void initialize() {  //+++++++++++++++++++++ should be private????
     	 
     	//------------------sign up button:-------------------------------------------------
-    	
+    	/** ++++++++++++ this has no error handling - allows users with no details at all to be added :P ++++ */
     	signupSignUpBtn.setOnAction(event -> {
     		System.out.println("'signupSignUpBtn' clicked"); 
     		

@@ -211,8 +211,7 @@ public abstract class DatabaseHandler {
 	
 	//-----------------------------------------------------------------------------------
 	
-	
-	public static void updateTask(Task oldTask, Task newTask) {
+	public static void updateTask(Task task) {
 		
 		try (Connection connection = DatabaseConnection.getConnection(); //get a connection to the db
 						
@@ -227,11 +226,11 @@ public abstract class DatabaseHandler {
 			
 			//give new task, date created & description to existing task:
 			//set the parameters for the statement (at the position required):
-			preparedStatement.setString(1, newTask.getTask()); 
-			preparedStatement.setTimestamp(2, newTask.getDateCreated()); 
-			preparedStatement.setString(3, newTask.getDescription()); 
-			preparedStatement.setInt(4, oldTask.getUserId()); 
-			preparedStatement.setInt(5, oldTask.getTaskId()); 
+			preparedStatement.setString(1, task.getTask()); 
+			preparedStatement.setTimestamp(2, task.getDateCreated()); 
+			preparedStatement.setString(3, task.getDescription()); 
+			preparedStatement.setInt(4, task.getUserId()); 
+			preparedStatement.setInt(5, task.getTaskId()); 
 			
 			//execute update:
 			preparedStatement.executeUpdate();

@@ -95,7 +95,7 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 	    		DatabaseHandler.deleteTask(task);
 			 });
 			 
-			 //------------------cellRefreshImgView:-------------------------------------------------------
+			 //---------------REFRESH BUTTON---cellRefreshImgView:-------------------------------------------------------
 			 cellRefreshImgView.setOnMouseClicked(event -> {
 				 
 				//load fxml tree from updateTaskForm.fxml
@@ -114,19 +114,20 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 				updateTaskController.setDescriptionField(task.getDescription());
 				//-----------------
 				
-				//-------------update task in db:
+				//-------------SAVE BUTTON - update task in db:
 				//get save btn from updateTaskController, and set its action event to update task in db
 				updateTaskController.getSaveTaskBtn().setOnAction(event2 ->{
 					
 					try {
 						
-						//create new task holding new vals to pass to db:
-						Task newTask = new Task();
-						newTask.setTask(updateTaskController.getTaskField()); //get value of field  from controller
-						newTask.setDateCreated(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-						newTask.setDescription(updateTaskController.getDescriptionField()); //get value of field  from controller
+						//++++++++++++++++++HAVE ERROR HANDLING HERE for fields below (if enter no values into new form) ++++++++++++
 						
-						DatabaseHandler.updateTask(task, newTask);
+						//update task with new values:
+						task.setTask(updateTaskController.getTaskField());	//get value of field  from controller
+						task.setDateCreated(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+						task.setDescription(updateTaskController.getDescriptionField()); //get value of field  from controller
+					
+						DatabaseHandler.updateTask(task); //update task in db
 					}catch(Exception e){ e.printStackTrace(); }
 					
 				});
