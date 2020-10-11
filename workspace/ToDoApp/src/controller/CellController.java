@@ -93,6 +93,7 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 		    
 	    		//remove item from db:
 	    		DatabaseHandler.deleteTask(task);
+	    		
 			 });
 			 
 			 //---------------REFRESH BUTTON---cellRefreshImgView:-------------------------------------------------------
@@ -118,17 +119,14 @@ public class CellController extends JFXListCell<Task>{ /** +++++IMPORTANT (type 
 				//get save btn from updateTaskController, and set its action event to update task in db
 				updateTaskController.getSaveTaskBtn().setOnAction(event2 ->{
 					
-					try {
-						
-						//++++++++++++++++++HAVE ERROR HANDLING HERE for fields below (if enter no values into new form) ++++++++++++
-						
-						//update task with new values:
-						task.setTask(updateTaskController.getTaskField());	//get value of field  from controller
-						task.setDateCreated(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-						task.setDescription(updateTaskController.getDescriptionField()); //get value of field  from controller
+					//++++++++++++++++++HAVE ERROR HANDLING HERE for fields below (if enter no values into new form) ++++++++++++
 					
-						DatabaseHandler.updateTask(task); //update task in db
-					}catch(Exception e){ e.printStackTrace(); }
+					//update task with new values:
+					task.setTask(updateTaskController.getTaskField());	//get value of field  from controller
+					task.setDateCreated(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+					task.setDescription(updateTaskController.getDescriptionField()); //get value of field  from controller
+					
+					DatabaseHandler.updateTask(task); //update task in db
 					
 				});
 				//-------------

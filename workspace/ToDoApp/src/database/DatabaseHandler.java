@@ -221,16 +221,14 @@ public abstract class DatabaseHandler {
 					" SET " + DatabaseConst.TASKS_TASK + "=?" +
 					" , " + DatabaseConst.TASKS_DATE_CREATED + "=?" +
 					" , " + DatabaseConst.TASKS_DESCRIPTION + "=?" +
-					" WHERE " + DatabaseConst.TASKS_USER_ID + "=?" +
-					" AND " + DatabaseConst.TASKS_TASK_ID + "=?");){
+					" WHERE " + DatabaseConst.TASKS_TASK_ID + "=?");){
 			
 			//give new task, date created & description to existing task:
 			//set the parameters for the statement (at the position required):
 			preparedStatement.setString(1, task.getTask()); 
 			preparedStatement.setTimestamp(2, task.getDateCreated()); 
 			preparedStatement.setString(3, task.getDescription()); 
-			preparedStatement.setInt(4, task.getUserId()); 
-			preparedStatement.setInt(5, task.getTaskId()); 
+			preparedStatement.setInt(4, task.getTaskId()); 
 			
 			//execute update:
 			preparedStatement.executeUpdate();
