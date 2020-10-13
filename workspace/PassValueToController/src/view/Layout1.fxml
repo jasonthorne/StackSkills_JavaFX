@@ -7,15 +7,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="425.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="517.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
       <TextField fx:id="txtToSecondController" layoutX="179.0" layoutY="50.0" />
-      <Button fx:id="btnOpenLayout2" layoutX="184.0" layoutY="380.0" mnemonicParsing="false" text="Open Layout2" />
+      <Button fx:id="btnOpenLayout2" layoutX="283.0" layoutY="458.0" mnemonicParsing="false" text="Open Layout2" />
       <Label layoutX="35.0" layoutY="54.0" text="Enter Text for controller2:" />
      <Label layoutX="185.0" layoutY="9.0" style="-fx-font-weight: bold;" text="This is Layout1!" />
       <Label layoutX="44.0" layoutY="103.0" text="Text From Controller2:" />
       <Label fx:id="lblFromController2" layoutX="185.0" layoutY="103.0" text="Nothing Yet!" />
-   <JFXListView fx:id="listViewController1" layoutX="45.0" layoutY="169.0" prefHeight="88.0" prefWidth="376.0" />
-   <JFXButton fx:id="btnAddToList" layoutX="357.0" layoutY="270.0" style="-fx-background-color: blue;" text="Add to list" textFill="WHITE" />
-   <Label layoutX="32.0" layoutY="274.0" text="Enter Text for new list item" />
-   <TextField fx:id="txtToCell" layoutX="185.0" layoutY="270.0" />
+   <JFXListView fx:id="listViewCellItems" layoutX="45.0" layoutY="130.0" prefHeight="260.0" prefWidth="522.0" />
+   <JFXButton fx:id="btnAddToList" layoutX="436.0" layoutY="412.0" style="-fx-background-color: blue;" text="Add to list" textFill="WHITE" />
+   <Label layoutX="111.0" layoutY="416.0" text="Enter Text for new list item" />
+   <TextField fx:id="txtToCell" layoutX="264.0" layoutY="412.0" />
 </AnchorPane>

@@ -1,10 +1,14 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.CellItem;
+
 
 public class Controller1 {
 	
@@ -28,14 +34,31 @@ public class Controller1 {
     
     /** -------------------------*/
     @FXML
-    private JFXListView<?> listViewController1;
-    
+    private JFXListView<CellItem> listViewCellItems;
     @FXML
     private JFXButton btnAddToList;
+    @FXML
+    private TextField txtToCell;
+    
+    /** observable list */
+    private ObservableList<CellItem>observableList; //= FXCollections.observableArrayList();
+    
+   //imaginary db data:
+    private List<CellItem>cellItemsDB = new ArrayList<CellItem>();
+   
+    
     /** -------------------------*/
     
     /** Constructor: */
     public Controller1() {
+    	
+    	
+    	/**---------------------------------------*/
+    	//populate imaginary db data:
+    	cellItemsDB.add(new CellItem("item 1"));
+    	cellItemsDB.add(new CellItem("item 2"));
+    	cellItemsDB.add(new CellItem("item 3"));
+    	/**---------------------------------------*/
 
         // Create the new stage
         thisStage = new Stage();
@@ -72,12 +95,29 @@ public class Controller1 {
     /** The initialize() method allows you set setup your scene, adding actions, configuring nodes, etc. */
     @FXML
     private void initialize() {
+    	
+    	System.out.println("controller1 initialize");
+    	/**---------------------------------------*/
+    	//add data to listView:
+    	refreshList();
+    	/**---------------------------------------*/
 
         // Add an action for the "Open Layout2" button
         btnOpenLayout2.setOnAction(event -> openLayout2());
         
         btnAddToList.setOnAction(event ->{
         	System.out.println("btnAddToList");
+        	
+        	//if textfield isnt empty:
+        	if(!txtToCell.getText().trim().equals("")) {
+        		
+        		//create new CellItem with entered text, and add to db:
+        		cellItemsDB.add(new CellItem(txtToCell.getText()));
+        		txtToCell.clear();
+        		//refresh list to show new item:
+        		refreshList();
+        	}
+        	
         });
     }
     
@@ -111,6 +151,23 @@ public class Controller1 {
     public void setTextFromController2(String text) {
         lblFromController2.setText(text);
     }
-
+    
+    
+    /** -------------------------*/
+    public void refreshList(){
+    	
+    	//instantiate obsList: ++++++++++sloppy!!!
+    	observableList = FXCollections.observableArrayList();
+    	//add CellItems from db to observable list:
+    	observableList.addAll(cellItemsDB);
+    	
+    	System.out.println(observableList);
+    	
+    	//add observable list of CellItems to JFXListView:
+    	listViewCellItems.setItems(observableList);
+     	//set cellFactory to create CellController CellItems:
+    	listViewCellItems.setCellFactory(CellController -> new CellController());
+    	
+    }
 
 }

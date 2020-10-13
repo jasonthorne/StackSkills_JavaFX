@@ -35,33 +35,31 @@ public class CellController extends JFXListCell<CellItem>{
     
     @Override
     public void updateItem(CellItem cellItem, boolean isEmpty) {
-        super.updateItem(cellItem,isEmpty);
+        super.updateItem(cellItem, isEmpty);
    
       		if (isEmpty || cellItem == null) {
       	         setText(null);
       	         setGraphic(null);
       	     } else {
        
-      	    	 
-      	    /*	 
+      	    	  System.out.println("YO!");
         	//load fxml tree, and set it's controller as this:
-    	 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
-    	 	//fxmlLoader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
-    		 fxmlLoader.setController(this); //??????????
+    	 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
+    	 	
+    		 loader.setController(this); //??????????
     		 try {
-				fxmlLoader.load(); //load fxml tree
+				loader.load(); //load fxml tree
 			 } catch (IOException e) {e.printStackTrace();}
 	    		 
 	    		 
-    		 //populate cell fields with data from task:
-    		 cellTaskNameLbl.setText(task.getTask());
-    		 cellDescriptionLbl.setText(task.getDescription());
-    		 //cellDateLbl.setText(task.getDateCreated().toString());
+    		 //populate lblCellText with data from cellItem:
+    		 lblCellText.setText(cellItem.getName());
+    		
     		 
     		 setText(null); //??????????????=======================
-	         setGraphic(cellRoot); //set this achorpane to be the graphic
+	         setGraphic(anchorPaneCellRoot); //set this achorpane to be the graphic
         	
-        	*/
+        	
         }
     }
     
