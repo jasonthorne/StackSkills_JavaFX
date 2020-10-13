@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,6 +26,13 @@ public class Controller1 {
     @FXML
     private Label lblFromController2;
     
+    /** -------------------------*/
+    @FXML
+    private JFXListView<?> listViewController1;
+    
+    @FXML
+    private JFXButton btnAddToList;
+    /** -------------------------*/
     
     /** Constructor: */
     public Controller1() {
@@ -66,7 +76,9 @@ public class Controller1 {
         // Add an action for the "Open Layout2" button
         btnOpenLayout2.setOnAction(event -> openLayout2());
         
-        
+        btnAddToList.setOnAction(event ->{
+        	System.out.println("btnAddToList");
+        });
     }
     
     //----------------------
