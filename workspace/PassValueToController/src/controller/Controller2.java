@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXButton;
+
 public class Controller2 {
 
     // Holds this controller's Stage
@@ -25,6 +27,14 @@ public class Controller2 {
     private TextField txtToFirstController;
     @FXML
     private Button btnSetLayout1Text;
+    
+    
+    /**-------------------------------------*/
+    @FXML
+    private TextField txtToController1CellItem; //text for list item
+    @FXML
+    private JFXButton btnAddToController1List; //add new item to listView in controller 1
+    /**-------------------------------------*/
 
     public Controller2(Controller1 controller1) {
         // We received the first controller, now let's make it usable throughout this controller.
@@ -65,6 +75,11 @@ public class Controller2 {
 
         // Set the action for the button
         btnSetLayout1Text.setOnAction(event -> setTextOnLayout1());
+        
+        /** ------------------------------------------------------ */
+        //set the action for adding item from controller 2:
+        btnAddToController1List.setOnAction(event -> callController1Method());
+        /** ------------------------------------------------------ */
     }
 
     /**
@@ -73,5 +88,16 @@ public class Controller2 {
     private void setTextOnLayout1() {
         controller1.setTextFromController2(txtToFirstController.getText());
     }
+    
+    /** --------------------------------------- */
+    private void callController1Method() {
+        controller1.addFromController2(txtToController1CellItem.getText());
+    }
+    
+    /** --------------------------------------- */
+    
+    
+    
+    
 
 }

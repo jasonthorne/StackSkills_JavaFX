@@ -169,5 +169,16 @@ public class Controller1 {
     	listViewCellItems.setCellFactory(CellController -> new CellController());
     	
     }
+    /** -------------------------*/
+    
+    public void addFromController2(String message) {
+    	
+    	/** pass the object here, and have error handling here as well. And have BOTH buttons use this method */
+		//create new CellItem with entered text, and add to db:
+		cellItemsDB.add(new CellItem(message));
+		//refresh list to show new item:
+		refreshList();
+    
+    }
 
 }
