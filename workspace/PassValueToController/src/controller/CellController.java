@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListCell;
 
 import javafx.fxml.FXML;
@@ -25,11 +26,25 @@ public class CellController extends JFXListCell<CellItem>{
 
     @FXML
     private Label lblCellText;
+    
+    @FXML
+    private JFXButton btnEdit;
+    
+    private EditCellController editCellController;
 
     @FXML
     void initialize() {
-      
-
+    	
+    	 btnEdit.setOnAction(event -> {
+			 
+			 //open editCellController
+			editCellController = new EditCellController(this); //locaation?????????
+		      //btnEdit.getScene().getWindow().hide();
+		      
+		      // Show the new stage/window
+			 editCellController.showStage();
+		 });
+		 
     }
     
     
@@ -55,12 +70,14 @@ public class CellController extends JFXListCell<CellItem>{
     		 //populate lblCellText with data from cellItem:
     		 lblCellText.setText(cellItem.getName());
     		
-    		 
     		 setText(null); //??????????????=======================
-	         setGraphic(anchorPaneCellRoot); //set this achorpane to be the graphic
-        	
-        	
+	         setGraphic(anchorPaneCellRoot); //set this achorpane to be the graphic	
         }
+    }
+    
+    
+    void saveNewText(String newText) {
+    	lblCellText.setText(newText);
     }
     
     

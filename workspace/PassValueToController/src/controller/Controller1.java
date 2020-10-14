@@ -77,6 +77,8 @@ public class Controller1 {
         	//set the title:
         	thisStage.setTitle("Passing copntrollersa Example - Layout1");
         	
+        	/////thisStage.showAndWait();
+        	
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -156,6 +158,7 @@ public class Controller1 {
     /** -------------------------*/
     public void refreshList(){
     	
+    	 ///////////ObservableList<CellItem>observableList; 
     	//instantiate obsList: ++++++++++sloppy!!!
     	observableList = FXCollections.observableArrayList();
     	//add CellItems from db to observable list:
@@ -175,9 +178,21 @@ public class Controller1 {
     	
     	/** pass the object here, and have error handling here as well. And have BOTH buttons use this method */
 		//create new CellItem with entered text, and add to db:
-		cellItemsDB.add(new CellItem(message));
+		cellItemsDB.add(new CellItem(message)); //mimic push to db ++++++++++++++++
+		
+		//==================================//this might just be needed instead of refresh 
+		//observableList.add(new CellItem(message));
+		//=============================
+	
+		/*
+		CellItem cellItem = observableList.get(0);
+		cellItem.setName("timmy");
+		*/
+		
+		/** +++++++++++++++++++++++++++++++ NOT SURE WHY DATA NEEDS PULLED AGAIN???? ++++++++++++++*/
 		//refresh list to show new item:
-		refreshList();
+		refreshList(); 
+		
     
     }
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXTextField fx:id="newText" layoutX="196.0" layoutY="111.0" prefHeight="25.0" prefWidth="209.0" promptText="enter new text" />
+      <JFXButton fx:id="btnEditText" layoutX="246.0" layoutY="207.0" prefHeight="60.0" prefWidth="108.0" style="-fx-background-color: red;" text="save new text" textFill="WHITE" />
+   </children>
+</AnchorPane>
