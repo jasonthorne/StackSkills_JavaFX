@@ -44,7 +44,7 @@ public class Controller1 {
     private ObservableList<CellItem>observableList; //= FXCollections.observableArrayList();
     
    //imaginary db data:
-    private List<CellItem>cellItemsDB = new ArrayList<CellItem>();
+    public static List<CellItem>cellItemsDB = new ArrayList<CellItem>();
    
     
     /** -------------------------*/
@@ -115,9 +115,12 @@ public class Controller1 {
         		
         		//create new CellItem with entered text, and add to db:
         		cellItemsDB.add(new CellItem(txtToCell.getText()));
+        		
+        		///observableList.add(new CellItem(txtToCell.getText())); //also add to list
+        		
         		txtToCell.clear();
         		//refresh list to show new item:
-        		refreshList();
+        		refreshList(); 
         	}
         	
         });
@@ -181,7 +184,7 @@ public class Controller1 {
 		cellItemsDB.add(new CellItem(message)); //mimic push to db ++++++++++++++++
 		
 		//==================================//this might just be needed instead of refresh 
-		//observableList.add(new CellItem(message));
+		observableList.add(new CellItem(message));
 		//=============================
 	
 		/*
@@ -191,7 +194,7 @@ public class Controller1 {
 		
 		/** +++++++++++++++++++++++++++++++ NOT SURE WHY DATA NEEDS PULLED AGAIN???? ++++++++++++++*/
 		//refresh list to show new item:
-		refreshList(); 
+		////////refreshList(); 
 		
     
     }

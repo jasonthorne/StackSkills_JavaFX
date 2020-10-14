@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.CellItem;
 
 public class EditCellController {
 	
@@ -51,7 +52,7 @@ public class EditCellController {
 	        // Load the scene
 	        thisStage.setScene(new Scene(loader.load()));
 	        // Setup the window/stage
-	        thisStage.setTitle("Passing Controllers Example - Layout2");
+	        thisStage.setTitle("Passing Controllers Example - EditCellController");
 	        
 	    } catch (IOException e) {  e.printStackTrace(); }
 	      
@@ -67,6 +68,17 @@ public class EditCellController {
     /** -------------------------- */
     private void editCell(){
     	cellController.saveNewText(newText.getText());
+    	
+    	System.out.println(Controller1.cellItemsDB);
+    	Controller1.cellItemsDB.forEach(item -> {
+    		if (item.getName() == cellController.getLblText()) {
+    			System.out.println("item is: " + item);
+    			item.setName(newText.getText());
+    			
+    		}
+    	});
+    	
+    	
     }
     /** -------------------------- */
 

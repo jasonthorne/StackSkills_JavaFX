@@ -68,7 +68,9 @@ public class CellController extends JFXListCell<CellItem>{
 	    		 
 	    		 
     		 //populate lblCellText with data from cellItem:
+    		 //saveNewText(cellItem.getName());
     		 lblCellText.setText(cellItem.getName());
+    		 
     		
     		 setText(null); //??????????????=======================
 	         setGraphic(anchorPaneCellRoot); //set this achorpane to be the graphic	
@@ -80,7 +82,9 @@ public class CellController extends JFXListCell<CellItem>{
     	lblCellText.setText(newText);
     }
     
-    
+    public String getLblText() {
+    	return lblCellText.getText();
+    }
     
     
     
