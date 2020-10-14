@@ -35,10 +35,18 @@ public class CellController extends JFXListCell<CellItem>{
     @FXML
     void initialize() {
     	
+    	/** nicer than button? ++++++++++++++++++*/
+    	anchorPaneCellRoot.setOnMouseClicked(event -> {
+    		System.out.println("anchorPaneCellRoot clicked");
+    	});
+    	
+    	
+    	System.out.println("initialize");
+    	
     	 btnEdit.setOnAction(event -> {
 			 
 			 //open editCellController
-			editCellController = new EditCellController(this); //locaation?????????
+			 editCellController = new EditCellController(this); //locaation?????????
 		      //btnEdit.getScene().getWindow().hide();
 		      
 		      // Show the new stage/window
@@ -69,7 +77,7 @@ public class CellController extends JFXListCell<CellItem>{
 	    		 
     		 //populate lblCellText with data from cellItem:
     		 //saveNewText(cellItem.getName());
-    		 lblCellText.setText(cellItem.getName());
+    		 lblCellText.setText(cellItem.getName()); //??????????????????
     		 
     		
     		 setText(null); //??????????????=======================
@@ -78,20 +86,34 @@ public class CellController extends JFXListCell<CellItem>{
     }
     
     
+    
+    /** ++++++++++++++++++++++++++++++++++++++++THIS SHOULDNT BE HERE!! (EditCellController instead as shown there)++++++++++++++++++++++++++++ */
     void saveNewText(String newText) {
     	
+    	/** ++++++++++++++ here we push data to db, +++++++++++++++++++++++++++
+    	 * then should prob call a static method in controller 1 which repulls the data to it's list.
+    	 * */
+    	
     	//edit cellItem in db with new text:
-    	Controller1.cellItemsDB.forEach(item -> {
+    	Controller1.cellItemsDB.forEach(item -> { //this is our link with controller1. which is changing the values in listView
     		
     		System.out.println("item name: " + item.getName());
     		System.out.println("lblCellText: " + lblCellText.getText());
-    		if (item.getName() == lblCellText.getText()) {
+    		if (item.getName() == lblCellText.getText()) { //find item in mock db with name matching label
+    			
+    			///////////Controller1.editObservableList(newText);
     			System.out.println("item is: " + item);
     			item.setName(newText);
+    			
     		}
     	});
     	
     	lblCellText.setText(newText); //change lblCellText to new text
+    	
+    	
+    	
+    	//observable list needs changing here!! :P ++++++++++++++++++++++++++
+    	
     }
     
     /*

@@ -67,6 +67,11 @@ public class EditCellController {
     
     /** -------------------------- */
     private void editCell(){
+    	
+    	/** ++++++++++++++ here we push data to db, +++++++++++++++++++++++++++
+    	 * then should prob call a static method in controller 1 which repulls the data to it's list.
+    	 * */
+    	
     	cellController.saveNewText(newText.getText());
     	
     }

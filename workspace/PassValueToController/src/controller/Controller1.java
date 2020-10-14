@@ -41,7 +41,7 @@ public class Controller1 {
     private TextField txtToCell;
     
     /** observable list */
-   // private ObservableList<CellItem>observableList; //= FXCollections.observableArrayList();
+    private ObservableList<CellItem>observableList; //= FXCollections.observableArrayList();
     
    //imaginary db data:
     public static List<CellItem>cellItemsDB = new ArrayList<CellItem>();
@@ -116,7 +116,8 @@ public class Controller1 {
         		//create new CellItem with entered text, and add to db:
         		cellItemsDB.add(new CellItem(txtToCell.getText()));
         		
-        		//observableList.add(new CellItem(txtToCell.getText())); //also add to list
+        		///observableList.add(new CellItem(txtToCell.getText())); //also add to list
+        		//////////listViewCellItems.setItems(observableList);
         		
         		txtToCell.clear();
         		//refresh list to show new item:
@@ -163,7 +164,8 @@ public class Controller1 {
     	
     	 ///////////ObservableList<CellItem>observableList; 
     	//instantiate obsList: ++++++++++sloppy!!!
-    	ObservableList<CellItem> observableList = FXCollections.observableArrayList();
+    	//////ObservableList<CellItem> observableList = FXCollections.observableArrayList();
+    	observableList = FXCollections.observableArrayList();
     	//add CellItems from db to observable list:
     	observableList.addAll(cellItemsDB);
     	
@@ -184,7 +186,8 @@ public class Controller1 {
 		cellItemsDB.add(new CellItem(message)); //mimic push to db ++++++++++++++++
 		
 		//==================================//this might just be needed instead of refresh 
-		//observableList.add(new CellItem(message));
+		////////observableList.add(new CellItem(message));
+		///listViewCellItems.setItems(observableList);
 		//=============================
 	
 		/*
@@ -198,5 +201,9 @@ public class Controller1 {
 		
     
     }
+    
+    /*
+    static void editObservableList(String s) {	
+    }*/
 
 }
