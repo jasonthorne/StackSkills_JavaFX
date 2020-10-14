@@ -116,11 +116,11 @@ public class Controller1 {
         		//create new CellItem with entered text, and add to db:
         		cellItemsDB.add(new CellItem(txtToCell.getText()));
         		
-        		///observableList.add(new CellItem(txtToCell.getText())); //also add to list
+        		observableList.add(new CellItem(txtToCell.getText())); //also add to list
         		
         		txtToCell.clear();
         		//refresh list to show new item:
-        		refreshList(); 
+        		//refreshList(); 
         	}
         	
         });
@@ -194,7 +194,7 @@ public class Controller1 {
 		
 		/** +++++++++++++++++++++++++++++++ NOT SURE WHY DATA NEEDS PULLED AGAIN???? ++++++++++++++*/
 		//refresh list to show new item:
-		////////refreshList(); 
+		//refreshList(); 
 		
     
     }

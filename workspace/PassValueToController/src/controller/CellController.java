@@ -79,12 +79,25 @@ public class CellController extends JFXListCell<CellItem>{
     
     
     void saveNewText(String newText) {
-    	lblCellText.setText(newText);
+    	
+    	//edit cellItem in db with new text:
+    	Controller1.cellItemsDB.forEach(item -> {
+    		
+    		System.out.println("item name: " + item.getName());
+    		System.out.println("lblCellText: " + lblCellText.getText());
+    		if (item.getName() == lblCellText.getText()) {
+    			System.out.println("item is: " + item);
+    			item.setName(newText);
+    		}
+    	});
+    	
+    	lblCellText.setText(newText); //change lblCellText to new text
     }
     
+    /*
     public String getLblText() {
     	return lblCellText.getText();
-    }
+    }*/
     
     
     

@@ -69,16 +69,6 @@ public class EditCellController {
     private void editCell(){
     	cellController.saveNewText(newText.getText());
     	
-    	System.out.println(Controller1.cellItemsDB);
-    	Controller1.cellItemsDB.forEach(item -> {
-    		if (item.getName() == cellController.getLblText()) {
-    			System.out.println("item is: " + item);
-    			item.setName(newText.getText());
-    			
-    		}
-    	});
-    	
-    	
     }
     /** -------------------------- */
 
