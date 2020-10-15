@@ -91,7 +91,9 @@ public class Controller2 {
     
     /** --------------------------------------- */
     private void callController1Method() {
-        controller1.addFromController2(txtToController1CellItem.getText());
+        //controller1.addFromController2(txtToController1CellItem.getText());
+        controller1.addNewCellItem(txtToController1CellItem.getText());
+        txtToController1CellItem.clear();
     }
     
     /** --------------------------------------- */

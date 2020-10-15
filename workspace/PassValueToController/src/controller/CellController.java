@@ -75,42 +75,14 @@ public class CellController extends JFXListCell<CellItem>{
 	    		 
 	    		 
     		 //populate lblCellText with data from cellItem:
-    		 //saveNewText(cellItem.getName());
-    		 lblCellText.setText(cellItem.getName()); //??????????????????
+    		 lblCellText.setText(cellItem.getName()); 
     		 
     		
-    		 setText(null); //??????????????=======================
+    		 setText(null); 
 	         setGraphic(anchorPaneCellRoot); //set this achorpane to be the graphic	
         }
     }
     
-    
-    
-    /** ++++++++++++++++++++++++++++++++++++++++THIS SHOULDNT BE HERE!! (EditCellController instead as shown there)++++++++++++++++++++++++++++ */
-   /*
-    void editDB(String newText) {
-    	
-    	// ++++++++++++++ here we push data to db, +++++++++++++++++++++++++++
-    	
-    	
-    	
-    	//edit cellItem in db with new text:
-    	Controller1.cellItemsDB.forEach(item -> { //this is our link with controller1. which is changing the values in listView
-    		
-    		System.out.println("item name: " + item.getName());
-    		System.out.println("lblCellText: " + lblCellText.getText());
-    		if (item.getName() == lblCellText.getText()) { //find item in mock db with name matching label
-    			
-    			///////////Controller1.editObservableList(newText);
-    			System.out.println("item is: " + item);
-    			item.setName(newText);
-    			
-    		}
-    	});
-    	
-    	lblCellText.setText(newText); //change lblCellText to new text
-    	
-    }*/
     
    
     public String getLblText() {

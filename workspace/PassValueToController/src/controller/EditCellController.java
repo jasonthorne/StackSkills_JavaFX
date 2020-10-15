@@ -69,7 +69,7 @@ public class EditCellController {
     /** -------------------------- */
     private void editItem(){
     	
-    	/** ++++++++++++++ here we mimic updating observableList, +++++++++++++++++++++++++++ */
+    	/** ++++++++++++++ here we update observableList item, +++++++++++++++++++++++++++ */
     	Controller1.editObservableList(cellController.getLblText(), newText.getText());
     	
     	/** ++++++++++++++ here we mimic pushing data to db, +++++++++++++++++++++++++++ */
@@ -82,7 +82,7 @@ public class EditCellController {
     		
     			//System.out.println("FOUND: item is: " + item);
     			item.setName(newText.getText()); //change name of item
-    			
+    			///////cellController.updateItem(item, false);
     			
     		}
     	});

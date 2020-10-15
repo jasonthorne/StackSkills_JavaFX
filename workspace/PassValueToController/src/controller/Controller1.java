@@ -110,6 +110,10 @@ public class Controller1 {
         btnAddToList.setOnAction(event ->{
         	System.out.println("btnAddToList");
         	
+        	addNewCellItem(txtToCell.getText());
+        	txtToCell.clear();
+        	
+        	/*
         	//if textfield isnt empty:
         	if(!txtToCell.getText().trim().equals("")) {
         		
@@ -122,7 +126,9 @@ public class Controller1 {
         		txtToCell.clear();
         		//refresh list to show new item:
         		//refreshList(); 
-        	}
+        		 
+        		 
+        	}*/
         	
         });
     }
@@ -181,7 +187,8 @@ public class Controller1 {
     
     public void addFromController2(String message) {
     	
-    	/** pass the object here, and have error handling here as well. And have BOTH buttons use this method */
+    	/** pass the object here, and have error handling here as well. And have BOTH buttons use this method 
+    	 * Add obj to BOTH methods (not new one for each as in example)*/
 		//create new CellItem with entered text, and add to db:
 		cellItemsDB.add(new CellItem(message)); //mimic push to db ++++++++++++++++
 		
@@ -189,46 +196,33 @@ public class Controller1 {
 		observableList.add(new CellItem(message));
 		///listViewCellItems.setItems(observableList);
 		//=============================
-	
-		/*
-		CellItem cellItem = observableList.get(0);
-		cellItem.setName("timmy");
-		*/
-		
+
 		/** +++++++++++++++++++++++++++++++ NOT SURE WHY DATA NEEDS PULLED AGAIN???? ++++++++++++++*/
 		//refresh list to show new item:
-		//refreshList(); 
-		
-    
+		//refreshList();
     }
     
     
+    void addNewCellItem(String message) {
+    	
+    	/** pass the object here, and have error handling here as well. And have BOTH buttons use this method 
+    	 * Add obj to BOTH methods (not new one for each as in example)*/
+    	
+    	//create new CellItem with entered text, and add to db:
+		cellItemsDB.add(new CellItem(message)); //===================add to db
+		
+		observableList.add(new CellItem(message)); //also add to list //================add to observable list
+		
+    }
+    
     static void editObservableList(String oldText, String newText) {
-    	
-    	
-    	/*
-    	//+++++do some sexy filtering here :) as there'll be losts of things to check. ++++++++
-    	observableList.forEach(item -> { //this is our link with controller1. which is changing the values in listView
-    		
-    		//System.out.println(" observableList item name: " + item.getName());
-    		
-    		System.out.println("observableList item: " + item.getName());
-    		
-    		if (item.getName() == oldText) { //find item in mock db with name matching label
-    			System.out.println("FOUND item is: " + item.getName() + "text to add: " + newText);
-    			item.setName(newText);
-    			System.out.println("ITEM IS NOW: " + item.getName());
-    		}
-    		
-    	});*/
     	
     	//send anobj here, holding id of item to find, and  all the other new values to add to existing object
     	
     	observableList.stream()
-    		.filter(item -> item.getName() == oldText)
+    		.filter(item -> item.getName().equals(oldText))
     		.findFirst()
     		.ifPresent(item -> item.setName(newText));
-	    	   	
     }
 
 }
