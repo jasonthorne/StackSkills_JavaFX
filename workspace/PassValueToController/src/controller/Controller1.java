@@ -114,23 +114,6 @@ public class Controller1 {
         	addNewCellItem(txtToCell.getText());
         	txtToCell.clear();
         	
-        	/*
-        	//if textfield isnt empty:
-        	if(!txtToCell.getText().trim().equals("")) {
-        		
-        		//create new CellItem with entered text, and add to db:
-        		cellItemsDB.add(new CellItem(txtToCell.getText())); //===================add to db
-        		
-        		observableList.add(new CellItem(txtToCell.getText())); //also add to list //================add to observable list
-        		//////////listViewCellItems.setItems(observableList);
-        		
-        		txtToCell.clear();
-        		//refresh list to show new item:
-        		//refreshList(); 
-        		 
-        		 
-        	}*/
-        	
         });
     }
     

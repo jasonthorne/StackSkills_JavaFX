@@ -25,13 +25,13 @@ public class Main extends Application {
 
     	
         // Create the first controller, which loads Layout1.fxml within its own constructor
-       Controller1 controller1 = new Controller1();
+      ////// Controller1 controller1 = new Controller1();
 
         // Show the new stage
-      controller1.showStage();
+      ////////controller1.showStage();
     	
-    	//FrameController fc = new FrameController();
-    	//fc.showStage();
+    	FrameController fc = new FrameController();
+    	fc.showStage();
 
     }
 }

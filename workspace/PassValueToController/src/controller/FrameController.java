@@ -5,11 +5,14 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class FrameController {
 
@@ -67,11 +70,29 @@ public class FrameController {
     /** ----------------------showing A or B------------- */
     public void showA(){
     	System.out.println("a");
+    	
+    	//create new achorPane loaded from addItemForm.fxml 
+		try {
+			AnchorPane apA= FXMLLoader.load(getClass().getResource("/view/a.fxml"));
+			
+			//get and CLEAR the children of rootAnchorPane and add formPane:
+			/** .setAll() clears the children and replaces them with addItemformAnchorPane and it's subsequent children. */
+			frameInnerAP.getChildren().setAll(apA); 
+		} catch (IOException e) { e.printStackTrace(); }
     }
     
     
     public void showB(){
     	System.out.println("b");
+    	
+    	//create new achorPane loaded from addItemForm.fxml 
+		try {
+			AnchorPane apB= FXMLLoader.load(getClass().getResource("/view/b.fxml"));
+			
+			//get and CLEAR the children of rootAnchorPane and add formPane:
+			/** .setAll() clears the children and replaces them with addItemformAnchorPane and it's subsequent children. */
+			frameInnerAP.getChildren().setAll(apB); 
+		} catch (IOException e) { e.printStackTrace(); }
     }
     
     
