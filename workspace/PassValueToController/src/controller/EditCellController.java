@@ -27,13 +27,14 @@ public class EditCellController {
     @FXML
     void initialize() {
     	
-    	btnEditText.setOnAction(event -> editCell());
+    	btnEditText.setOnAction(event -> editItem());
 
     }
 	
 	// Holds this controller's Stage
     private Stage thisStage;
 	
+    /** ++++++++++++++++++++++++ THIS ISNT NEEDED!! :P (I think!) +++++++++++++++++++++ */
 	// Will hold a reference to the cellController, allowing us to access the methods found there.
     private final CellController cellController;
     
@@ -66,13 +67,41 @@ public class EditCellController {
     
     
     /** -------------------------- */
-    private void editCell(){
+    private void editItem(){
+    	
+    	/** ++++++++++++++ here we mimic updating observableList, +++++++++++++++++++++++++++ */
+    	Controller1.editObservableList(cellController.getLblText(), newText.getText());
+    	
+    	/** ++++++++++++++ here we mimic pushing data to db, +++++++++++++++++++++++++++ */
+    	//edit cellItem in db with new text:
+    	Controller1.cellItemsDB.forEach(item -> { //this is our link with controller1. which is changing the values in listView
+    		
+    		//System.out.println("item name: " + item.getName());
+    		//System.out.println("lblCellText: " + cellController.getLblText());
+    		if (item.getName() == cellController.getLblText()) { //find item in mock db with name matching label
+    		
+    			//System.out.println("FOUND: item is: " + item);
+    			item.setName(newText.getText()); //change name of item
+    			
+    			
+    		}
+    	});
+    	
+    	cellController.setLblText(newText.getText()); //change cell label.
+    	
+    
     	
     	/** ++++++++++++++ here we push data to db, +++++++++++++++++++++++++++
     	 * then should prob call a static method in controller 1 which repulls the data to it's list.
     	 * */
     	
-    	cellController.saveNewText(newText.getText());
+    	//observable list needs changing here!! :P ++++++++++++++++++++++++++
+    	//==========================
+    	
+    	//Controller1.editObservableList(lblCellText.getText() );
+    	//===========================
+    	
+    	/////////////cellController.editDB(newText.getText());
     	
     }
     /** -------------------------- */

@@ -41,7 +41,7 @@ public class CellController extends JFXListCell<CellItem>{
     	});
     	
     	
-    	System.out.println("initialize");
+    	System.out.println("CellController initialize");
     	
     	 btnEdit.setOnAction(event -> {
 			 
@@ -65,7 +65,6 @@ public class CellController extends JFXListCell<CellItem>{
       	         setGraphic(null);
       	     } else {
        
-      	    	  System.out.println("YO!");
         	//load fxml tree, and set it's controller as this:
     	 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/cell.fxml")); 
     	 	
@@ -88,11 +87,12 @@ public class CellController extends JFXListCell<CellItem>{
     
     
     /** ++++++++++++++++++++++++++++++++++++++++THIS SHOULDNT BE HERE!! (EditCellController instead as shown there)++++++++++++++++++++++++++++ */
-    void saveNewText(String newText) {
+   /*
+    void editDB(String newText) {
     	
-    	/** ++++++++++++++ here we push data to db, +++++++++++++++++++++++++++
-    	 * then should prob call a static method in controller 1 which repulls the data to it's list.
-    	 * */
+    	// ++++++++++++++ here we push data to db, +++++++++++++++++++++++++++
+    	
+    	
     	
     	//edit cellItem in db with new text:
     	Controller1.cellItemsDB.forEach(item -> { //this is our link with controller1. which is changing the values in listView
@@ -110,18 +110,16 @@ public class CellController extends JFXListCell<CellItem>{
     	
     	lblCellText.setText(newText); //change lblCellText to new text
     	
-    	
-    	
-    	//observable list needs changing here!! :P ++++++++++++++++++++++++++
-    	
-    }
-    
-    /*
-    public String getLblText() {
-    	return lblCellText.getText();
     }*/
     
+   
+    public String getLblText() {
+    	return lblCellText.getText();
+    }
     
+    public void setLblText(String newText) {
+    	lblCellText.setText(newText);
+    }
     
     
     
