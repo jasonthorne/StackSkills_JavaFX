@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -31,6 +32,8 @@ public class CellController extends JFXListCell<CellItem>{
     private JFXButton btnEdit;
     
     private EditCellController editCellController;
+    
+    private final Controller1 controller1;
 
     @FXML
     void initialize() {
@@ -55,9 +58,14 @@ public class CellController extends JFXListCell<CellItem>{
 		 
     }
     
+    //constructor grabs controller1
+    public CellController(Controller1 controller1) {
+    	this.controller1 = controller1;
+    }
+    
     
     @Override
-    public void updateItem(CellItem cellItem, boolean isEmpty) {
+	protected void updateItem(CellItem cellItem, boolean isEmpty) {
         super.updateItem(cellItem, isEmpty);
    
       		if (isEmpty || cellItem == null) {
@@ -93,7 +101,33 @@ public class CellController extends JFXListCell<CellItem>{
     	lblCellText.setText(newText);
     }
     
+    void updateItem(String newText) { //item object here instead ++++++++++
     
+    	////////// controller1.editObservableList(lblCellText.getText(), newText); //updateListItem
+    	/*
+    	controller1.getObservableList().stream()
+									.filter(item -> item.getName().equals(lblCellText.getText()))
+									.findFirst()
+									.ifPresent(item -> item.setName(newText));
+		*/
+    		 
+    	//Optional<CellItem> cellItem = controller1.getObservableListItem(lblCellText.getText()); /** change to id */
+    	
+    	
+    	controller1.getCellItem(lblCellText.getText()).ifPresent(item -> {
+    		item.setName(newText); //change item name
+    		lblCellText.setText(newText); //change cell label.
+    	});
+    	
+    	/*
+    	if(controller1.getObservableListItem(lblCellText.getText()).isPresent()) {
+    		
+    	}else {
+    		System.out.println("ERROR id not found");
+    	}*/
+    	
+    	// lblCellText.setText(newText); //change cell label.
+    }
     
     
     

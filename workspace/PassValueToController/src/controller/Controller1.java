@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
@@ -41,7 +42,7 @@ public class Controller1 {
     private TextField txtToCell;
     
     /** observable list */
-    private static ObservableList<CellItem>observableList; //= FXCollections.observableArrayList();
+    private ObservableList<CellItem>observableList; //= FXCollections.observableArrayList();
     
    //imaginary db data:
     public static List<CellItem>cellItemsDB = new ArrayList<CellItem>();
@@ -166,7 +167,7 @@ public class Controller1 {
     
     
     /** -------------------------*/
-    public void refreshList(){
+    private void refreshList(){
     	
     	 ///////////ObservableList<CellItem>observableList; 
     	//instantiate obsList: ++++++++++sloppy!!!
@@ -180,29 +181,13 @@ public class Controller1 {
     	//add observable list of CellItems to JFXListView:
     	listViewCellItems.setItems(observableList);
      	//set cellFactory to create CellController CellItems:
-    	listViewCellItems.setCellFactory(CellController -> new CellController());
+    	listViewCellItems.setCellFactory(CellController -> new CellController(this));
     	
     }
     /** -------------------------*/
     
-    public void addFromController2(String message) {
-    	
-    	/** pass the object here, and have error handling here as well. And have BOTH buttons use this method 
-    	 * Add obj to BOTH methods (not new one for each as in example)*/
-		//create new CellItem with entered text, and add to db:
-		cellItemsDB.add(new CellItem(message)); //mimic push to db ++++++++++++++++
-		
-		//==================================//this might just be needed instead of refresh 
-		observableList.add(new CellItem(message));
-		///listViewCellItems.setItems(observableList);
-		//=============================
+    
 
-		/** +++++++++++++++++++++++++++++++ NOT SURE WHY DATA NEEDS PULLED AGAIN???? ++++++++++++++*/
-		//refresh list to show new item:
-		//refreshList();
-    }
-    
-    
     void addNewCellItem(String message) {
     	
     	/** pass the object here, and have error handling here as well. And have BOTH buttons use this method 
@@ -215,7 +200,16 @@ public class Controller1 {
 		
     }
     
-    static void editObservableList(String oldText, String newText) {
+    Optional<CellItem> getCellItem(String oldText) { /** change String to id */
+		return observableList.stream()
+							  .filter(item -> item.getName().equals(oldText))
+							  .findFirst();
+    }
+    
+    
+
+    /** NOT USING THESE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    void editObservableList(String oldText, String newText) {
     	
     	//send anobj here, holding id of item to find, and  all the other new values to add to existing object
     	
@@ -224,5 +218,18 @@ public class Controller1 {
     		.findFirst()
     		.ifPresent(item -> item.setName(newText));
     }
+    
+    ObservableList<CellItem> getObservableList() {
+    	return observableList;
+    }
+    
+    /** +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    
+    
+    
+    
+    
+    
+    
 
 }

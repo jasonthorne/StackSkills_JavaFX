@@ -70,39 +70,24 @@ public class EditCellController {
     private void editItem(){
     	
     	/** ++++++++++++++ here we update observableList item, +++++++++++++++++++++++++++ */
-    	Controller1.editObservableList(cellController.getLblText(), newText.getText());
+    	/////Controller1.editObservableList(cellController.getLblText(), newText.getText());
+    	cellController.updateItem(newText.getText());
     	
     	/** ++++++++++++++ here we mimic pushing data to db, +++++++++++++++++++++++++++ */
     	//edit cellItem in db with new text:
-    	Controller1.cellItemsDB.forEach(item -> { //this is our link with controller1. which is changing the values in listView
+    	Controller1.cellItemsDB.forEach(item -> { 
     		
     		//System.out.println("item name: " + item.getName());
     		//System.out.println("lblCellText: " + cellController.getLblText());
-    		if (item.getName() == cellController.getLblText()) { //find item in mock db with name matching label
+    		if (item.getName().equals(cellController.getLblText())) { //find item in mock db with name matching label
     		
     			//System.out.println("FOUND: item is: " + item);
     			item.setName(newText.getText()); //change name of item
     			///////cellController.updateItem(item, false);
-    			
     		}
     	});
     	
-    	cellController.setLblText(newText.getText()); //change cell label.
-    	
-    
-    	
-    	/** ++++++++++++++ here we push data to db, +++++++++++++++++++++++++++
-    	 * then should prob call a static method in controller 1 which repulls the data to it's list.
-    	 * */
-    	
-    	//observable list needs changing here!! :P ++++++++++++++++++++++++++
-    	//==========================
-    	
-    	//Controller1.editObservableList(lblCellText.getText() );
-    	//===========================
-    	
-    	/////////////cellController.editDB(newText.getText());
-    	
+    	//cellController.setLblText(newText.getText()); //change cell label.
     }
     /** -------------------------- */
 
