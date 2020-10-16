@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -60,7 +61,7 @@ public class ControllerA {
     
     
    ControllerA(FrameController frameController){
-	   controllerB = new ControllerB(); //????????????????
+	   controllerB = new ControllerB();
 	   this.frameController = frameController;
 	   
 	   
@@ -94,8 +95,9 @@ public class ControllerA {
     
     private void goToB() {
     	System.out.println("goB");
-    	
-    	//frameController.addToWindow(loader); //falls over as root already added. Need to find a way of remoiving it first
+    
+    	frameController.addRootToScene(controllerB.getRoot());
+    	frameController.addRootToInnerFrame(controllerB.getRoot());
     }
     
     //==============TRY THIS!! ======================
@@ -106,6 +108,7 @@ public class ControllerA {
     Parent getRoot() {
     	return root;
     }
+    
     
     
     

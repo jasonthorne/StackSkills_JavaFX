@@ -31,7 +31,7 @@ public class FrameController {
     @FXML
     private JFXButton btnB;
     
-    private final ControllerA controllerA;
+    private ControllerA controllerA;
     //private final ControllerB controllerB;
     
   //holds the controller's stage:
@@ -51,10 +51,6 @@ public class FrameController {
     	
     	System.out.println("const");
     	
-    	controllerA = new ControllerA(this); //instantiate controllerA
-
-    	///controllerB = new ControllerB(); //initialze controller
-    	
     	 // Create the new stage
         stage = new Stage();
         
@@ -70,7 +66,8 @@ public class FrameController {
         	
         }catch (IOException e) { e.printStackTrace(); }
         
-        
+        ///controllerB = new ControllerB(); //initialze controller
+        controllerA = new ControllerA(this); //instantiate controllerA
     	addRootToInnerFrame(controllerA.getRoot()); //add cotrollerA fxml to innerFrame
         
     }
@@ -78,6 +75,12 @@ public class FrameController {
     /** Show the stage that was loaded in the constructor */
     public void showStage() {
         stage.showAndWait();
+        
+        //----------------------------------
+        ///controllerA = new ControllerA(this); //instantiate controllerA
+        ///addRootToInnerFrame(controllerA.getRoot()); //add cotrollerA fxml to innerFrame
+        //------------------------------
+        
         addRoots();
        /// addRootToScene(controllerA.getRoot()); ////??????? sloppy having this here :P
     }
@@ -89,46 +92,15 @@ public class FrameController {
     }
     
     
-    /** ----------------------showing A or B------------- */
-    public void showA(){
-    	System.out.println("a");
-    	
-    	System.out.println(" FrameController. BUTTON A.");
-    	
-    	System.out.println(frameInnerAP.getChildren());
-    	addRootToInnerFrame(controllerA.getRoot());
-    	
-    	
-    	
-    	
-    	/*
-    	//====================
-    	
-		//create loader for a.fxml
-		FXMLLoader apA = new FXMLLoader(getClass().getResource("/view/a.fxml"));
-		
-		apA.setController(controllerA); //set controller
-		//================
-		//------------------
+    void addRootToScene(Parent root) {
+		((AnchorPane) scene.getRoot()).getChildren().add(root); 
+	}
 	
-		try {
-			
-			//scene2 = new Scene(apA.load()); //load a.fxml into scene2 
-			apA.load(); //load fxml tree
-			Parent root = apA.getRoot(); //get root element 
-			((AnchorPane) scene.getRoot()).getChildren().add(root);  //add root to children of scene
-			//.setAll() clears the children and replaces them with root element and it's subsequent children.
-			frameInnerAP.getChildren().setAll(root); 
-			
-		} catch (IOException e1) {e1.printStackTrace();}
-		
-		*/
-		//-----------------
-		
 	
-		
-		
-    }
+	void addRootToInnerFrame(Parent root){
+		frameInnerAP.getChildren().setAll(root);
+	}
+  
     
     
 /*
@@ -156,58 +128,9 @@ public class FrameController {
 		//-----------------
     }*/
     
-    
-    /** ----------------------showing A or B------------- */
+ 
 	
 	
-	/** ============================show any controller ===================== */
-	
-	void addToWindow(FXMLLoader loader) {
-		
-		
-			System.out.println(" controllerA. BUTTON B.");
-			
-			try {
-				loader.load(); //load fxml tree
-				
-				/*
-				if((((AnchorPane) scene.getRoot()).getChildren()).remove(loader.getRoot())){
-					System.out.println("loader was present");
-					System.out.println(((AnchorPane) scene.getRoot()).getChildren());
-				}else {
-				*/
-					Parent root = loader.getRoot(); //get root element 
-					
-					((AnchorPane) scene.getRoot()).getChildren().add(root);  //add root to children of scene
-					
-					System.out.println("frameInner B4 add: " + frameInnerAP.getChildren());
-					
-					frameInnerAP.getChildren().clear(); //+++++++++++++++++ :(
-					
-					/** .setAll() clears the children and replaces them with root element and it's subsequent children. */
-					frameInnerAP.getChildren().setAll(root);
-					
-					System.out.println("frameInner AFTER add: " + frameInnerAP.getChildren());
-					
-					
-					System.out.println(((AnchorPane) scene.getRoot()).getChildren());
-					System.out.println(((AnchorPane) scene.getRoot()));
-				//}
-			} catch (IOException e) {e.printStackTrace();}
-			
-		
-	}
-	
-	
-	
-	void addRootToScene(Parent root) {
-		((AnchorPane) scene.getRoot()).getChildren().add(root); 
-	}
-	
-	
-	void addRootToInnerFrame(Parent root){
-		frameInnerAP.getChildren().setAll(root);
-	}
 	
 	
     
