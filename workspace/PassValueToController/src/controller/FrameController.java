@@ -9,8 +9,10 @@ import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -33,6 +35,13 @@ public class FrameController {
     @FXML
     private JFXButton btnB;
     
+    private final ControllerA controllerA;
+    private final ControllerB controllerB;
+    
+    private Scene scene;
+    
+    
+    
     @FXML
     void initialize() {
     	btnA.setOnAction(event -> showA());
@@ -41,6 +50,10 @@ public class FrameController {
     
     
     public FrameController(){
+    	
+    	System.out.println("const");
+    	controllerA = new ControllerA(); //initialze controller
+    	controllerB = new ControllerB(); //initialze controller
     	
     	 // Create the new stage
         thisStage = new Stage();
@@ -51,8 +64,15 @@ public class FrameController {
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/frame.fxml"));
         	//set this class as the controller:
         	loader.setController(this);
+        	
         	//load the scene:
-        	thisStage.setScene(new Scene(loader.load()));
+        	scene = new Scene(loader.load()); //????????????????????
+        	
+        	//load the scene:
+        	//////thisStage.setScene(new Scene(loader.load()));
+        	
+        	//add scene to stage:
+        	thisStage.setScene(scene); //??????????????????????
         	//set the title:
         	thisStage.setTitle("FrameController");
         	/////thisStage.showAndWait();
@@ -71,28 +91,53 @@ public class FrameController {
     public void showA(){
     	System.out.println("a");
     	
-    	//create new achorPane loaded from addItemForm.fxml 
+		//create loader for a.fxml
+		FXMLLoader apA = new FXMLLoader(getClass().getResource("/view/a.fxml"));
+		
+		apA.setController(controllerA); //set controller
+		
+		//------------------
+	
 		try {
-			AnchorPane apA= FXMLLoader.load(getClass().getResource("/view/a.fxml"));
 			
-			//get and CLEAR the children of rootAnchorPane and add formPane:
-			/** .setAll() clears the children and replaces them with addItemformAnchorPane and it's subsequent children. */
-			frameInnerAP.getChildren().setAll(apA); 
-		} catch (IOException e) { e.printStackTrace(); }
+			//scene2 = new Scene(apA.load()); //load a.fxml into scene2 
+			apA.load(); //load fxml tree
+			Parent root = apA.getRoot(); //get root element 
+			((AnchorPane) scene.getRoot()).getChildren().add(root);  //add root to children of scene
+			/** .setAll() clears the children and replaces them with root element and it's subsequent children. */
+			frameInnerAP.getChildren().setAll(root); 
+			
+		} catch (IOException e1) {e1.printStackTrace();}
+		
+		//-----------------
+		
+		///((AnchorPane) scene1.getRoot()).getChildren().add(apA.getRoot()); 
+		/////((AnchorPane) scene1.getRoot()).getChildren().add(scene2.getRoot()); 
+		
+		//get and CLEAR the children of rootAnchorPane and add formPane:
+		/** .setAll() clears the children and replaces them with root element and it's subsequent children. */
+		//frameInnerAP.getChildren().setAll(root); 
+		
+		
     }
     
     
-    public void showB(){
-    	System.out.println("b");
-    	
-    	//create new achorPane loaded from addItemForm.fxml 
+
+	public void showB(){
+		System.out.println("b");
+		    	
+		//create loader for b.fxml
+		FXMLLoader apB = new FXMLLoader(getClass().getResource("/view/b.fxml"));
+		
 		try {
-			AnchorPane apB= FXMLLoader.load(getClass().getResource("/view/b.fxml"));
-			
-			//get and CLEAR the children of rootAnchorPane and add formPane:
-			/** .setAll() clears the children and replaces them with addItemformAnchorPane and it's subsequent children. */
-			frameInnerAP.getChildren().setAll(apB); 
+			apB.load(); //load fxml tree
 		} catch (IOException e) { e.printStackTrace(); }
+		
+		apB.setController(controllerB); //set controller
+		Parent root = apB.getRoot(); //get root element 
+		//get and CLEAR the children of rootAnchorPane and add formPane:
+		/** .setAll() clears the children and replaces them with root element and it's subsequent children. */
+		frameInnerAP.getChildren().setAll(root); 
     }
     
     

@@ -6,9 +6,16 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import javafx.scene.control.Label;
+
+
 public class ControllerA {
 	
-	@FXML
+	String text;
+
+    @FXML
     private ResourceBundle resources;
 
     @FXML
@@ -18,9 +25,40 @@ public class ControllerA {
     private AnchorPane aAP;
 
     @FXML
+    private Label lblA;
+
+    @FXML
+    private JFXButton btnA;
+
+    @FXML
+    private JFXTextField txtA;
+
+    @FXML
     void initialize() {
-       
-
+    	
+    	System.out.println("yo");
+    	btnA.setOnAction(event -> showText());
+    	lblA.setText(text);
     }
-
+    
+    
+   //ControllerA(){
+	  // initialize();
+   //}
+    
+    public void showText() {
+    	
+    	text = txtA.getText();
+    	lblA.setText(text);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
