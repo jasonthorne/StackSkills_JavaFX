@@ -18,10 +18,6 @@ import javafx.util.Duration;
 
 public class FrameController {
 
-	
-	//holds the controller's stage:
-  	private final Stage thisStage;
-	
     @FXML
     private ResourceBundle resources;
     @FXML
@@ -38,13 +34,15 @@ public class FrameController {
     private final ControllerA controllerA;
     //private final ControllerB controllerB;
     
+  //holds the controller's stage:
+  	private final Stage stage;
     private Scene scene;
     
     
     
     @FXML
     void initialize() {
-    	btnA.setOnAction(event -> showA());
+    	btnA.setOnAction(event -> addRootToInnerFrame(controllerA.getRoot()));
     	//btnB.setOnAction(event -> showB());
     }
     
@@ -52,52 +50,48 @@ public class FrameController {
     public FrameController(){
     	
     	System.out.println("const");
-    	controllerA = new ControllerA(this); //initialze controller
+    	
+    	controllerA = new ControllerA(this); //instantiate controllerA
+
     	///controllerB = new ControllerB(); //initialze controller
     	
     	 // Create the new stage
-        thisStage = new Stage();
+        stage = new Stage();
         
         //load the fxml file:
         try {
         	
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/frame.fxml"));
-        	//set this class as the controller:
-        	loader.setController(this);
-        	
-        	//load the scene:
-        	scene = new Scene(loader.load()); //????????????????????
-        	
-        	//load the scene:
-        	//////thisStage.setScene(new Scene(loader.load()));
-        	
-        	//add scene to stage:
-        	thisStage.setScene(scene); //??????????????????????
-        	//set the title:
-        	thisStage.setTitle("FrameController");
+        	loader.setController(this);//set this class as the controller
+        	scene = new Scene(loader.load()); //load fxml into scene
+        	stage.setScene(scene); //add scene to stage
+        	stage.setTitle("FrameController"); //set the title:
         	/////thisStage.showAndWait();
         	
         }catch (IOException e) { e.printStackTrace(); }
         
-       
-    	////controllerA = new ControllerA(this); //initialze controller
-    	///addRootToScene(controllerA.getRoot());
-    	
-    	///controllerB = new ControllerB(); //initialze controller
-            
+        
+    	addRootToInnerFrame(controllerA.getRoot()); //add cotrollerA fxml to innerFrame
+        
     }
     
     /** Show the stage that was loaded in the constructor */
     public void showStage() {
-        thisStage.showAndWait();
-        addRootToScene(controllerA.getRoot()); ////??????? sloppy having this here :P
+        stage.showAndWait();
+        addRoots();
+       /// addRootToScene(controllerA.getRoot()); ////??????? sloppy having this here :P
+    }
+    
+    
+    
+    private void addRoots() {
+    	 addRootToScene(controllerA.getRoot()); 
     }
     
     
     /** ----------------------showing A or B------------- */
     public void showA(){
     	System.out.println("a");
-    	
     	
     	System.out.println(" FrameController. BUTTON A.");
     	

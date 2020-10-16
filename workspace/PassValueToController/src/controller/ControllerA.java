@@ -94,6 +94,7 @@ public class ControllerA {
     
     private void goToB() {
     	System.out.println("goB");
+    	
     	//frameController.addToWindow(loader); //falls over as root already added. Need to find a way of remoiving it first
     }
     
