@@ -47,7 +47,7 @@ public class ControllerA {
     private final FrameController frameController; 
     
     ////FXMLLoader loader;
-    Parent root;
+    private Parent root;
 
     @FXML
     void initialize() {
@@ -94,9 +94,10 @@ public class ControllerA {
     
     
     private void goToB() {
-    	System.out.println("goB");
-    
-    	frameController.addRootToScene(controllerB.getRoot());
+    	frameController.enableNavBtns(); //enable nav buttons //+++++++SLOPPY> HAVE booleans stating whether current loc should have a next or prev
+    	frameController.setBackRoot(this.root); //set back button to go back here
+    	frameController.setForwardRoot(controllerB.getRoot()); //set forward button to go to B
+    	frameController.addRootToScene(controllerB.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
     	frameController.addRootToInnerFrame(controllerB.getRoot());
     }
     

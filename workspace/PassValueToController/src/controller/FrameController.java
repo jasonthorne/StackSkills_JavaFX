@@ -27,23 +27,27 @@ public class FrameController {
     @FXML
     private AnchorPane frameInnerAP;
     @FXML
-    private JFXButton btnA;
+    private JFXButton btnBack;
     @FXML
-    private JFXButton btnB;
+    private JFXButton btnFwrd;
     
-    private ControllerA controllerA;
+    private final ControllerA controllerA;
     //private final ControllerB controllerB;
     
-  //holds the controller's stage:
   	private final Stage stage;
     private Scene scene;
     
+    private Parent backRoot;
+    private Parent forwardRoot;
     
     
     @FXML
     void initialize() {
-    	btnA.setOnAction(event -> addRootToInnerFrame(controllerA.getRoot()));
-    	//btnB.setOnAction(event -> showB());
+    	
+    	btnBack.setOnAction(event -> goBack()); 
+    	btnBack.setDisable(true); //set as initially disable
+    	btnFwrd.setOnAction(event -> goFwrd());
+    	btnFwrd.setDisable(true); //set as initially disable
     }
     
     
@@ -66,7 +70,6 @@ public class FrameController {
         	
         }catch (IOException e) { e.printStackTrace(); }
         
-        ///controllerB = new ControllerB(); //initialze controller
         controllerA = new ControllerA(this); //instantiate controllerA
     	addRootToInnerFrame(controllerA.getRoot()); //add cotrollerA fxml to innerFrame
         
@@ -74,26 +77,14 @@ public class FrameController {
     
     /** Show the stage that was loaded in the constructor */
     public void showStage() {
-        stage.showAndWait();
-        
-        //----------------------------------
-        ///controllerA = new ControllerA(this); //instantiate controllerA
-        ///addRootToInnerFrame(controllerA.getRoot()); //add cotrollerA fxml to innerFrame
-        //------------------------------
-        
-        addRoots();
-       /// addRootToScene(controllerA.getRoot()); ////??????? sloppy having this here :P
+        stage.showAndWait(); //show stage
+        addRootToScene(controllerA.getRoot()); //add controllerA root to scene
     }
     
-    
-    
-    private void addRoots() {
-    	 addRootToScene(controllerA.getRoot()); 
-    }
     
     
     void addRootToScene(Parent root) {
-		((AnchorPane) scene.getRoot()).getChildren().add(root); 
+		((AnchorPane) scene.getRoot()).getChildren().add(root); //add root to children of scene
 	}
 	
 	
@@ -101,7 +92,23 @@ public class FrameController {
 		frameInnerAP.getChildren().setAll(root);
 	}
   
+    void setBackRoot(Parent root) {
+    	backRoot = root;
+    }
     
+    void setForwardRoot(Parent root) {
+    	forwardRoot = root;
+    }
+    
+    private void goBack() { addRootToInnerFrame(backRoot); }
+    private void goFwrd() { addRootToInnerFrame(forwardRoot); }
+    	
+    /** +++++++++++++++++++++++++++++++++++++++++++++++++++++++ HAVE A LOGOUT BUTTON! +++++++++++++++++++++ */
+    //++++++++++++++++++++++++++++++++HAVE BOOLEANS HERE FOR DECIDING THIS ISNSTEAD. 
+    void enableNavBtns() {
+    	btnBack.setDisable(false); 
+    	btnFwrd.setDisable(false); //set as initially disable
+    }
     
 /*
 	public void showB(){
