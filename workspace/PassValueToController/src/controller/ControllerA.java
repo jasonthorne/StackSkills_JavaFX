@@ -101,6 +101,8 @@ public class ControllerA {
     	frameController.setDisableBackBtn(false); //turn on back btn (as this is first advancement)
     	
     	frameController.setCurrentRoot(controllerB.getRoot()); //set b as currentRoot
+    	frameController.setHasVisitedCurrent(controllerB.getHasVisited()); //set whether root has been visited
+    	
     	
     	//-----------------have this in an interface --------------------------
     	if(!controllerB.getHasVisited()) { //if haven't visited yet

@@ -33,14 +33,17 @@ public class FrameController {
     
     private final ControllerA controllerA;
     ///private final ControllerB controllerB;
-    private FrameInterface currentController;
+    ////////////private FrameInterface currentController;
     
   	private final Stage stage;
     private Scene scene;
     
     private Parent backRoot;
     private Parent forwardRoot;
-    private Parent currentRoot;
+    private Parent currentRoot; //????
+    
+    private boolean hasVisitedCurrent;
+    		
     
     @FXML
     void initialize() {
@@ -109,6 +112,9 @@ public class FrameController {
     	currentRoot = root;
     }
     
+    void setHasVisitedCurrent(boolean bool) {
+    	hasVisitedCurrent = bool;
+    }
     
     private void goBack() { 
     	
@@ -120,12 +126,9 @@ public class FrameController {
     	
     	addRootToInnerFrame(forwardRoot); 
     	
-    	//-----------------have this in an interface --------------------------
-    	//if(!forwardRoot) { //if haven't visited yet
-    		//controllerB.setHasVisited(); //mark as visited 
-    		//frameController.setDisableFrwdBtn(true);//disable forward btn (as now at farthest point
-    //	}
-    	
+    	if(!hasVisitedCurrent)
+    		//HERE's OUR ISSUE! :P
+    		////controllerB.setHasVisited(); //mark as visited 
     	
     	currentRoot = forwardRoot; //currentRoot now becomes forwrdRoot
     	
@@ -139,18 +142,17 @@ public class FrameController {
     	btnBack.setDisable(bool);
     }
     	
-    
+    /*
     <T>void setCurrentController(FrameInterface frameInterface) {
     	this.currentController = frameInterface;
-    	
-    	
+     
     	
     	//==========methods here for adding root to scene and root to inner frame 
     	
     	
     	//print();
     	
-    }
+    }*/
     
     /*
     void print() {

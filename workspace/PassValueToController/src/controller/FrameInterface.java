@@ -8,6 +8,6 @@ public interface FrameInterface {
 	
 	//void printHasVisited();
 	
-	Parent getRootTEST();
+	Parent getNextRoot();
 
 }

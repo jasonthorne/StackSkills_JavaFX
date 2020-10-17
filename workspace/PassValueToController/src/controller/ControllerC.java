@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
-public class ControllerC implements FrameInterface{
+public class ControllerC /*implements FrameInterface*/ {
 	
 	@FXML
     private ResourceBundle resources;
@@ -61,6 +61,7 @@ public class ControllerC implements FrameInterface{
     boolean getHasVisited() { return hasVisited; }
     void setHasVisited() { hasVisited = true; }
 
+    /*
 	@Override
 	public void addToFrameController() {
 		// TODO Auto-generated method stub
@@ -70,6 +71,6 @@ public class ControllerC implements FrameInterface{
 	@Override
 	public Parent getRootTEST() {
 		return root;
-	}
+	}*/
 
 }

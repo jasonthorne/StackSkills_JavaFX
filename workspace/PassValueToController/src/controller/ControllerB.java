@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
-public class ControllerB implements FrameInterface{
+public class ControllerB /*implements FrameInterface*/ {
 
     @FXML
     private ResourceBundle resources;
@@ -81,9 +81,9 @@ public class ControllerB implements FrameInterface{
     
     private void goToC() {
     	
-    	addToFrameController(); //++++++++++++++++++
+    	///addToFrameController(); //++++++++++++++++++
     	
-    	frameController.setCurrentRoot(controllerC.getRoot()); //set b as currentRoot
+    	frameController.setCurrentRoot(controllerC.getRoot()); //set c as currentRoot
     
     	//-----------------have this in an interface --------------------------
     	if(!controllerC.getHasVisited()) { //if haven't visited yet
@@ -113,27 +113,9 @@ public class ControllerB implements FrameInterface{
 
 
 
-	@Override
-	public void addToFrameController() { //DONT NEED THIS! :P
-		frameController.setCurrentController(this);
-		
-	}
-
-
 	
-	@Override
-	public Parent getRootTEST() {
-		{ return root; }
-	}
 
 
-	/*
-	@Override
-	public void printHasVisited() {
-		System.out.println("hasVisited: " + hasVisited);
-		
-	}*/
-    
     
     
     
