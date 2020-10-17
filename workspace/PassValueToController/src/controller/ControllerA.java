@@ -17,7 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 
-public class ControllerA {
+public class ControllerA implements MySpecialInterface {
 	
 	String text;
 
@@ -110,10 +110,10 @@ public class ControllerA {
     		frameController.setDisableFrwdBtn(true);//disable forward btn (as now at farthest point)
     	}else {
     		frameController.setDisableFrwdBtn(false); //enable forward btn
-    		frameController.setForwardRoot(controllerB.getRoot()); //set forward button to go to B
+    		frameController.setFutureRoot(controllerB.getRoot()); //set forward button to go to B
     	}
     	
-    	frameController.setBackRoot(root); //set back button to go back here
+    	frameController.setPastRoot(root); //set back button to go back here
     	
     	/*
     	 * when you hit the back btn: change frwrd root to point to this root (current backRoot)
@@ -131,9 +131,31 @@ public class ControllerA {
     
     //the button then just clears the inner element of its children and adds the loader's root
     
-    Parent getRoot() {
+    @Override
+    public Parent getRoot() {
     	return root;
     }
+
+    /*
+	@Override
+	public void addToFrameController() {
+		// TODO Auto-generated method stub
+		
+	}*/
+
+
+	@Override
+	public boolean getHasVisited() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public void setHasVisited() {
+		// TODO Auto-generated method stub
+		
+	}
     
     
     

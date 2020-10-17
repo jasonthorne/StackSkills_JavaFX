@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
-public class ControllerC /*implements FrameInterface*/ {
+public class ControllerC implements MySpecialInterface {
 	
 	@FXML
     private ResourceBundle resources;
@@ -56,10 +56,13 @@ public class ControllerC /*implements FrameInterface*/ {
 		
 	}
 	
-	Parent getRoot() { return root; }
+	@Override
+	public Parent getRoot() { return root; }
 	
-    boolean getHasVisited() { return hasVisited; }
-    void setHasVisited() { hasVisited = true; }
+	@Override
+    public boolean getHasVisited() { return hasVisited; }
+	@Override
+    public void setHasVisited() { hasVisited = true; }
 
     /*
 	@Override

@@ -33,13 +33,13 @@ public class FrameController {
     
     private final ControllerA controllerA;
     ///private final ControllerB controllerB;
-    ////////////private FrameInterface currentController;
+    private MySpecialInterface currentController;
     
   	private final Stage stage;
     private Scene scene;
     
-    private Parent backRoot;
-    private Parent forwardRoot;
+    private Parent pastRoot;
+    private Parent futureRoot;
     private Parent currentRoot; //????
     
     private boolean hasVisitedCurrent;
@@ -100,12 +100,12 @@ public class FrameController {
 		frameInnerAP.getChildren().setAll(root);
 	}
   
-    void setBackRoot(Parent root) {
-    	backRoot = root;
+    void setPastRoot(Parent root) {
+    	pastRoot = root;
     }
     
-    void setForwardRoot(Parent root) {
-    	forwardRoot = root;
+    void setFutureRoot(Parent root) {
+    	futureRoot = root;
     }
     
     void setCurrentRoot(Parent root) {
@@ -118,23 +118,31 @@ public class FrameController {
     
     private void goBack() { 
     	
-    	forwardRoot = currentRoot; //change forwrdRoot to point to currentRoot
-    	addRootToInnerFrame(backRoot); //navigate to backRoot
+    	futureRoot = currentRoot; //change forwrdRoot to point to currentRoot
+    	addRootToInnerFrame(pastRoot); //navigate to backRoot
     }
     
-    private void goFwrd() { 
+    void goFwrd() {
     	
-    	addRootToInnerFrame(forwardRoot); 
-    	
-    	if(!hasVisitedCurrent)
-    		//HERE's OUR ISSUE! :P
+    	if(!currentController.getHasVisited()) { //if haven't visited yet
+    		currentController.setHasVisited(); //mark as visited
+    		btnFwrd.setDisable(true); //disable forward btn (as now at farthest point)
+    	}else {
+    		btnFwrd.setDisable(false); //enable forward button
+    		//++++++this guy has to hasve a memory of what the future root is! 
+    	}
+    		//HERE's OUR ISSUE! :
     		////controllerB.setHasVisited(); //mark as visited 
     	
-    	currentRoot = forwardRoot; //currentRoot now becomes forwrdRoot
+    		
+    		
+    		//=========================================
+    		addRootToInnerFrame(futureRoot); 
+    	currentRoot = futureRoot; //currentRoot now becomes forwrdRoot
     	
     }
     
-    void setDisableFrwdBtn(boolean bool){
+    void setDisableFrwdBtn(boolean bool){ //++++++++++++CAN PROB BE PRIVATE!!
     	btnFwrd.setDisable(bool);
     }
     
@@ -142,8 +150,8 @@ public class FrameController {
     	btnBack.setDisable(bool);
     }
     	
-    /*
-    <T>void setCurrentController(FrameInterface frameInterface) {
+    
+    <T>void setCurrentController(MySpecialInterface frameInterface) {
     	this.currentController = frameInterface;
      
     	
@@ -152,7 +160,7 @@ public class FrameController {
     	
     	//print();
     	
-    }*/
+    }
     
     /*
     void print() {

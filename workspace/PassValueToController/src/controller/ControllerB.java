@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
-public class ControllerB /*implements FrameInterface*/ {
+public class ControllerB implements MySpecialInterface {
 
     @FXML
     private ResourceBundle resources;
@@ -72,16 +72,25 @@ public class ControllerB /*implements FrameInterface*/ {
     	
     }
     
-    Parent getRoot() { return root; }
-    	
-    boolean getHasVisited() { return hasVisited; }
-    void setHasVisited() { hasVisited = true; }
+    @Override
+    public Parent getRoot() { return root; }
+   
+    @Override
+    public boolean getHasVisited() { return hasVisited; }
+    @Override
+    public void setHasVisited() { hasVisited = true; }
     	
    
     
-    private void goToC() {
+    private void goToC() { 
     	
-    	///addToFrameController(); //++++++++++++++++++
+    	frameController.setPastRoot(root); //set back button to go back here
+    	frameController.setCurrentController(controllerC); //set c controller as new current controller
+    	frameController.goFwrd(); //call frameController's goFrwrd method (when going to c, you're going forward!)
+    	
+    	
+    	
+    	//==========================================================
     	
     	frameController.setCurrentRoot(controllerC.getRoot()); //set c as currentRoot
     
@@ -91,10 +100,10 @@ public class ControllerB /*implements FrameInterface*/ {
     		frameController.setDisableFrwdBtn(true);//disable forward btn (as now at farthest point)
     	}else {
     		frameController.setDisableFrwdBtn(false); //enable forward btn
-    		frameController.setForwardRoot(controllerC.getRoot()); //set forward button to go to B
+    		frameController.setFutureRoot(controllerC.getRoot()); //set forward button to go to B
     	}
     	
-    	frameController.setBackRoot(root); //set back button to go back here
+    	frameController.setPastRoot(root); //set back button to go back here
     	
     
     	frameController.addRootToScene(controllerC.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
@@ -110,6 +119,14 @@ public class ControllerB /*implements FrameInterface*/ {
     	frameController.addRootToInnerFrame(controllerC.getRoot());
     	*/
     }
+
+
+    /*
+	@Override
+	public void addToFrameController() {
+		// TODO Auto-generated method stub
+		
+	}*/
 
 
 
