@@ -61,7 +61,7 @@ public class ControllerA {
     
     
    ControllerA(FrameController frameController){
-	   controllerB = new ControllerB();
+	   controllerB = new ControllerB(frameController);
 	   this.frameController = frameController;
 	   
 	   
@@ -93,12 +93,35 @@ public class ControllerA {
     }
     
     
+    
     private void goToB() {
-    	frameController.enableNavBtns(); //enable nav buttons //+++++++SLOPPY> HAVE booleans stating whether current loc should have a next or prev
-    	frameController.setBackRoot(this.root); //set back button to go back here
-    	frameController.setForwardRoot(controllerB.getRoot()); //set forward button to go to B
+    	
+    	//send has visited info to frameCtroller here //********************
+    	
+    	frameController.setDisableBackBtn(false); //turn on back btn (as this is first advancement)
+    	
+    	frameController.setCurrentRoot(controllerB.getRoot()); //set b as currentRoot
+    	
+    	//-----------------have this in an interface --------------------------
+    	if(!controllerB.getHasVisited()) { //if haven't visited yet
+    		controllerB.setHasVisited(); //mark as visited 
+    		frameController.setDisableFrwdBtn(true);//disable forward btn (as now at farthest point)
+    	}else {
+    		frameController.setDisableFrwdBtn(false); //enable forward btn
+    		frameController.setForwardRoot(controllerB.getRoot()); //set forward button to go to B
+    	}
+    	
+    	frameController.setBackRoot(root); //set back button to go back here
+    	
+    	/*
+    	 * when you hit the back btn: change frwrd root to point to this root (current backRoot)
+    	 * 
+    	 */
+    
     	frameController.addRootToScene(controllerB.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
     	frameController.addRootToInnerFrame(controllerB.getRoot());
+    	
+    	//frameController.enableNavBtns(); //enable nav buttons //+++++++SLOPPY> HAVE booleans stating whether current loc should have a next or prev
     }
     
     //==============TRY THIS!! ======================

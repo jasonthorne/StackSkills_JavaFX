@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -11,5 +12,6 @@
             <Font size="40.0" />
          </font>
       </Label>
+      <JFXButton fx:id="toCBtn" layoutX="172.0" layoutY="35.0" style="-fx-background-color: pink;" text="Go to C" />
    </children>
 </AnchorPane>

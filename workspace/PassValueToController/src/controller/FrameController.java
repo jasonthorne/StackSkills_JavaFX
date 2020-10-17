@@ -32,22 +32,23 @@ public class FrameController {
     private JFXButton btnFwrd;
     
     private final ControllerA controllerA;
-    //private final ControllerB controllerB;
+    ///private final ControllerB controllerB;
+    private FrameInterface currentController;
     
   	private final Stage stage;
     private Scene scene;
     
     private Parent backRoot;
     private Parent forwardRoot;
-    
+    private Parent currentRoot;
     
     @FXML
     void initialize() {
     	
     	btnBack.setOnAction(event -> goBack()); 
-    	btnBack.setDisable(true); //set as initially disable
+    	///btnBack.setDisable(true); //set as initially disable
     	btnFwrd.setOnAction(event -> goFwrd());
-    	btnFwrd.setDisable(true); //set as initially disable
+    	///btnFwrd.setDisable(true); //set as initially disable
     }
     
     
@@ -72,6 +73,10 @@ public class FrameController {
         
         controllerA = new ControllerA(this); //instantiate controllerA
     	addRootToInnerFrame(controllerA.getRoot()); //add cotrollerA fxml to innerFrame
+    	
+    	//disable fwrd & back btn:
+    	setDisableBackBtn(true);
+    	setDisableFrwdBtn(true);
         
     }
     
@@ -100,15 +105,72 @@ public class FrameController {
     	forwardRoot = root;
     }
     
-    private void goBack() { addRootToInnerFrame(backRoot); }
-    private void goFwrd() { addRootToInnerFrame(forwardRoot); }
+    void setCurrentRoot(Parent root) {
+    	currentRoot = root;
+    }
+    
+    
+    private void goBack() { 
     	
+    	forwardRoot = currentRoot; //change forwrdRoot to point to currentRoot
+    	addRootToInnerFrame(backRoot); //navigate to backRoot
+    }
+    
+    private void goFwrd() { 
+    	
+    	addRootToInnerFrame(forwardRoot); 
+    	
+    	//-----------------have this in an interface --------------------------
+    	//if(!forwardRoot) { //if haven't visited yet
+    		//controllerB.setHasVisited(); //mark as visited 
+    		//frameController.setDisableFrwdBtn(true);//disable forward btn (as now at farthest point
+    //	}
+    	
+    	
+    	currentRoot = forwardRoot; //currentRoot now becomes forwrdRoot
+    	
+    }
+    
+    void setDisableFrwdBtn(boolean bool){
+    	btnFwrd.setDisable(bool);
+    }
+    
+    void setDisableBackBtn(boolean bool){
+    	btnBack.setDisable(bool);
+    }
+    	
+    
+    <T>void setCurrentController(FrameInterface frameInterface) {
+    	this.currentController = frameInterface;
+    	
+    	
+    	
+    	//==========methods here for adding root to scene and root to inner frame 
+    	
+    	
+    	//print();
+    	
+    }
+    
+    /*
+    void print() {
+    	frameInterface.printHasVisited();
+    }
+    */
+    
+    
+    
+    
+    
+    
+    
+    
     /** +++++++++++++++++++++++++++++++++++++++++++++++++++++++ HAVE A LOGOUT BUTTON! +++++++++++++++++++++ */
     //++++++++++++++++++++++++++++++++HAVE BOOLEANS HERE FOR DECIDING THIS ISNSTEAD. 
-    void enableNavBtns() {
-    	btnBack.setDisable(false); 
-    	btnFwrd.setDisable(false); //set as initially disable
-    }
+   // void enableNavBtns() {
+    //	btnBack.setDisable(false); 
+    //	btnFwrd.setDisable(false); //set as initially disable
+  //  }
     
 /*
 	public void showB(){
