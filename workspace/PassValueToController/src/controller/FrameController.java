@@ -51,53 +51,73 @@ public class FrameController extends TEST{
     private Parent futureRoot;
    
     
-    //2 stacks one for forward moves, one for backward moves:
+    //2 stacks. One for forward moves, one for backward moves:
     Stack<Traversable>forwardMoves = new Stack<Traversable>();
     Stack<Traversable>backwardMoves = new Stack<Traversable>();
+    Traversable traversable;
     
     
+    void setTraversable(Traversable traversable){
+    	this.traversable = traversable;
+    }
     
-    void moveForward(Traversable controller) { //CHANGE TO: moveForward (moveBackward for other)
-    
+    //void moveForward(Traversable controller) { //CHANGE TO: moveForward (moveBackward for other)
+    void moveForward() {
     	//try add to forwardMoves:
     	
 		//FIRST: check backwardMoves isnt empty: 
 		if(!backwardMoves.isEmpty()) {
 			
 			//check if it exists at top of backwardMoves:
-			if(!backwardMoves.peek().equals(controller)) {
+			//if it doesn't:
+			if(!backwardMoves.peek().equals(traversable)) { 
 				
-				//clear backWardMoves (as your on a new path)
+				//clear backwardMoves (as you're on a new fork)
 				backwardMoves.clear();
 				//add controller to forwardMoves:
-				forwardMoves.push(controller);
+				forwardMoves.push(traversable);
 				//addRootToInnerFrame(controller.getRoot()); //add root to frame
 			}else { //if it does equal top of backwardMoves:
 				
 				//pop element onto forwardMoves
-				forwardMoves.push(backwardMoves.pop()); 
+				forwardMoves.push(backwardMoves.pop());
+				
+				//if backwardMoves is now empty, disable backwards button:
+				if (backwardMoves.isEmpty()){
+					setDisableBackBtn(true);
+				}
 				//addRootToInnerFrame(controller.getRoot()); //add root to frame
 			}
 		}else { //backwardMoves is empty:
 			
 			//new path, so add to forwardMoves:
-			forwardMoves.push(controller);
-			//addRootToInnerFrame(controller.getRoot()); //add root to frame
+			forwardMoves.push(traversable);
 		}
 	
-		addRootToScene(controller.getRoot()); //add root to scene
-		addRootToInnerFrame(controller.getRoot()); //add root to frame
+		addRootToScene(traversable.getRoot()); //add root to scene
+		addRootToInnerFrame(traversable.getRoot()); //add root to frame
     }
     
-    
-    private void addForwardMove(Traversable controller){
+    void moveBackward() {
     	
+    	//remove traversable from forwardMoves, & add to backwardMoves:
+    	backwardMoves.push(forwardMoves.pop());
+    	
+    	//change traversable to be next item in forwardMoves:
+    	traversable = forwardMoves.peek();
+    	
+    	//add new traversable to frame:
+    	addRootToInnerFrame(traversable.getRoot()); 
+    	
+    	//THEN check if stack is now empty:
+    		//if so, disable backBtn
+    	if (forwardMoves.isEmpty()){
+    		setDisableFrwdBtn(true);
+		}
     }
     
-    private void addBackwardMove(Traversable controller){
-    	
-    }
-  
+    
+    
     /*	
     void goFwrd() {
     	
@@ -208,6 +228,7 @@ public class FrameController extends TEST{
 	
 	
 	 void setDisableBackBtn(boolean bool){ btnBack.setDisable(bool); }
+	 void setDisableFrwdBtn(boolean bool){ btnFwrd.setDisable(bool); }
   
 	/*
     void setPastRoot(Parent root) { pastRoot = root; }

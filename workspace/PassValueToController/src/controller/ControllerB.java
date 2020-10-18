@@ -41,7 +41,7 @@ public class ControllerB implements Traversable {
     	toCBtn.setOnAction(event -> goToC());
     	
     	System.out.println("B init");
-
+    	//frameController.addRootToScene(root); //+++++++++++++++
     }
     
     public ControllerB(){
@@ -66,6 +66,8 @@ public class ControllerB implements Traversable {
 		 
        	root = loader.getRoot(); //get root element 
        	
+       //	frameController.addRootToScene(root); //+++++++++++++++
+       	
        	System.out.println("ROOT: " + root);
        	
        	//------------------------------------
@@ -88,10 +90,12 @@ public class ControllerB implements Traversable {
     private void goToC() { 
     	
     	//frameController.addVisitableController(controllerC);
-    	System.out.println("this.hashCode():"  + this.hashCode()); 
+    	 
     	
     	//frameController.addVisitableController(controllerC);
-    	frameController.moveForward(controllerC);
+    	
+    	frameController.setTraversable(controllerC);
+    	frameController.moveForward();
     	
     	///frameController.goBack(controllerC);
     	

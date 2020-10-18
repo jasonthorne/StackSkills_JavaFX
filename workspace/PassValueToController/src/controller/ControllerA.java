@@ -98,12 +98,13 @@ public class ControllerA implements Traversable {
     
     private void goToB() { //mimicing LOGGED IN
     	
-    	System.out.println("this.hashCode():"  + this.hashCode()); 
+    
     	
     	frameController.setDisableBackBtn(false); //turn on back btn (as this is first advancement)
     	//frameController.addVisitableController(controllerB);
     	
-    	frameController.moveForward(controllerB);
+    	frameController.setTraversable(controllerB);
+    	frameController.moveForward();
     	
     	////frameController.addRootToScene(controllerB.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
     	////////////frameController.addRootToInnerFrame(controllerB.getRoot());

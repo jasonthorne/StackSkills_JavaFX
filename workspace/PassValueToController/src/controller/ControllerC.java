@@ -21,7 +21,7 @@ public class ControllerC implements Traversable {
     
     @FXML
     void initialize() {
-      
+    	//frameController.addRootToScene(root); //+++++++++++++++
 
     }
 	
@@ -49,7 +49,7 @@ public class ControllerC implements Traversable {
        	root = loader.getRoot(); //get root element 
        	
        	System.out.println("ROOT: " + root);
-		
+    	
 		
 	}
 	
