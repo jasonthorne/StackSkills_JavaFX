@@ -10,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 //public class ControllerC implements Visitable {
-public class ControllerC extends Visitable {
+public class ControllerC implements Traversable {
 	
 	@FXML
     private ResourceBundle resources;
@@ -31,11 +31,10 @@ public class ControllerC extends Visitable {
     private boolean hasVisited = false;
 
    
-    
 	ControllerC(FrameController frameController){
 		 
 		this.frameController = frameController;
-		
+		System.out.println("this.hashCode():"  + this.hashCode()); 
 		
 		//load the fxml file:
        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/c.fxml"));
@@ -55,7 +54,9 @@ public class ControllerC extends Visitable {
 	}
 	
 	
+	@Override
 	public Parent getRoot() { return root; }
+	
     public boolean getHasVisited() { return hasVisited; }
     public void setHasVisited() { hasVisited = true; }
 

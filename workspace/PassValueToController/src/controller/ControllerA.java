@@ -18,7 +18,7 @@ import javafx.scene.control.Label;
 
 
 //public class ControllerA implements Visitable { ////=======================LOGIN PAGE
-public class ControllerA extends Visitable {	
+public class ControllerA implements Traversable {	
 	
 	String text;
 
@@ -91,19 +91,22 @@ public class ControllerA extends Visitable {
     private void showText() {
     	text = txtA.getText();
     	lblA.setText(text);
+    	
     }
     
-    
+   
     
     private void goToB() { //mimicing LOGGED IN
     	
+    	System.out.println("this.hashCode():"  + this.hashCode()); 
+    	
     	frameController.setDisableBackBtn(false); //turn on back btn (as this is first advancement)
-    	frameController.addVisitableController(controllerB);
+    	//frameController.addVisitableController(controllerB);
     	
-    	frameController.goFwrd();
+    	frameController.moveForward(controllerB);
     	
-    	/////////////frameController.addRootToScene(controllerB.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
-    	//////////frameController.addRootToInnerFrame(controllerB.getRoot());
+    	////frameController.addRootToScene(controllerB.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
+    	////////////frameController.addRootToInnerFrame(controllerB.getRoot());
     	
     	
     	/*
@@ -135,17 +138,15 @@ public class ControllerA extends Visitable {
     
     //the button then just clears the inner element of its children and adds the loader's root
     
-    
-    public Parent getRoot() {
-    	return root;
-    }
+    @Override
+   	public Parent getRoot() { return root; }
 
   
 	public boolean getHasVisited() {
 		return false;
 	}
 
-
+	
 	public void setHasVisited() {
 		//hasVisited = true;
 	}

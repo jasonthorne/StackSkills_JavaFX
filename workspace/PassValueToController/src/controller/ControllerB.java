@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 //public class ControllerB implements Visitable {
-public class ControllerB extends Visitable {
+public class ControllerB implements Traversable {
 
     @FXML
     private ResourceBundle resources;
@@ -75,7 +75,11 @@ public class ControllerB extends Visitable {
     }
     
    
-    public Parent getRoot() { return root; }
+    @Override
+   	public Parent getRoot() { return root; }
+       
+     
+
     public boolean getHasVisited() { return hasVisited; }
     public void setHasVisited() { hasVisited = true; }
     	
@@ -84,7 +88,12 @@ public class ControllerB extends Visitable {
     private void goToC() { 
     	
     	//frameController.addVisitableController(controllerC);
+    	System.out.println("this.hashCode():"  + this.hashCode()); 
     	
+    	//frameController.addVisitableController(controllerC);
+    	frameController.moveForward(controllerC);
+    	
+    	///frameController.goBack(controllerC);
     	
     	/*
     	frameController.setPastRoot(root); //set back button to go back here
@@ -107,8 +116,8 @@ public class ControllerB extends Visitable {
     	frameController.setPastRoot(root); //set back button to go back here
     	*/
     
-    	frameController.addRootToScene(controllerC.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
-    	frameController.addRootToInnerFrame(controllerC.getRoot());
+    	////////frameController.addRootToScene(controllerC.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
+    	///////frameController.addRootToInnerFrame(controllerC.getRoot());
     	
     }
 

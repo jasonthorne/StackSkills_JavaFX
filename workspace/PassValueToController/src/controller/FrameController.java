@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -23,7 +24,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class FrameController {
+public class FrameController extends TEST{
 	
 
     @FXML
@@ -49,27 +50,63 @@ public class FrameController {
     private Parent currentRoot; //????
     private Parent futureRoot;
    
-    private List<Visitable>visitableControllers = new ArrayList<>();
-    private ListIterator<Visitable> visitableIterator;
-    //private Visitable currentController;
     
-    //===============================================================
-    ///https://stackoverflow.com/questions/5644568/getting-concurrentexception-when-traversing-a-list/5644769
-	
-    //add controller tol ist:
-    void addVisitableController(ControllerB controller) {
-    	visitableControllers.add(controller); 
-   }
+    //2 stacks one for forward moves, one for backward moves:
+    Stack<Traversable>forwardMoves = new Stack<Traversable>();
+    Stack<Traversable>backwardMoves = new Stack<Traversable>();
     
-   void setDisableBackBtn(boolean bool){ btnBack.setDisable(bool); }
+    
+    
+    void moveForward(Traversable controller) { //CHANGE TO: moveForward (moveBackward for other)
+    
+    	//try add to forwardMoves:
     	
+		//FIRST: check backwardMoves isnt empty: 
+		if(!backwardMoves.isEmpty()) {
+			
+			//check if it exists at top of backwardMoves:
+			if(!backwardMoves.peek().equals(controller)) {
+				
+				//clear backWardMoves (as your on a new path)
+				backwardMoves.clear();
+				//add controller to forwardMoves:
+				forwardMoves.push(controller);
+				//addRootToInnerFrame(controller.getRoot()); //add root to frame
+			}else { //if it does equal top of backwardMoves:
+				
+				//pop element onto forwardMoves
+				forwardMoves.push(backwardMoves.pop()); 
+				//addRootToInnerFrame(controller.getRoot()); //add root to frame
+			}
+		}else { //backwardMoves is empty:
+			
+			//new path, so add to forwardMoves:
+			forwardMoves.push(controller);
+			//addRootToInnerFrame(controller.getRoot()); //add root to frame
+		}
+	
+		addRootToScene(controller.getRoot()); //add root to scene
+		addRootToInnerFrame(controller.getRoot()); //add root to frame
+    }
+    
+    
+    private void addForwardMove(Traversable controller){
+    	
+    }
+    
+    private void addBackwardMove(Traversable controller){
+    	
+    }
+  
+    /*	
     void goFwrd() {
     	
-    	visitableIterator = visitableControllers.listIterator();
+    	/*visitableIterator = visitableControllers.listIterator();
     	
     	if(visitableIterator.hasNext()) {
     	
-    		Visitable currentController = visitableIterator.next();
+    		Traversable currentController = visitableIterator.next();
+    		System.out.println("currentController.hashCode():"  + currentController.hashCode()); 
     		
     		if(!currentController.getHasVisited()) { //if haven't visited yet
     			currentController.setHasVisited(); //mark as visited
@@ -89,25 +126,37 @@ public class FrameController {
 			///anything else????????????
 		}
     	
-    }
+    }*/
     
     
-    private void goBack() { 
+    void goBack(Traversable controller) { 
+    	
     	
     	//futureRoot = currentRoot; //change forwrdRoot to point to currentRoot
     	//addRootToInnerFrame(pastRoot); //navigate to backRoot
+    	backwardMoves.add(controller);
+    	
+    	checkTest();
+    		
+    	
     }
     
     
     //======================================================================
-    
+    void checkTest() {
+    	if(forwardMoves.peek() == (backwardMoves).peek()) {
+    		System.out.println("SAME");
+    	}else {
+    		System.out.println("NOT SAME");
+    	}
+    }
     
     @FXML
     void initialize() {
     	
-    	btnBack.setOnAction(event -> goBack()); 
+    	//btnBack.setOnAction(event -> goBack()); 
     	btnBack.setDisable(true); //set as initially disable
-    	btnFwrd.setOnAction(event -> goFwrd());
+    	/////btnFwrd.setOnAction(event -> goFwrd(Traversable nextController));
     	btnFwrd.setDisable(true); //set as initially disable
     }
     
@@ -156,6 +205,9 @@ public class FrameController {
 	void addRootToInnerFrame(Parent root){
 		frameInnerAP.getChildren().setAll(root);
 	}
+	
+	
+	 void setDisableBackBtn(boolean bool){ btnBack.setDisable(bool); }
   
 	/*
     void setPastRoot(Parent root) { pastRoot = root; }
