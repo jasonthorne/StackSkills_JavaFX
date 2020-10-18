@@ -27,8 +27,8 @@ public class ControllerB extends Visitable {
     private JFXButton toCBtn;
     
     
-    private final ControllerC controllerC; 
-    private final FrameController frameController; 
+    private  ControllerC controllerC; 
+    private  FrameController frameController; 
     
     private Parent root;
     private boolean hasVisited = false;
@@ -44,8 +44,9 @@ public class ControllerB extends Visitable {
 
     }
     
-    
-    
+    public ControllerB(){
+    	
+    }
     //constructor:
     ControllerB(FrameController frameController){
     	
@@ -82,7 +83,7 @@ public class ControllerB extends Visitable {
     
     private void goToC() { 
     	
-    	frameController.addVisitableController(controllerC);
+    	//frameController.addVisitableController(controllerC);
     	
     	
     	/*

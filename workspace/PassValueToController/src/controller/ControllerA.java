@@ -100,7 +100,7 @@ public class ControllerA extends Visitable {
     	frameController.setDisableBackBtn(false); //turn on back btn (as this is first advancement)
     	frameController.addVisitableController(controllerB);
     	
-    	//frameController.goFwrd();
+    	frameController.goFwrd();
     	
     	/////////////frameController.addRootToScene(controllerB.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
     	//////////frameController.addRootToInnerFrame(controllerB.getRoot());

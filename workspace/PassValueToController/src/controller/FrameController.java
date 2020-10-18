@@ -2,6 +2,9 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 
+
+
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class FrameController {
+	
 
     @FXML
     private ResourceBundle resources;
@@ -45,43 +49,28 @@ public class FrameController {
     private Parent currentRoot; //????
     private Parent futureRoot;
    
-    private List<Object>visitableControllers = new ArrayList<>();
-    private ListIterator<Object> visitableIterator = visitableControllers.listIterator();
-    private Visitable currentController;
+    private List<Visitable>visitableControllers = new ArrayList<>();
+    private ListIterator<Visitable> visitableIterator;
+    //private Visitable currentController;
     
     //===============================================================
+    ///https://stackoverflow.com/questions/5644568/getting-concurrentexception-when-traversing-a-list/5644769
+	
     //add controller tol ist:
-    void addVisitableController(Visitable controller) {	 
-    	
-    	//currentController = controller;
-    	//System.out.println(currentController.getRoot());
-    	
+    void addVisitableController(ControllerB controller) {
     	visitableControllers.add(controller); 
-    	System.out.println(visitableControllers);
-    	
-    	
-    	while(visitableIterator.hasNext()) {
-    		System.out.println((Visitable)visitableIterator.next());
-    		
-    		
-    		
-    	}
-    	
-    }
+   }
     
-    void setDisableBackBtn(boolean bool){ btnBack.setDisable(bool); }
+   void setDisableBackBtn(boolean bool){ btnBack.setDisable(bool); }
     	
-   
-    
     void goFwrd() {
     	
+    	visitableIterator = visitableControllers.listIterator();
     	
     	if(visitableIterator.hasNext()) {
-    		//currentController = visitableIterator.next();
+    	
+    		Visitable currentController = visitableIterator.next();
     		
-    		//System.out.println(visitableIterator.next().getRoot());
-    		
-    		/*
     		if(!currentController.getHasVisited()) { //if haven't visited yet
     			currentController.setHasVisited(); //mark as visited
     			btnFwrd.setDisable(true); //disable forward btn (as now at farthest point)
@@ -94,7 +83,7 @@ public class FrameController {
     		
     		addRootToInnerFrame(currentController.getRoot()); //add cotrollerA fxml to innerFrame
     		
-    		*/
+    		
 		}
 		else {  
 			///anything else????????????
@@ -117,9 +106,9 @@ public class FrameController {
     void initialize() {
     	
     	btnBack.setOnAction(event -> goBack()); 
-    	///btnBack.setDisable(true); //set as initially disable
+    	btnBack.setDisable(true); //set as initially disable
     	btnFwrd.setOnAction(event -> goFwrd());
-    	//btnFwrd.setDisable(true); //set as initially disable
+    	btnFwrd.setDisable(true); //set as initially disable
     }
     
     
@@ -146,8 +135,8 @@ public class FrameController {
     	addRootToInnerFrame(controllerA.getRoot()); //add cotrollerA fxml to innerFrame
     	
     	//disable fwrd & back btn:
-    	/*setDisableBackBtn(true);
-    	setDisableFrwdBtn(true);*/
+    	//setDisableBackBtn(true);
+    	//setDisableFrwdBtn(true);
         
     }
     
