@@ -11,7 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
-public class ControllerB implements MySpecialInterface {
+//public class ControllerB implements Visitable {
+public class ControllerB extends Visitable {
 
     @FXML
     private ResourceBundle resources;
@@ -26,7 +27,7 @@ public class ControllerB implements MySpecialInterface {
     private JFXButton toCBtn;
     
     
-    private final ControllerC controllerC; //????????????
+    private final ControllerC controllerC; 
     private final FrameController frameController; 
     
     private Parent root;
@@ -72,23 +73,22 @@ public class ControllerB implements MySpecialInterface {
     	
     }
     
-    @Override
-    public Parent getRoot() { return root; }
    
-    @Override
+    public Parent getRoot() { return root; }
     public boolean getHasVisited() { return hasVisited; }
-    @Override
     public void setHasVisited() { hasVisited = true; }
     	
    
     
     private void goToC() { 
     	
+    	frameController.addVisitableController(controllerC);
+    	
+    	
+    	/*
     	frameController.setPastRoot(root); //set back button to go back here
     	frameController.setCurrentController(controllerC); //set c controller as new current controller
     	frameController.goFwrd(); //call frameController's goFrwrd method (when going to c, you're going forward!)
-    	
-    	
     	
     	//==========================================================
     	
@@ -104,20 +104,11 @@ public class ControllerB implements MySpecialInterface {
     	}
     	
     	frameController.setPastRoot(root); //set back button to go back here
-    	
+    	*/
     
     	frameController.addRootToScene(controllerC.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
     	frameController.addRootToInnerFrame(controllerC.getRoot());
     	
-    	/*
-    	 * when you hit the back btn: change frwrd root to point to this root (current backRoot)
-    	 * 
-    	 * 
-    	frameController.setBackRoot(this.root); //set back button to go back here
-    	frameController.setForwardRoot(controllerC.getRoot()); //set forward button to go to B
-    	frameController.addRootToScene(controllerC.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
-    	frameController.addRootToInnerFrame(controllerC.getRoot());
-    	*/
     }
 
 

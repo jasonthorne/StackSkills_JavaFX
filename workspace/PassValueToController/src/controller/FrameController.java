@@ -4,6 +4,10 @@ import com.jfoenix.controls.JFXButton;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.ResourceBundle;
 
 import javafx.animation.FadeTransition;
@@ -32,18 +36,82 @@ public class FrameController {
     private JFXButton btnFwrd;
     
     private final ControllerA controllerA;
-    ///private final ControllerB controllerB;
-    private MySpecialInterface currentController;
     
   	private final Stage stage;
     private Scene scene;
     
-    private Parent pastRoot;
-    private Parent futureRoot;
-    private Parent currentRoot; //????
     
-    private boolean hasVisitedCurrent;
+    private Parent pastRoot;
+    private Parent currentRoot; //????
+    private Parent futureRoot;
+   
+    private List<Object>visitableControllers = new ArrayList<>();
+    private ListIterator<Object> visitableIterator = visitableControllers.listIterator();
+    private Visitable currentController;
+    
+    //===============================================================
+    //add controller tol ist:
+    void addVisitableController(Visitable controller) {	 
+    	
+    	//currentController = controller;
+    	//System.out.println(currentController.getRoot());
+    	
+    	visitableControllers.add(controller); 
+    	System.out.println(visitableControllers);
+    	
+    	
+    	while(visitableIterator.hasNext()) {
+    		System.out.println((Visitable)visitableIterator.next());
     		
+    		
+    		
+    	}
+    	
+    }
+    
+    void setDisableBackBtn(boolean bool){ btnBack.setDisable(bool); }
+    	
+   
+    
+    void goFwrd() {
+    	
+    	
+    	if(visitableIterator.hasNext()) {
+    		//currentController = visitableIterator.next();
+    		
+    		//System.out.println(visitableIterator.next().getRoot());
+    		
+    		/*
+    		if(!currentController.getHasVisited()) { //if haven't visited yet
+    			currentController.setHasVisited(); //mark as visited
+    			btnFwrd.setDisable(true); //disable forward btn (as now at farthest point)
+    			//chop offf rest of list if present!! +++++++++
+    			addRootToScene(currentController.getRoot()); //add root to children of scene
+    		}else {
+    			btnFwrd.setDisable(false); //enable forward button
+    			///anything else????????????
+    		}
+    		
+    		addRootToInnerFrame(currentController.getRoot()); //add cotrollerA fxml to innerFrame
+    		
+    		*/
+		}
+		else {  
+			///anything else????????????
+		}
+    	
+    }
+    
+    
+    private void goBack() { 
+    	
+    	//futureRoot = currentRoot; //change forwrdRoot to point to currentRoot
+    	//addRootToInnerFrame(pastRoot); //navigate to backRoot
+    }
+    
+    
+    //======================================================================
+    
     
     @FXML
     void initialize() {
@@ -51,7 +119,7 @@ public class FrameController {
     	btnBack.setOnAction(event -> goBack()); 
     	///btnBack.setDisable(true); //set as initially disable
     	btnFwrd.setOnAction(event -> goFwrd());
-    	///btnFwrd.setDisable(true); //set as initially disable
+    	//btnFwrd.setDisable(true); //set as initially disable
     }
     
     
@@ -78,8 +146,8 @@ public class FrameController {
     	addRootToInnerFrame(controllerA.getRoot()); //add cotrollerA fxml to innerFrame
     	
     	//disable fwrd & back btn:
-    	setDisableBackBtn(true);
-    	setDisableFrwdBtn(true);
+    	/*setDisableBackBtn(true);
+    	setDisableFrwdBtn(true);*/
         
     }
     
@@ -100,48 +168,44 @@ public class FrameController {
 		frameInnerAP.getChildren().setAll(root);
 	}
   
-    void setPastRoot(Parent root) {
-    	pastRoot = root;
-    }
-    
-    void setFutureRoot(Parent root) {
-    	futureRoot = root;
-    }
-    
-    void setCurrentRoot(Parent root) {
-    	currentRoot = root;
-    }
+	/*
+    void setPastRoot(Parent root) { pastRoot = root; }
+    void setCurrentRoot(Parent root) { currentRoot = root; }
+    void setFutureRoot(Parent root) { futureRoot = root; }
+  
     
     void setHasVisitedCurrent(boolean bool) {
     	hasVisitedCurrent = bool;
     }
-    
-    private void goBack() { 
+     */
+	
+	
+    ///private void goBack() { 
     	
-    	futureRoot = currentRoot; //change forwrdRoot to point to currentRoot
-    	addRootToInnerFrame(pastRoot); //navigate to backRoot
-    }
+    	//futureRoot = currentRoot; //change forwrdRoot to point to currentRoot
+    	//addRootToInnerFrame(pastRoot); //navigate to backRoot
+    //}
     
-    void goFwrd() {
+	/* void goFwrd() {
     	
+    
     	if(!currentController.getHasVisited()) { //if haven't visited yet
     		currentController.setHasVisited(); //mark as visited
     		btnFwrd.setDisable(true); //disable forward btn (as now at farthest point)
     	}else {
     		btnFwrd.setDisable(false); //enable forward button
-    		//++++++this guy has to hasve a memory of what the future root is! 
-    	}
-    		//HERE's OUR ISSUE! :
-    		////controllerB.setHasVisited(); //mark as visited 
-    	
+    
+    	}*/
+    		
     		
     		
     		//=========================================
-    		addRootToInnerFrame(futureRoot); 
-    	currentRoot = futureRoot; //currentRoot now becomes forwrdRoot
+    		//addRootToInnerFrame(futureRoot); 
+    		//currentRoot = futureRoot; //currentRoot now becomes forwrdRoot
     	
-    }
+	/* }
     
+    /*
     void setDisableFrwdBtn(boolean bool){ //++++++++++++CAN PROB BE PRIVATE!!
     	btnFwrd.setDisable(bool);
     }
@@ -153,22 +217,9 @@ public class FrameController {
     
     <T>void setCurrentController(MySpecialInterface frameInterface) {
     	this.currentController = frameInterface;
-     
-    	
-    	//==========methods here for adding root to scene and root to inner frame 
-    	
-    	
-    	//print();
-    	
-    }
-    
-    /*
-    void print() {
-    	frameInterface.printHasVisited();
     }
     */
-    
-    
+ 
     
     
     

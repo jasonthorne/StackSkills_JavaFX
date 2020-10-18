@@ -9,7 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
-public class ControllerC implements MySpecialInterface {
+//public class ControllerC implements Visitable {
+public class ControllerC extends Visitable {
 	
 	@FXML
     private ResourceBundle resources;
@@ -51,29 +52,13 @@ public class ControllerC implements MySpecialInterface {
        	System.out.println("ROOT: " + root);
 		
 		
-       	//frameController.setBackRoot(root); //set back button to go back here
-		
-		
 	}
 	
-	@Override
-	public Parent getRoot() { return root; }
 	
-	@Override
+	public Parent getRoot() { return root; }
     public boolean getHasVisited() { return hasVisited; }
-	@Override
     public void setHasVisited() { hasVisited = true; }
 
-    /*
-	@Override
-	public void addToFrameController() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Parent getRootTEST() {
-		return root;
-	}*/
+   
 
 }

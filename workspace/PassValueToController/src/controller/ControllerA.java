@@ -17,7 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 
-public class ControllerA implements MySpecialInterface {
+//public class ControllerA implements Visitable { ////=======================LOGIN PAGE
+public class ControllerA extends Visitable {	
 	
 	String text;
 
@@ -94,10 +95,18 @@ public class ControllerA implements MySpecialInterface {
     
     
     
-    private void goToB() {
+    private void goToB() { //mimicing LOGGED IN
     	
-    	//send has visited info to frameCtroller here //********************
+    	frameController.setDisableBackBtn(false); //turn on back btn (as this is first advancement)
+    	frameController.addVisitableController(controllerB);
     	
+    	//frameController.goFwrd();
+    	
+    	/////////////frameController.addRootToScene(controllerB.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
+    	//////////frameController.addRootToInnerFrame(controllerB.getRoot());
+    	
+    	
+    	/*
     	frameController.setDisableBackBtn(false); //turn on back btn (as this is first advancement)
     	
     	frameController.setCurrentRoot(controllerB.getRoot()); //set b as currentRoot
@@ -114,16 +123,11 @@ public class ControllerA implements MySpecialInterface {
     	}
     	
     	frameController.setPastRoot(root); //set back button to go back here
+    	*/
     	
-    	/*
-    	 * when you hit the back btn: change frwrd root to point to this root (current backRoot)
-    	 * 
-    	 */
     
-    	frameController.addRootToScene(controllerB.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
-    	frameController.addRootToInnerFrame(controllerB.getRoot());
     	
-    	//frameController.enableNavBtns(); //enable nav buttons //+++++++SLOPPY> HAVE booleans stating whether current loc should have a next or prev
+    	
     }
     
     //==============TRY THIS!! ======================
@@ -131,30 +135,19 @@ public class ControllerA implements MySpecialInterface {
     
     //the button then just clears the inner element of its children and adds the loader's root
     
-    @Override
+    
     public Parent getRoot() {
     	return root;
     }
 
-    /*
-	@Override
-	public void addToFrameController() {
-		// TODO Auto-generated method stub
-		
-	}*/
-
-
-	@Override
+  
 	public boolean getHasVisited() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 
-	@Override
 	public void setHasVisited() {
-		// TODO Auto-generated method stub
-		
+		//hasVisited = true;
 	}
     
     
