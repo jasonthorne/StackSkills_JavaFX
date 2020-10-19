@@ -31,7 +31,6 @@ public class ControllerC implements Traversable {
 	ControllerC(FrameController frameController){
 		 
 		this.frameController = frameController;
-		System.out.println("this.hashCode():"  + this.hashCode()); 
 		
 		//load the fxml file:
        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/c.fxml"));
@@ -45,7 +44,7 @@ public class ControllerC implements Traversable {
 		 
        	root = loader.getRoot(); //get root element 
        	
-       	System.out.println("ROOT: " + root);
+      
     	
 		
 	}

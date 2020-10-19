@@ -53,10 +53,8 @@ public class ControllerA implements Traversable {
     @FXML
     void initialize() {
     	
-    	System.out.println("ControllerA initialize");
     	btnA.setOnAction(event -> showText());
     	lblA.setText(text);
-    	
     	toBBtn.setOnAction(event -> goToB());
     }
     
@@ -79,7 +77,7 @@ public class ControllerA implements Traversable {
        	
        	root = loader.getRoot(); //get root element 
        	
-       	System.out.println("ROOT: " + root);
+      
        	
        	/////////frameController.addRootToScene(root); //add root as child element of frameController scene
        	
@@ -98,8 +96,8 @@ public class ControllerA implements Traversable {
     
     private void goToB() { //mimicing LOGGED IN
     
-    	frameController.setTraversable(controllerB);
-    	frameController.moveForward();
+    	//frameController.setTraversable(controllerB);
+    	frameController.moveForward2(controllerB);
     	
     }
     

@@ -54,7 +54,7 @@ public class ControllerB implements Traversable {
 		 
        	root = loader.getRoot(); //get root element 
        	
-       	System.out.println("ROOT: " + root);
+       	
     }
     
    
@@ -63,9 +63,12 @@ public class ControllerB implements Traversable {
        
     private void goToC() {
     	
+    	frameController.moveForward2(controllerC);
+    	
+    	/*
     	frameController.setTraversable(controllerC);
     	frameController.moveForward();
-    
+    	 */
     	////////frameController.addRootToScene(controllerC.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
     	///////frameController.addRootToInnerFrame(controllerC.getRoot());
     	
