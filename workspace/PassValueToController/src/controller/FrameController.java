@@ -49,6 +49,7 @@ public class FrameController extends TEST{
     Stack<Traversable>backwardMoves = new Stack<Traversable>();
     Traversable currController; //currCtrlr
     
+   
     //for controller buttons to set traversable
     void setTraversable(Traversable traversable){
     	this.currController = traversable;
@@ -64,32 +65,49 @@ public class FrameController extends TEST{
     //for buttons on controllers to other controllers:
     void moveForward2(Traversable target) {
     	
+    	//turn on back button
+    	if(btnBack.isDisabled()) { btnBack.setDisable(false); } /** ++++++++++++++++++++++++++++*/
+    	
     	currController = target; //currController now points to target
     	
     	System.out.println("move frwrd2(Traversable)");
-    	System.out.println("current controller is:" + currController);
+    	//System.out.println("current controller is:" + currController);
     	
     	//to move to currController: 
     	forwardMoves.push(currController); //take cc & add it to forwards
-    	System.out.println("forwardMoves:" + forwardMoves);
-    	System.out.println("backwardMoves:" + backwardMoves);
+    	//System.out.println("forwardMoves:" + forwardMoves);
+    	//System.out.println("backwardMoves:" + backwardMoves);
     	
     	//if backwards moves isn't empty AND cc is in backwards, then remove it:
     	if((!backwardMoves.isEmpty()) && (backwardMoves.peek().equals(currController))) {
     		System.out.println("yo!");
+    		System.out.println("forwardMoves: B4 pop:" + forwardMoves);
+    		System.out.println("backwardMoves B4 pop:" + backwardMoves);
+    		//disable fwrd btn as you've reached end of traversed path:
+    		btnFwrd.setDisable(true); /** ++++++++++++++++++++++++++++*/
     		backwardMoves.pop(); //remove rogue element
-    		System.out.println("forwardMoves:" + forwardMoves);
-        	System.out.println("backwardMoves:" + backwardMoves);
+    		System.out.println("forwardMoves after pop:" + forwardMoves);
+        	System.out.println("backwardMoves after pop:" + backwardMoves);
         	System.out.println("current controller is:" + currController);
+        	
+        	//turn off back button if all back options are removed
+        	//if(backwardMoves.isEmpty()) { btnBack.setDisable(true); } /** ++++++0000000000000++++++++++++*/
+   
     	}
     	
     	//show currController:
     	/** addRootToScene(currController.getRoot()); //add root to scene  this MIGHT still be needed later!*/
 		addRootToInnerFrame(currController.getRoot()); //add root to frame
+		
+		
     }
     
     //for frwrd button on frameController:
     void moveForward2() {
+    	
+    	//turn on back button:
+    	if(btnBack.isDisabled()) { btnBack.setDisable(false); } /** ++++++++++++++++++++++++++++*/
+    	
     	System.out.println("move frwrd2");
     	//currController = target; //currController now points to target
     	//this will only be turned on IF there is an option to go forward (ie a back has been added to backs)
@@ -98,12 +116,17 @@ public class FrameController extends TEST{
     	forwardMoves.push(backwardMoves.pop());
     	currController = forwardMoves.peek();//change cc to point to new top of frwrdMoves
     	
+    	//disable fwrd btn as you've reached end of traversed path:
+    	if(backwardMoves.isEmpty()) { btnFwrd.setDisable(true); } /** ++++++++++++++++++++++++++++*/
+    	
     	System.out.println("current controller is:" + currController);
     	
     	//to move to currController: 
     	//forwardMoves.push(currController); //take cc & add it to forwards
     	System.out.println("forwardMoves:" + forwardMoves);
     	System.out.println("backwardMoves:" + backwardMoves);
+    	
+    	
     	
     	//show currController:
     	/** addRootToScene(currController.getRoot()); //add root to scene  this MIGHT still be needed later!*/
@@ -114,10 +137,16 @@ public class FrameController extends TEST{
     void moveBackward2() {
     	System.out.println("moveBackward2");
     	
+    	//turn on frwrd btn:
+    	if(btnFwrd.isDisabled()) { btnFwrd.setDisable(false); } /** ++++++++++++++++++++++++++++*/
+    	
     	//grab currentController & move it to the backwards pile:
     	backwardMoves.push(forwardMoves.pop());
     	currController = forwardMoves.peek(); //change cc to point to new top of frwrdMoves
     	
+    	//disable back btn if currController is now last element in stack:
+    	if (forwardMoves.size() == 1){ btnBack.setDisable(true); } /** ++++++++++++++++++++++++++++*/
+    		
     	System.out.println("current controller is:" + currController);
     	System.out.println("forwardMoves:" + forwardMoves);
     	System.out.println("backwardMoves:" + backwardMoves);
@@ -234,8 +263,8 @@ public class FrameController extends TEST{
     		moveForward();
     	});*/
     	btnFwrd.setOnAction(event -> moveForward2()); 
-    	//btnBack.setDisable(true); //set as initially disable
-    	//btnFwrd.setDisable(true); //set as initially disable
+    	btnBack.setDisable(true); //set as initially disable
+    	btnFwrd.setDisable(true); //set as initially disable
     }
     
     
