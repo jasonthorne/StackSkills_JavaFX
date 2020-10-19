@@ -66,7 +66,7 @@ public class FrameController extends TEST{
     	
     	currController = target; //currController now points to target
     	
-    	System.out.println("move frwrd2");
+    	System.out.println("move frwrd2(Traversable)");
     	System.out.println("current controller is:" + currController);
     	
     	//to move to currController: 
@@ -74,26 +74,39 @@ public class FrameController extends TEST{
     	System.out.println("forwardMoves:" + forwardMoves);
     	System.out.println("backwardMoves:" + backwardMoves);
     	
+    	//if backwards moves isn't empty AND cc is in backwards, then remove it:
+    	if((!backwardMoves.isEmpty()) && (backwardMoves.peek().equals(currController))) {
+    		System.out.println("yo!");
+    		backwardMoves.pop(); //remove rogue element
+    		System.out.println("forwardMoves:" + forwardMoves);
+        	System.out.println("backwardMoves:" + backwardMoves);
+        	System.out.println("current controller is:" + currController);
+    	}
+    	
     	//show currController:
-    	addRootToScene(currController.getRoot()); //add root to scene
+    	/** addRootToScene(currController.getRoot()); //add root to scene  this MIGHT still be needed later!*/
 		addRootToInnerFrame(currController.getRoot()); //add root to frame
     }
     
     //for frwrd button on frameController:
     void moveForward2() {
-    	
-    	//currController = target; //currController now points to target
-    	
     	System.out.println("move frwrd2");
+    	//currController = target; //currController now points to target
+    	//this will only be turned on IF there is an option to go forward (ie a back has been added to backs)
+    	
+    	//we need to grab the new forwrd controller from the bakcsStack:
+    	forwardMoves.push(backwardMoves.pop());
+    	currController = forwardMoves.peek();//change cc to point to new top of frwrdMoves
+    	
     	System.out.println("current controller is:" + currController);
     	
     	//to move to currController: 
-    	forwardMoves.push(currController); //take cc & add it to forwards
+    	//forwardMoves.push(currController); //take cc & add it to forwards
     	System.out.println("forwardMoves:" + forwardMoves);
     	System.out.println("backwardMoves:" + backwardMoves);
     	
     	//show currController:
-    	addRootToScene(currController.getRoot()); //add root to scene
+    	/** addRootToScene(currController.getRoot()); //add root to scene  this MIGHT still be needed later!*/
 		addRootToInnerFrame(currController.getRoot()); //add root to frame
     }
     
@@ -108,6 +121,10 @@ public class FrameController extends TEST{
     	System.out.println("current controller is:" + currController);
     	System.out.println("forwardMoves:" + forwardMoves);
     	System.out.println("backwardMoves:" + backwardMoves);
+    	
+    	//show currController:
+    	/** addRootToScene(currController.getRoot()); //add root to scene  this MIGHT still be needed later!*/
+		addRootToInnerFrame(currController.getRoot()); //add root to frame
     }
     
     /** #####################################################*/
@@ -212,19 +229,20 @@ public class FrameController extends TEST{
     	
     	btnBack.setOnAction(event -> moveBackward2()); 
     	//btnBack.setOnAction(event -> moveBackward()); 
-    	btnFwrd.setOnAction(event -> {
+    	/*btnFwrd.setOnAction(event -> {
     		currController = backwardMoves.peek();
     		moveForward();
-    	});
+    	});*/
+    	btnFwrd.setOnAction(event -> moveForward2()); 
     	//btnBack.setDisable(true); //set as initially disable
-    	btnFwrd.setDisable(true); //set as initially disable
+    	//btnFwrd.setDisable(true); //set as initially disable
     }
     
     
     public FrameController(){
     	
     	controllerA = new ControllerA(this); //instantiate controllerA
-        forwardMoves.push(controllerA); //add logged controller as first element
+    	forwardMoves.push(controllerA); //add logged controller as first element
     	
     	 // Create the new stage
         stage = new Stage();
@@ -246,7 +264,8 @@ public class FrameController extends TEST{
         //++++++++++++++++++++++++++++++++++++++++++++++++++++
         
         //on successful login, do this (obv stick a method somewhere! :P )
-    	addRootToInnerFrame(controllerA.getRoot()); //add cotrollerA fxml to innerFrame
+        
+        addRootToInnerFrame(controllerA.getRoot()); //add cotrollerA fxml to innerFrame
         System.out.println("Start of forwardMoves: " + forwardMoves);
     	//+++++++++++++++++++++++++++++++++++++++++++++++++++
         
@@ -255,11 +274,11 @@ public class FrameController extends TEST{
     /** Show the stage that was loaded in the constructor */
     public void showStage() {
         stage.showAndWait(); //show stage
-        /////////addRootToScene(controllerA.getRoot()); //add controllerA root to scene
+        ///addRootToScene(controllerA.getRoot()); //add controllerA root to scene
     }
     
     
-    //add root to children of scene:
+    //add root to children of scene: ///////////THIS I THINK is needed for external windows!! 
     void addRootToScene(Parent root) {
 		((AnchorPane) scene.getRoot()).getChildren().add(root); 
 	}
