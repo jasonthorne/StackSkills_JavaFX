@@ -97,47 +97,13 @@ public class ControllerA implements Traversable {
    
     
     private void goToB() { //mimicing LOGGED IN
-    	
     
-    	
-    	frameController.setDisableBackBtn(false); //turn on back btn (as this is first advancement)
-    	//frameController.addVisitableController(controllerB);
-    	
     	frameController.setTraversable(controllerB);
     	frameController.moveForward();
     	
-    	////frameController.addRootToScene(controllerB.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
-    	////////////frameController.addRootToInnerFrame(controllerB.getRoot());
-    	
-    	
-    	/*
-    	frameController.setDisableBackBtn(false); //turn on back btn (as this is first advancement)
-    	
-    	frameController.setCurrentRoot(controllerB.getRoot()); //set b as currentRoot
-    	frameController.setHasVisitedCurrent(controllerB.getHasVisited()); //set whether root has been visited
-    	
-    	
-    	//-----------------have this in an interface --------------------------
-    	if(!controllerB.getHasVisited()) { //if haven't visited yet
-    		controllerB.setHasVisited(); //mark as visited 
-    		frameController.setDisableFrwdBtn(true);//disable forward btn (as now at farthest point)
-    	}else {
-    		frameController.setDisableFrwdBtn(false); //enable forward btn
-    		frameController.setFutureRoot(controllerB.getRoot()); //set forward button to go to B
-    	}
-    	
-    	frameController.setPastRoot(root); //set back button to go back here
-    	*/
-    	
-    
-    	
-    	
     }
     
-    //==============TRY THIS!! ======================
-    //constructor adds loader to scene.
-    
-    //the button then just clears the inner element of its children and adds the loader's root
+   
     
     @Override
    	public Parent getRoot() { return root; }

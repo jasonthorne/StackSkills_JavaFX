@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
-//public class ControllerC implements Visitable {
 public class ControllerC implements Traversable {
 	
 	@FXML
@@ -28,9 +27,7 @@ public class ControllerC implements Traversable {
     private final FrameController frameController; 
     
     private Parent root;
-    private boolean hasVisited = false;
-
-   
+    
 	ControllerC(FrameController frameController){
 		 
 		this.frameController = frameController;
@@ -57,9 +54,5 @@ public class ControllerC implements Traversable {
 	@Override
 	public Parent getRoot() { return root; }
 	
-    public boolean getHasVisited() { return hasVisited; }
-    public void setHasVisited() { hasVisited = true; }
-
-   
 
 }
