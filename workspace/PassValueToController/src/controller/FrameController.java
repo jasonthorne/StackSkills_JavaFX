@@ -73,6 +73,7 @@ public class FrameController extends TEST{
     	//to move to currController: 
     	forwardMoves.push(currController);  /** maybe pop from backwardMoves here instead!! *///take cc & add it to forwards 
     	
+    	/** This fixes when top backwards element is different to target (ie if traversing new path) */
     	if((!backwardMoves.isEmpty())) {
     		backwardMoves.pop(); //remove rogue element
         	//turn off fwrd btn if all back options are removed
