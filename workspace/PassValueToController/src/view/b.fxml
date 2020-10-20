@@ -13,5 +13,6 @@
          </font>
       </Label>
       <JFXButton fx:id="toCBtn" layoutX="172.0" layoutY="35.0" style="-fx-background-color: pink;" text="Go to C" />
+      <JFXButton fx:id="toB2Btn" layoutX="172.0" layoutY="174.0" style="-fx-background-color: red;" text="Go to B2" textFill="WHITE" />
    </children>
 </AnchorPane>

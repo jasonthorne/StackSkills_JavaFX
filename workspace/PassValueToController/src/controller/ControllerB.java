@@ -22,23 +22,31 @@ public class ControllerB implements Traversable {
     @FXML
     private JFXButton toCBtn;
     
-    private  ControllerC controllerC; 
-    private  FrameController frameController; 
+    @FXML
+    private JFXButton toB2Btn;
     
+    //==================================
+    //make these a list of Traversables?????????????????
+    private  ControllerC controllerC;
+    private  ControllerB2 controllerB2; 
+    //=================================
+    
+    private  FrameController frameController; 
     private Parent root;
-    private boolean hasVisited = false;
+   
     
  
     @FXML
     void initialize() {
     	toCBtn.setOnAction(event -> goToC());
+    	toB2Btn.setOnAction(event -> goToB2());
     }
     
-   
     //constructor:
     ControllerB(FrameController frameController){
     	
     	controllerC = new ControllerC(frameController);
+    	controllerB2 = new ControllerB2(frameController);
   	   	this.frameController = frameController;
     	
     	
@@ -62,20 +70,13 @@ public class ControllerB implements Traversable {
    	public Parent getRoot() { return root; }
        
     private void goToC() {
-    	
     	frameController.moveFwrd(controllerC);
-    	
-    	/*
-    	frameController.setTraversable(controllerC);
-    	frameController.moveForward();
-    	 */
-    	////////frameController.addRootToScene(controllerC.getRoot()); /////////////////////POTENTIAL ISSUE HERE (when this is pressed a second time) ++++++++++++++++++++
-    	///////frameController.addRootToInnerFrame(controllerC.getRoot());
-    	
     }
 
-
- 
+    
+    private void goToB2() { 
+    	frameController.moveFwrd(controllerB2);
+    }
 
 
 	

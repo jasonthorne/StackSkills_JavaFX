@@ -107,15 +107,6 @@ public class ControllerA implements Traversable {
    	public Parent getRoot() { return root; }
 
   
-	public boolean getHasVisited() {
-		return false;
-	}
-
-	
-	public void setHasVisited() {
-		//hasVisited = true;
-	}
-    
     
     
     

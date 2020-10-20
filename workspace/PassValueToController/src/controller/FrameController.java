@@ -66,15 +66,27 @@ public class FrameController extends TEST{
     	
     	currController = target; //currController now points to target
     	
+    	System.out.println("current controller is:" + currController);
+    	System.out.println("forwardMoves:" + forwardMoves);
+    	System.out.println("backwardMoves:" + backwardMoves);
+    	
     	//to move to currController: 
     	forwardMoves.push(currController);  /** maybe pop from backwardMoves here instead!! *///take cc & add it to forwards 
     	
-    	//if backwards moves isn't empty AND cc is in backwards, then remove it:
-    	if((!backwardMoves.isEmpty()) && (backwardMoves.peek().equals(currController))) {
+    	if((!backwardMoves.isEmpty())) {
     		backwardMoves.pop(); //remove rogue element
         	//turn off fwrd btn if all back options are removed
-        	if(backwardMoves.isEmpty()) { btnFwrd.setDisable(true); } /** ++++++0000000000000++++++++++++*/
+        	if(backwardMoves.isEmpty()) { btnFwrd.setDisable(true); } //++++++++++++++++++++++++++++
     	}
+    	
+    	/*
+    	//if backwards moves isn't empty AND cc is in backwards, then remove it:
+    	if((!backwardMoves.isEmpty()) && (backwardMoves.peek().equals(currController))) {
+    		System.out.println("POP");
+    		backwardMoves.pop(); //remove rogue element
+        	//turn off fwrd btn if all back options are removed
+        	if(backwardMoves.isEmpty()) { btnFwrd.setDisable(true); } //++++++++++++++++++++++++++++
+    	}*/
     	
     	//show currController:
     	/** addRootToScene(currController.getRoot()); //add root to scene  this MIGHT still be needed later!*/
