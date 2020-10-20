@@ -63,7 +63,7 @@ public class ControllerB implements Traversable {
        
     private void goToC() {
     	
-    	frameController.moveForward2(controllerC);
+    	frameController.moveFwrd(controllerC);
     	
     	/*
     	frameController.setTraversable(controllerC);

@@ -97,7 +97,7 @@ public class ControllerA implements Traversable {
     private void goToB() { //mimicing LOGGED IN
     
     	//frameController.setTraversable(controllerB);
-    	frameController.moveForward2(controllerB);
+    	frameController.moveFwrd(controllerB);
     	
     }
     
