@@ -42,7 +42,8 @@ public class Controller1 {
     private TextField txtToCell;
     
     /** observable list */
-    private ObservableList<CellItem>observableList; //= FXCollections.observableArrayList();
+    //private ObservableList<CellItem>observableList; //= FXCollections.observableArrayList();
+    private ObservableList<CellItem>observableList = FXCollections.observableArrayList();
     
    //imaginary db data:
     public static List<CellItem>cellItemsDB = new ArrayList<CellItem>();
@@ -150,12 +151,17 @@ public class Controller1 {
     
     
     /** -------------------------*/
-    private void refreshList(){
+    private void refreshList(){ /** I THINK this is mimicking pulling from db! +++++++++++++++++ */
     	
     	 ///////////ObservableList<CellItem>observableList; 
     	//instantiate obsList: ++++++++++sloppy!!!
     	//////ObservableList<CellItem> observableList = FXCollections.observableArrayList();
-    	observableList = FXCollections.observableArrayList();
+    	/** +++++++++++++++++++++ below was removed from working example ++++++*/
+    	//////////////observableList = FXCollections.observableArrayList(); 
+    	
+    	/** +++++++++++++below MIGHT be needed as new code to replace what was commented above CHECK!! */
+    	///observableList.clear(); 
+    	
     	//add CellItems from db to observable list:
     	observableList.addAll(cellItemsDB);
     	

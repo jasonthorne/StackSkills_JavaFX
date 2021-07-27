@@ -1,0 +1,46 @@
+a [go to] b (Y)
+b [go to] c (Y)
+
+b [back] a (Y)
+c [back] b (Y)
+
+-------------------
+
+a [go to] b
+b [go to] c
+c [back] to b
+b [frwrd] to c (Y)
+
+a [go to] b
+b [go to] c
+c [back] to b
+b [go to] to c (Y)
+
+a [go to] b
+b [back] to a
+a [frwrd] to b (Y)
+
+a [go to] b
+b [back] to a
+a [go to] b (y)
+
+---------------------
+
+a [go to] b
+b [back] to a
+a [go to] b (y)
+
+
+a [go to] b
+b [back] to a
+a [frwrd] b (y)
+
+-----------------------
+
+a [go to] b
+b [go to] b2
+b2 [back] to b
+b [go to] c (y)
+
+
+

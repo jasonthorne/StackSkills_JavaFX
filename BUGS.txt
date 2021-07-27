@@ -1,0 +1,28 @@
+go to b
+go to c
+[back] to b
+[back] to a
+[fwrd] to b:
+	no option for going back to c.
+
+-----------------
+
+go to b
+go to c
+[back] to b
+[back] to a
+go to b:
+go to c:
+	[fwrd] still enabled
+
+-----------------
+go to b
+go to c
+[back] to b
+[back] to a
+go to b:
+[fwd] to c 
+	- NO PROBS!!
+[fwrd] still enabled
+
+-----------------

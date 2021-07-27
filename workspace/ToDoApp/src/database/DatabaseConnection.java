@@ -31,6 +31,6 @@ public class DatabaseConnection{
 	//return a newly established connection:
 	protected static Connection getConnection() {
 		return new DatabaseConnection().connection; 
-	} 
+	}
 	
 }
