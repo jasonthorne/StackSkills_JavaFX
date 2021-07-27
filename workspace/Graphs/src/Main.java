@@ -2,16 +2,21 @@
 	
 import java.util.Arrays;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,8 +42,8 @@ public class Main extends Application {
         stage.setTitle("Bar Chart Sample");
         final CategoryAxis xAxis = new CategoryAxis();
         
-        xAxis.setCategories(FXCollections.<String>observableArrayList(
-                Arrays.asList(raf, luftwaffe, russia)));
+       /* xAxis.setCategories(FXCollections.<String>observableArrayList(
+                Arrays.asList(raf, luftwaffe, russia)));*/
         
         /////////https://stackoverflow.com/questions/55301550/javafx-barchart-how-to-center-align-bars ===========
         
@@ -76,7 +81,12 @@ public class Main extends Application {
         
         XYChart.Series<String,Number> series3 = new XYChart.Series<String, Number>();
         series3.setName("Hurricane");
-        series3.getData().add(new XYChart.Data(raf, 45000.65));
+        /*series3.getData().add(new Data<String, Number>(raf, 45000.65));
+        series3.getData().add(new XYChart.Data<String, Number>(russia, 45000.65));*/
+        
+        series3.getData().addAll(Arrays.asList(new Data<String, Number>(raf, 45000.65), new XYChart.Data<String, Number>(russia, 45000.65)));
+        
+        
        /* series3.getData().add(new XYChart.Data(brazil, 44835.76));
         series3.getData().add(new XYChart.Data(france, 18722.18));
         series3.getData().add(new XYChart.Data(italy, 17557.31));*/
@@ -84,8 +94,17 @@ public class Main extends Application {
         
         bc.getData().add(series3);
         
+        /*
+        XYChart.Series<String,Number> series4 = new XYChart.Series<String, Number>();
+        series4.setName("Hurricane");
+        series4.getData().add(new XYChart.Data(russia, 45000.65));
+     
+        
+        bc.getData().add(series4);*/
+        
         Scene scene  = new Scene(bc,800,600);
         
+       
         stage.setScene(scene);
         stage.show();
         
